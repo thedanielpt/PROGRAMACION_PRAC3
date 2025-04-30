@@ -1,11 +1,13 @@
 package utils;
 
+import data.GesData;
 import models.Calendario;
 import models.Bocatas;
 import models.Pedidos;
 import models.User;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Validaciones {
@@ -469,7 +471,7 @@ public class Validaciones {
      * @return devuelve el tl numero del rol que eres
      */
 
-    public static String rolEsoGm(String tipo){
+    public static int rolEsoGm(String tipo){
         String[] ESO = {"1ªESO","2ªESO","3ªESO","4ªESO"};
         String[] GM = {"1ºAño GM Informatica", "2ºAño GM Informatica", "1ºAño GM Jardinería", "2ºAño GM Jardinería"};
         String trabajador = "Trabajador";
@@ -477,25 +479,25 @@ public class Validaciones {
         String admin = "admin";
         for (int i = 0; i < ESO.length; i++) {
             if (tipo.equalsIgnoreCase(ESO[i])) {
-                return ESO[i];
+                return 0;
             }
         }
 
         for (int i = 0; i < GM.length; i++) {
             if (tipo.equalsIgnoreCase(GM[i])) {
-                return GM[i];
+                return 0;
             }
         }
 
         if (tipo.equalsIgnoreCase(trabajador)) {
-            return trabajador;
+            return 0;
         } else if (tipo.equalsIgnoreCase(cocina)) {
-            return cocina;
+            return 1;
         } else if (tipo.equalsIgnoreCase(admin)) {
-            return admin;
+            return 2;
         }
 
-        return null;
+        return 3;
     }
 
     /**
@@ -601,5 +603,186 @@ public class Validaciones {
 
         vete = false;
         return contrasenaNueva;
+    }
+
+    public static String cursoUsuario(){
+        Scanner sc= new Scanner(System.in);
+        String elec = "";
+        String curso = "";
+        boolean next = true;
+
+        do {
+            System.out.println("Elige al curso que perteneces");
+            System.out.println("1. ESO");
+            System.out.println("2. Grado Medio");
+            System.out.println("3. Soy trabajador");
+            elec = sc.nextLine();
+
+            switch (elec) {
+                case "1":
+                    do {
+                        System.out.println("Selecciona a ESO perteneces");
+                        System.out.println("1. 1ºESO");
+                        System.out.println("2. 2ºESO");
+                        System.out.println("3. 3ºESO");
+                        System.out.println("4. 4ºESO");
+                        System.out.println("5. No es lo que quería seleccionar");
+                        elec = sc.nextLine();
+
+                        switch (elec) {
+                            case "1":
+                                System.out.println("Eres de 1ºESO");
+                                curso = "1ªESO";
+                                next = false;
+                                break;
+                            case "2":
+                                System.out.println("Eres de 2ºESO");
+                                curso = "2ªESO";
+                                next = false;
+                                break;
+                            case "3":
+                                System.out.println("Eres de 3ºESO");
+                                curso = "3ªESO";
+                                next = false;
+                                break;
+                            case "4":
+                                System.out.println("Eres de 4ºESO");
+                                curso = "4ªESO";
+                                next = false;
+                                break;
+                            case "5":
+                                next = false;
+                                break;
+                            default:
+                                System.out.println("No has seleccionado nada");
+                                next = true;
+                                break;
+                        }
+                    } while (next);
+                    break;
+                case "2":
+                    do {
+                        System.out.println("Selecciona el año junto a su grado medio");
+                        System.out.println("1. 1ºAño GM Informatica");
+                        System.out.println("2. 2ºAño GM Informatica");
+                        System.out.println("3. 1ºAño GM Jardinería");
+                        System.out.println("4. 2ºAño GM Jardinería");
+                        System.out.println("5. No es lo que quería seleccionar");
+                        elec = sc.nextLine();
+
+                        switch (elec) {
+                            case "1":
+                                curso = "1ºAño GM Informatica";
+                                next = false;
+                                break;
+                            case "2":
+                                curso = "2ºAño GM Informatica";
+                                next = false;
+                                break;
+                            case "3":
+                                curso = "1ºAño GM Jardinería";
+                                next = false;
+                                break;
+                            case "4":
+                                curso = "2ºAño GM Jardinería";
+                                next = false;
+                                break;
+                            case "5":
+                                next = false;
+                                break;
+                            default:
+                                next = true;
+                                break;
+                        }
+
+                    } while (next);
+                    break;
+                case "3":
+
+                    do {
+                        System.out.println("1. Crear Profesor, director, etc.");
+                        System.out.println("2. Crear un admin");
+                        System.out.println("3. Crear cociner@");
+                        System.out.println("3. No es lo que quería seleccionar");
+                        elec = sc.nextLine();
+
+                        switch (elec) {
+                            case "1":
+                                curso = "Trabajador";
+                                next = false;
+                                break;
+                            case "2":
+                                do {
+                                    System.out.println("¿Estas seguro?");
+                                    System.out.println("SI");
+                                    System.out.println("NO");
+                                    elec = sc.nextLine();
+
+                                    switch (elec) {
+                                        case "SI":
+                                            curso = "Admin";
+                                            return curso;
+                                        case "NO":
+                                            next = true;
+                                            break;
+                                        default:
+                                            System.out.println("Tienes que seleccionar una de las dos opciones");
+                                            break;
+                                        }
+                                }while (next);
+                            case "3":
+                                curso = "Conina";
+                                next = false;
+                                break;
+                            case "4":
+                                next = false;
+                                break;
+                        }
+                    } while (next);
+            }
+        } while (curso.length()<3);
+
+        System.out.println("Curso seleccionado = "+curso +"\n");
+
+        return curso;
+    }
+
+    public static boolean tienesalergias(){
+        Scanner sc = new Scanner(System.in);
+        String elec;
+        boolean next = true;
+
+        System.out.println("¿Tienes alergias?");
+        System.out.println("Si o no");
+        elec = sc.nextLine();
+
+        do {
+            if (elec.equalsIgnoreCase("si")) {
+                return true;
+            } else if (elec.equalsIgnoreCase("no")) {
+                return false;
+            } else {
+                System.out.println("Tienes que escribir una de las dos opciones");
+                next = true;
+            }
+        }while (next);
+        return false;
+    }
+
+    public static ArrayList alergiasUsuario(){
+        Scanner sc = new Scanner(System.in);
+        boolean next = true;
+        ArrayList alergias = new ArrayList<>();
+
+        System.out.println("Ingrese sus lergias, cuando las pongas todas pon terminado");
+
+        while (next) {
+            String alergia = sc.nextLine();
+            if (alergia.equalsIgnoreCase("terminado")) {
+                break;
+            }
+            alergias.add(alergia);
+        }
+        return alergias;
     }
 }

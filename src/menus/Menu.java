@@ -9,7 +9,7 @@ public class Menu {
     /**
      *Metodo donde esta el menu Admin
      */
-    public void menuAdmin(){
+    public static void menuAdmin(){
         Scanner sc = new Scanner(System.in);
         boolean next = true;
         String elec = "";
@@ -65,7 +65,7 @@ public class Menu {
      * Menu de admin de gestion de usuarios
      */
 
-    public void adminGestionUsers(){
+    public static void adminGestionUsers(){
         Scanner sc = new Scanner(System.in);
         String elec = "";
         boolean next = true;
@@ -122,7 +122,7 @@ public class Menu {
      * Metodo para la realización de los pedidos
      */
 
-    public void adminRealizarPedido(){
+    public static void adminRealizarPedido(){
         Scanner sc = new Scanner(System.in);
         String elec = "";
         boolean next = true;
@@ -154,7 +154,7 @@ public class Menu {
         } while (next);
     }
 
-    public void adminConsultarPedidos(){
+    public static void adminConsultarPedidos(){
         Scanner sc = new Scanner(System.in);
         String elec = "";
         boolean next = true;
@@ -189,7 +189,7 @@ public class Menu {
      * Metodo donde esta el menu de Usuario
      */
 
-    public void menuUsuario(){
+    public static void menuUsuario(){
         Scanner sc = new Scanner(System.in);
         boolean next = true;
         String elec = "";
@@ -235,28 +235,28 @@ public class Menu {
     /**
      * Metodo para pedir un bocata
      */
-    public void usuarioPedirBocata(){
+    public static void usuarioPedirBocata(){
         //TODO: usuario pide bocata
     }
 
     /**
      * Metodo para ver el horario de los bocatas
      */
-    public void usuarioHorarioBocata(){
+    public static void usuarioHorarioBocata(){
         //TODO: usuario mira horario
     }
 
     /**
      * Metodo para cancelar el bocata
      */
-    public void usuarioCancelarBocata(){
+    public static void usuarioCancelarBocata(){
         //TODO: usuario cancela bocata
     }
 
     /**
      * Metodo para ver el historial de pedidos
      */
-    public void usuarioHistorialPedidos(){
+    public static void usuarioHistorialPedidos(){
         //TODO: usuario mira su historial de pedidos
     }
 
@@ -266,7 +266,7 @@ public class Menu {
      * Este metodo muestra el menu de cocina
      */
 
-    public void menuCocina(){
+    public static void menuCocina(){
         Scanner sc = new Scanner(System.in);
         boolean next = true;
         String elec = "";
@@ -296,11 +296,11 @@ public class Menu {
         }
     }
 
-    public void cocinaModificarestado(){
+    public static void cocinaModificarestado(){
         //TODO: cocina podra modificar el estado de los pedidos
     }
 
-    public void cocinaVerPedidos(){
+    public static void cocinaVerPedidos(){
         //TODO: cocina podra mirar los pedidos
     }
 

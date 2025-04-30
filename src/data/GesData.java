@@ -4,20 +4,23 @@ import models.User;
 import models.Bocatas;
 import models.Calendario;
 import models.Pedidos;
+import services.UsuarioServicio;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class GesData {
 
-    public static ArrayList<User> usuarios;
-    public static ArrayList<Bocatas> bocatas;
-    public static ArrayList<Pedidos> pedidos;
-    public static ArrayList<Calendario> calendarios;
+    public static ArrayList<User> usuarios = new ArrayList<>();
+    public static ArrayList<Bocatas> bocatas = new ArrayList<>();
+    public static ArrayList<Pedidos> pedidos = new ArrayList<>();
+    public static ArrayList<Calendario> calendarios = new ArrayList<>();
 
 
     public static void cargarUsuaios(){
-        String[] alergias = {"Frutos secos", "Polen"};
+        ArrayList alergias = new ArrayList();
+        alergias.add("Frutos secos");
+        alergias.add("Polen");
 
         usuarios.add(new User("Daniel", "Daniel Pamies Teruel", "1º ESO", "danielpameisteruel@gmail.com", "Daniel_1", false, LocalDate.of(2006, 3, 29), 2));
         usuarios.add(new User("Javi", "Javi solemne malo", "2ºESO", "javisolemnemalo2gmail.com", "Javi_123", true, alergias ,LocalDate.of(2000, 05, 23), 1));
@@ -65,5 +68,8 @@ public class GesData {
         calendarios.add(new Calendario(2, LocalDate.of(2025, 03,8), LocalDate.of(2025, 03,10), bocata_caliente, bocata_frio));
         calendarios.add(new Calendario(3, LocalDate.of(2025, 03,9), LocalDate.of(2025, 03,11), bocata_caliente, bocata_frio));
         calendarios.add(new Calendario(4, LocalDate.of(2025, 03,10), LocalDate.of(2025, 03,12), bocata_caliente, bocata_frio));
+    }
+    public static void eliminarUsuario(){
+        eliminarUsuario();
     }
 }
