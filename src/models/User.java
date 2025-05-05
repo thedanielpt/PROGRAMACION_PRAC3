@@ -59,6 +59,10 @@ public class User {
         }
     }
 
+    /**
+     * Sirve para modificar el nombre del usuario
+     * @param usuario es el usuario al que queremos modificar el nombre
+     */
     public static void modificarUsuario(User usuario){
         Scanner sc = new Scanner(System.in);
         boolean next = true;
@@ -85,6 +89,31 @@ public class User {
                         break;
                 }
             }
+        }while (next);
+    }
+
+    public static void modificarNombreUsuario(User usuario){
+        Scanner sc = new Scanner(System.in);
+        boolean next = true;
+        String nombreNuevo;
+
+        do {
+            System.out.println("¿Que nombre de usuario quieres?");
+            nombreNuevo = sc.nextLine();
+
+            System.out.println("Quieres cambiar el nombre de usuario de"+usuario.getNombre()+" a "+nombreNuevo);
+            System.out.println("Di 'si' o 'no'");
+            String elec = sc.nextLine();
+
+            switch (elec) {
+                case "si":
+                    usuario.setNombre(nombreNuevo);
+                    next = false;
+                    break;
+                case "no":
+                    next=true;
+                    break;
+                }
         }while (next);
     }
 

@@ -9,10 +9,10 @@ import java.util.Scanner;
 
 public class UsuarioServicio {
 
-    public static ArrayList<String> obtenerTodos(){
-        ArrayList<String> usuarios = new ArrayList<>();
+    public static ArrayList<User> obtenerTodos(){
+        ArrayList<User> usuarios = new ArrayList<>();
         for (User usuario: GesData.usuarios) {
-            usuarios.add(usuario.getNombre());
+            usuarios.add(usuario);
         }
         return usuarios;
     }
@@ -88,10 +88,10 @@ public class UsuarioServicio {
                         next = false;
                         break;
                     case "1":
-
+                        User.modificarUsuario(user);
                         break;
                     case "2":
-
+                        User.modificarNombreUsuario(user);
                         break;
                     case "3":
 
