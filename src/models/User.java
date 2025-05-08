@@ -1,62 +1,36 @@
 package models;
 
 import services.UsuarioServicio;
+import utils.Validaciones;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class User {
-    private String usuario;
-    private String nombre;
-    private String correo;
-    private String curso;
-    private String password;
-    private boolean alergico;
-    private ArrayList alergias;
-    private LocalDate fecha_nacimiento;
-    private int rol;
+    protected String usuario;
+
+    protected String nombre;
+
+    protected String correo;
+
+    protected String password;
 
     public User(){}
 
-    public User(String usuario) {
-        this.usuario = usuario;
-    }
-
-    public User(String usuario, String nombre, String curso, String correo, String password, boolean alergico, LocalDate fecha_nacimiento, int rol) {
-        this.usuario = usuario;
-        this.nombre = nombre;
-        this.curso = curso;
-        this.correo = correo;
-        this.password = password;
-        this.alergico = alergico;
-        this.fecha_nacimiento = fecha_nacimiento;
-        this.rol = rol;
-    }
-
-    public User(String usuario, String nombre, String correo, String curso, String password, boolean alergico, ArrayList alergias, LocalDate fecha_nacimiento, int rol) {
+    public User(String usuario, String nombre, String correo, String password) {
         this.usuario = usuario;
         this.nombre = nombre;
         this.correo = correo;
-        this.curso = curso;
         this.password = password;
-        this.alergico= alergico;
-        this.alergias = alergias;
-        this.fecha_nacimiento=fecha_nacimiento;
-        this.rol=rol;
     }
 
-    public void mostrarInfo() {
-
-        if (alergico = true) {
-            System.out.println("\n----------------");
-            System.out.println("Nombre de user = " + usuario + "\nNombre del alumno = " + nombre + "\nCorreo electrónico = " + correo + "\nCurso = " + curso + "\nPassword = " + password + "\nAlergias = " + alergias + "\nFecha de nacimiento = " + fecha_nacimiento + "\nRol = " + rol);
-            System.out.println("\n----------------");
-        } else {
-            System.out.println("\n----------------");
-            System.out.println("Nombre de user = " + usuario + "\nNombre del alumno = " + nombre + "\nCorreo electrónico = " + correo + "\nCurso = " + curso + "\nPassword = " + password + "\n¿Eres alérgico? = " + alergico + "\nFecha de nacimiento = " + fecha_nacimiento + "\nRol = " + rol);
-            System.out.println("\n----------------");
-        }
+    @Override
+    public String toString() {
+        return "User{" +
+                "usuario='" + usuario + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", correo='" + correo + '\'' +
+                ", password='" + password + '\'';
     }
 
     /**
@@ -117,75 +91,81 @@ public class User {
         }while (next);
     }
 
+    public static void modificarCorreo(User usuario){
+        Scanner sc = new Scanner(System.in);
+        boolean next = true;
+
+        do {
+            String correoNuevo  = Validaciones.validarGmail();
+
+            System.out.println("Quieres cambiar el correo viejo: "+ usuario.getCorreo()+" por el correo nuevo "+correoNuevo+"?");
+            System.out.println("Di 'si' o 'no'");
+            String elec = sc.nextLine();
+
+            switch (elec) {
+                case "si":
+                    usuario.setCorreo(correoNuevo);
+                    next = false;
+                    break;
+                case "no":
+                    next=true;
+                    break;
+            }
+        }while (next);
+    }
+
+    public static void modificarContrasena(User usuario){
+        Scanner sc = new Scanner(System.in);
+        boolean next = true;
+
+        do {
+            String contrasenaNueva  = Validaciones.validarContrasena();
+
+            System.out.println("Quieres cambiar la contraseña vieja: "+ usuario.getPassword()+" por la contraseña nueva "+contrasenaNueva+"?");
+            System.out.println("Di 'si' o 'no'");
+            String elec = sc.nextLine();
+
+            switch (elec) {
+                case "si":
+                    usuario.setPassword(contrasenaNueva);
+                    next = false;
+                    break;
+                case "no":
+                    next=true;
+                    break;
+            }
+        }while (next);
+    }
+
     public String getUsuario() {
         return usuario;
-    }
-
-    public int getRol() {
-        return rol;
-    }
-
-    public LocalDate getFecha_nacimiento() {
-        return fecha_nacimiento;
-    }
-
-    public ArrayList getAlergias() {
-        return alergias;
-    }
-
-    public boolean isAlergico() {
-        return alergico;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getCurso() {
-        return curso;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public String getNombre() {
-        return nombre;
     }
 
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getCorreo() {
+        return correo;
     }
 
     public void setCorreo(String correo) {
         this.correo = correo;
     }
 
-    public void setCurso(String curso) {
-        this.curso = curso;
+    public String getPassword() {
+        return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public void setAlergico(boolean alergico) {
-        this.alergico = alergico;
-    }
-
-    public void setAlergias(ArrayList alergias) {
-        this.alergias = alergias;
-    }
-
-    public void setFecha_nacimiento(LocalDate fecha_nacimiento) {
-        this.fecha_nacimiento = fecha_nacimiento;
-    }
-
-    public void setRol(int rol) {
-        this.rol = rol;
     }
 }

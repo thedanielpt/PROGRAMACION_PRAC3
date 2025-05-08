@@ -3,11 +3,11 @@ package models;
 import java.time.LocalDate;
 
 public class Pedidos {
-    private int id_pedido;
-    private String id_usuario;
-    private int id_bocadillo;
-    private LocalDate fecha;
-    private String estado;
+    protected int id_pedido;
+    protected String id_usuario;
+    protected int id_bocadillo;
+    protected LocalDate fecha;
+    protected String estado;
 
     public Pedidos(int id_pedido, String id_usuario, int id_bocadillo, LocalDate fecha, String estado) {
         this.id_pedido = id_pedido;

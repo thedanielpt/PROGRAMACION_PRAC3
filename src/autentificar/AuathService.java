@@ -65,7 +65,7 @@ public class AuathService {
 
         LocalDate año_nacimiento = Validaciones.validarFecha();
 
-        int rol = Validaciones.rolEsoGm(curso);
+        int rol = Validaciones.rol(curso);
 
         boolean alergico = Validaciones.tienesalergias();
 

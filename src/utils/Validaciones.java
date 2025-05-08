@@ -471,7 +471,7 @@ public class Validaciones {
      * @return devuelve el tl numero del rol que eres
      */
 
-    public static int rolEsoGm(String tipo){
+    public static int rol(String tipo){
         String[] ESO = {"1ªESO","2ªESO","3ªESO","4ªESO"};
         String[] GM = {"1ºAño GM Informatica", "2ºAño GM Informatica", "1ºAño GM Jardinería", "2ºAño GM Jardinería"};
         String trabajador = "Trabajador";
@@ -752,11 +752,11 @@ public class Validaciones {
         String elec;
         boolean next = true;
 
-        System.out.println("¿Tienes alergias?");
-        System.out.println("Si o no");
-        elec = sc.nextLine();
-
         do {
+            System.out.println("¿Tienes alergias?");
+            System.out.println("Si o no");
+            elec = sc.nextLine();
+
             if (elec.equalsIgnoreCase("si")) {
                 return true;
             } else if (elec.equalsIgnoreCase("no")) {
@@ -782,6 +782,7 @@ public class Validaciones {
                 break;
             }
             alergias.add(alergia);
+            System.out.println("Siguiente alergia:");
         }
         return alergias;
     }

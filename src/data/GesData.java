@@ -1,9 +1,6 @@
 package data;
 
-import models.User;
-import models.Bocatas;
-import models.Calendario;
-import models.Pedidos;
+import models.*;
 import services.UsuarioServicio;
 
 import java.time.LocalDate;
@@ -22,16 +19,15 @@ public class GesData {
         alergias.add("Frutos secos");
         alergias.add("Polen");
 
-        usuarios.add(new User("Daniel", "Daniel Pamies Teruel", "1º ESO", "danielpameisteruel@gmail.com", "Daniel_1", false, LocalDate.of(2006, 3, 29), 2));
-        usuarios.add(new User("Javi", "Javi solemne malo", "2ºESO", "javisolemnemalo2gmail.com", "Javi_123", true, alergias ,LocalDate.of(2000, 05, 23), 1));
-        usuarios.add(new User("Lucia", "Lucia buena mala", "2ºESO", "luciabuenamala@gmail.com", "Lucia_12", false, LocalDate.of(2006,12,29), 0));
-        usuarios.add(new User("Carlos", "Carlos el grande", "2ºESO", "carlosgrande@gmail.com", "Carlos_34", true, alergias , LocalDate.of(2005, 3, 15), 0));
-        usuarios.add(new User("Ana", "Ana la sabia", "3ºESO", "analasabia@gmail.com", "Ana_45", false, LocalDate.of(2007, 7, 25), 0));
-        usuarios.add(new User("Pedro", "Pedro el valiente", "4ºESO", "pedrovaliente@gmail.com", "Pedro_78", true, alergias,LocalDate.of(2006, 11, 10), 0));
-        usuarios.add(new User("María", "María la rápida", "2ºESO", "marialarapida@gmail.com", "Maria_56", false, LocalDate.of(2006, 5, 3), 0));
-        usuarios.add(new User("Evaristo", "Evaristo el roñzas", "2ºESO", "evaristoelroñas@gmail.com", "Evaristo_1", false, LocalDate.of(1980, 05, 17), 0));
-        usuarios.add(new User("Hugo", "Hugo el deportista", "4ºBach", "hugodeporte@gmail.com", "Hugo_22", false, LocalDate.of(2004, 6, 17), 0));
-        usuarios.add(new User("Laura", "Laura la estudiosa", "2ºESO", "lauraestudios@gmail.com", "Laura_55", false, LocalDate.of(2007, 10, 11), 0));
+        usuarios.add(new Alumno("Daniel", "Daniel Pamies Teruel", "danielpameisteruel@gmail.com", "Daniel_1",false, LocalDate.of(2010, 5, 12), "1º ESO", "1213", false));
+        usuarios.add(new Alumno("Daniel", "Daniel Pamies Teruel", "danielpameisteruel@gmail.com", "Daniel_1",true , LocalDate.of(2010, 5, 12), new String[]{"gluten", "lactosa"}, "1º ESO", "1213", true));
+        usuarios.add(new Alumno("LuciaM", "Lucía Martínez", "lucia.martinez@gmail.com", "Lucia_123",true,LocalDate.of(2009, 9, 23), new String[]{"cacahuetes"}, "2º ESO", "1456", true));
+        usuarios.add(new Alumno("CarlosR", "Carlos Ruiz", "carlos.ruiz@gmail.com", "CarlosR_2024", false,LocalDate.of(2011, 3, 15), null, "1º ESO", "1278", true));
+        usuarios.add(new Alumno("AnaG", "Ana García", "ana.garcia@gmail.com", "AnaG_pass", true, LocalDate.of(2008, 12, 1), new String[]{"mariscos", "huevo"}, "3º ESO", "1679", false));
+        usuarios.add(new Cocina("María", "María la rápida", "marialarapida@gmail.com", "Maria_56"));
+        usuarios.add(new Cocina("Evaristo", "Evaristo el roñzas", "evaristoelroñas@gmail.com", "Evaristo_1"));
+        usuarios.add(new Admin("Hugo", "Hugo el deportista", "hugodeporte@gmail.com", "Hugo_22"));
+        usuarios.add(new Admin("Laura", "Laura la estudiosa", "lauraestudios@gmail.com", "Laura_55"));
     }
 
     public static void cargarBocatas(){

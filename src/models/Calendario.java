@@ -3,11 +3,11 @@ package models;
 import java.time.LocalDate;
 
 public class Calendario {
-    private int id;
-    private LocalDate fecha_inicio;
-    private LocalDate fecha_fin;
-    private String bocadillo_quincena_frios[];
-    private String bocadillo_quincena_calientes[];
+    protected int id;
+    protected LocalDate fecha_inicio;
+    protected LocalDate fecha_fin;
+    protected String bocadillo_quincena_frios[];
+    protected String bocadillo_quincena_calientes[];
 
     public Calendario(int id, LocalDate fecha_inicio, LocalDate fecha_fin, String[] bocadillo_quincena_frios, String[] bocadillo_quincena_calientes) {
         this.id = id;

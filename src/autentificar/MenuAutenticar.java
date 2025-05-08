@@ -4,6 +4,9 @@ import data.GesData;
 import menus.Menu;
 import models.User;
 import services.UsuarioServicio;
+import ui.MenuAdministrador;
+import ui.MenuAlumno;
+import ui.MenuCocina;
 
 import java.util.Scanner;
 
@@ -24,11 +27,11 @@ public class MenuAutenticar {
                     for (User user: GesData.usuarios) {
                         if (user.getNombre().equals(nombreUser)) {
                             if (user.getRol() == 0) {
-                                Menu.menuAdmin();
+                                MenuAdministrador.menuAdmin();
                             } else if (user.getRol()==1) {
-                                Menu.menuCocina();
+                                MenuCocina.menuCocina();
                             } else if (user.getRol()==2) {
-                                Menu.menuUsuario();
+                                MenuAlumno.menuUsuario();
                             }
                         }
                     }

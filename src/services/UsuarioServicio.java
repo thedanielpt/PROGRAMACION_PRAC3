@@ -1,6 +1,7 @@
 package services;
 
 import data.GesData;
+import models.Alumno;
 import models.User;
 
 import java.time.LocalDate;
@@ -67,18 +68,17 @@ public class UsuarioServicio {
             next = true;
             System.out.println("¿Que quieres modificar?");
             System.out.println("0. Salir");
-            System.out.println("1. Nombre usuario");
+            System.out.println("1. Usuario");
             System.out.println("2. Nombre");
             System.out.println("3. Curso");
             System.out.println("4. Correo");
             System.out.println("5. Contraseña");
             System.out.println("6. Fecha de nacimiento");
-            System.out.println("7. Rol");
             if (user.isAlergico()) {
-                System.out.println("8. Alergico");
-                System.out.println("9. Alergias");
+                System.out.println("7. Alergico");
+                System.out.println("8. Alergias");
             } else {
-                System.out.println("8. Alergico");
+                System.out.println("7. Alergico");
             }
             String elec = sc.nextLine();
 
@@ -94,25 +94,22 @@ public class UsuarioServicio {
                         User.modificarNombreUsuario(user);
                         break;
                     case "3":
-
+                        Alumno.modificarCurso(user);
                         break;
                     case "4":
-
+                        User.modificarCorreo(user);
                         break;
                     case "5":
-
+                        User.modificarContrasena(user);
                         break;
                     case "6":
-
+                        Alumno.modificarFechaNacimiento(user);
                         break;
                     case "7":
-
+                        Alumno.modificarAlergico(user);
                         break;
                     case "8":
-
-                        break;
-                    case "9":
-
+                        Alumno.modificarAlergias(user);
                         break;
                     default:
                         System.out.println("elige una opción");
@@ -124,28 +121,25 @@ public class UsuarioServicio {
                         next = false;
                         break;
                     case "1":
-
+                        User.modificarUsuario(user);
                         break;
                     case "2":
-
+                        User.modificarNombreUsuario(user);
                         break;
                     case "3":
-
+                        User.modificarCurso(user);
                         break;
                     case "4":
-
+                        User.modificarCorreo(user);
                         break;
                     case "5":
-
+                        User.modificarContrasena(user);
                         break;
                     case "6":
-
+                        User.modificarFechaNacimiento(user);
                         break;
                     case "7":
-
-                        break;
-                    case "8":
-
+                        User.modificarAlergico(user);
                         break;
                     default:
                         System.out.println("elige una opción");
