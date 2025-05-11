@@ -133,17 +133,17 @@ public class Alumno extends User{
     @Override
     public String toString() {
         return "Alumno{" +
-                "alergico=" + alergico +
-                ", alergias=" + alergias +
-                ", curso='" + curso + '\'' +
-                ", pregunta='" + pregunta + '\'' +
-                ", respuesta='" + respuesta + '\'' +
-                ", num_expediente='" + num_expediente + '\'' +
-                ", alta=" + alta +
                 ", usuario='" + usuario + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", correo='" + correo + '\'' +
                 ", password='" + password + '\'' +
+                ", curso='" + curso + '\'' +
+                ", alergico=" + alergico +
+                ", alergias=" + alergias +
+                ", pregunta='" + pregunta + '\'' +
+                ", respuesta='" + respuesta + '\'' +
+                ", num_expediente='" + num_expediente + '\'' +
+                ", alta=" + alta +
                 '}';
     }
 

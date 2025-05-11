@@ -1,5 +1,6 @@
 package ui;
 
+import autentificar.AuathService;
 import models.User;
 import services.UsuarioServicio;
 
@@ -97,7 +98,7 @@ public class MenuAdministrador {
                     next = true;
                     break;
                 case "2":
-
+                    AuathService.registro();
                     next = true;
                     break;
                 case "3":

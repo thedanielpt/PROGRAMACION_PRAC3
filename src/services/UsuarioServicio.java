@@ -28,11 +28,11 @@ public class UsuarioServicio {
         return null;
     }
 
-    public static void insertarUsuariosConAlergias(String usuario, String nombre, String curso, String correo, String password, boolean alergico, ArrayList<String> alergias, String pregunta, String respuesta, String num_expediente, boolean alta) {
+    public static void insertarUsuariosConAlergias(String usuario, String nombre, String correo, String password, boolean alergico, ArrayList<String> alergias, String curso, String pregunta, String respuesta, String num_expediente, boolean alta) {
         GesData.usuarios.add(new Alumno(usuario, nombre, correo, password, alergico,alergias, curso, pregunta, respuesta, num_expediente, alta));
     }
 
-    public static void insertarUsuariosSinAlergias(String usuario, String nombre, String curso, String correo, String password, boolean alergico, String pregunta, String respuesta, String num_expediente, boolean alta) {
+    public static void insertarUsuariosSinAlergias(String usuario, String nombre, String correo, String password, boolean alergico, String curso, String pregunta, String respuesta, String num_expediente, boolean alta) {
         GesData.usuarios.add(new Alumno(usuario, nombre, correo, password, alergico, curso, pregunta, respuesta, num_expediente, alta));
     }
 

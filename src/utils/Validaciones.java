@@ -363,7 +363,7 @@ public class Validaciones {
                     }
                 }
             } else {
-                System.out.println("Contraseña incorrecta");
+                System.out.println("Contraseña no valida");
                 next = true;
             }
         } while (next);
@@ -678,14 +678,16 @@ public class Validaciones {
             System.out.println("¿Tienes alergias?");
             System.out.println("Si o no");
             elec = sc.nextLine();
+            elec = elec.toLowerCase();
 
-            if (elec.equalsIgnoreCase("si")) {
-                return true;
-            } else if (elec.equalsIgnoreCase("no")) {
-                return false;
-            } else {
-                System.out.println("Tienes que escribir una de las dos opciones");
-                next = true;
+            switch (elec) {
+                case "si":
+                    return true;
+                case "no":
+                    return false;
+                default:
+                    System.out.println("Tienes que elegir");
+                    break;
             }
         }while (next);
         return false;
@@ -721,6 +723,30 @@ public class Validaciones {
         return curso+"_"+total;
     }
 
+    public static boolean validar_alta(){
+        Scanner sc = new Scanner(System.in);
+        boolean next = true;
+
+        do {
+            System.out.println("¿Quieres dar de alta a este usuario?");
+            System.out.println("si o no");
+            String elec = sc.nextLine();
+            elec = elec.toLowerCase();
+
+            switch (elec) {
+                case "si":
+                    return true;
+                case "no":
+                    return false;
+                default:
+                    System.out.println("Tienes que elegir una opción");
+                    break;
+            }
+        }while (next);
+
+        return false;
+    }
+
     public static ArrayList alergiasUsuario(){
         Scanner sc = new Scanner(System.in);
         boolean next = true;
@@ -751,13 +777,10 @@ public class Validaciones {
             String elec = sc.nextLine();
             switch (elec){
                 case "1":
-                    System.out.println("¿Cual es tu comida favorita?");
                     return "¿Cual es tu comida favorita?";
                 case "2":
-                    System.out.println("¿Cual es tu juego favorito?");
                     return "¿Cual es tu juego favorito?";
                 case "3":
-                    System.out.println("¿Cual es tu numero favorito?");
                     return "¿Cual es tu numero favorito?";
                 default:
                     System.out.println("Tienes que elegir una opción");

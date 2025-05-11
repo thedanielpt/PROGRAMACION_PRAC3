@@ -59,17 +59,16 @@ public class AuathService {
         Scanner sc = new Scanner(System.in);
         boolean next = true;
 
-
-
         do {
             System.out.println("¿Que tipo de usuario quieres crear?");
 
-            String elec = sc.nextLine();
+            System.out.println("--TIPOS DE USUARIO--");
+            System.out.println("1.----- ADMIN ------");
+            System.out.println("2.----- COCINA -----");
+            System.out.println("3.----- ALUMNO -----");
+            System.out.println("4.----- SAlIR ------");
 
-            System.out.println("----TIPOS DE USUARIO----");
-            System.out.println("1.---- ADMIN -----");
-            System.out.println("2.---- COCINA ----");
-            System.out.println("3.---- ALUMNO ----");
+            String elec = sc.nextLine();
 
             switch (elec) {
                 case "1":
@@ -82,13 +81,13 @@ public class AuathService {
 
                         String password = Validaciones.validarContrasena();
 
-                        GesData.usuarios.add(new Admin(usuario,nombre,correo,password));
+                        UsuarioServicio.insertarAdmin(usuario,nombre,correo,password);
+                        next = false;
                         break;
                     } catch (Exception e) {
                         System.out.println("Error a la hora de crear un usuario admin");
                         break;
                     }
-
 
                 case "2":
                     try {
@@ -100,7 +99,8 @@ public class AuathService {
 
                         String password = Validaciones.validarContrasena();
 
-                        GesData.usuarios.add(new Cocina(usuario,nombre,correo,password));
+                        UsuarioServicio.insertarCocina(usuario,nombre,correo,password);
+                        next = false;
                         break;
                     } catch (Exception e) {
                         System.out.println("Error a la hora de crear un usuario cocina");
@@ -129,26 +129,27 @@ public class AuathService {
 
                         String num_expediente = Validaciones.validar_expediente(curso);
 
-                        boolean alta = false;
+                        boolean alta = Validaciones.validar_alta();
 
                         if (alergico) {
                             ArrayList alergias = Validaciones.alergiasUsuario();
-                            GesData.usuarios.add(new Alumno(usuario,nombre,correo,password, alergico,alergias, curso, pregunta, resultado, num_expediente, alta));
+                            UsuarioServicio.insertarUsuariosConAlergias(usuario,nombre,correo,password, alergico,alergias, curso, pregunta, resultado, num_expediente, alta);
+                            next = false;
                         } else {
-
+                            UsuarioServicio.insertarUsuariosSinAlergias(usuario,nombre,correo,password, alergico, curso, pregunta, resultado, num_expediente, alta);
+                            next = false;
                         }
-
-
-                        break;
                     } catch (Exception e) {
                         System.out.println("Error a la hora de crear un usuario Alumno");
-                        break;
                     }
-
+                    break;
+                case "4":
+                    next = false;
+                    break;
+                default:
+                    System.out.println("Elige una opcion");
+                    break;
             }
         }while (next);
-
-        LocalDate año_nacimiento = Validaciones.validarFecha();
-
     }
 }
