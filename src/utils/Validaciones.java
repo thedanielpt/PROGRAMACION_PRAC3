@@ -1,10 +1,7 @@
 package utils;
 
 import data.GesData;
-import models.Calendario;
-import models.Bocatas;
-import models.Pedidos;
-import models.User;
+import models.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -380,7 +377,7 @@ public class Validaciones {
      * @return Fecha de usuario
      */
 
-    public static LocalDate validarFecha(){
+    /*public static LocalDate validarFecha(){
         Scanner sc = new Scanner(System.in);
         LocalDate fecha = null;
         LocalDate hoy = LocalDate.now();
@@ -463,42 +460,7 @@ public class Validaciones {
         fecha = LocalDate.of(anoU, mesU,diaU);
         System.out.println(fecha);
         return fecha;
-    }
-
-    /**
-     * Sirve para ver is eres un alumno.
-     * @param tipo para ver que tipo de curso es
-     * @return devuelve el tl numero del rol que eres
-     */
-
-    public static int rol(String tipo){
-        String[] ESO = {"1ªESO","2ªESO","3ªESO","4ªESO"};
-        String[] GM = {"1ºAño GM Informatica", "2ºAño GM Informatica", "1ºAño GM Jardinería", "2ºAño GM Jardinería"};
-        String trabajador = "Trabajador";
-        String cocina = "Cocina";
-        String admin = "admin";
-        for (int i = 0; i < ESO.length; i++) {
-            if (tipo.equalsIgnoreCase(ESO[i])) {
-                return 0;
-            }
-        }
-
-        for (int i = 0; i < GM.length; i++) {
-            if (tipo.equalsIgnoreCase(GM[i])) {
-                return 0;
-            }
-        }
-
-        if (tipo.equalsIgnoreCase(trabajador)) {
-            return 0;
-        } else if (tipo.equalsIgnoreCase(cocina)) {
-            return 1;
-        } else if (tipo.equalsIgnoreCase(admin)) {
-            return 2;
-        }
-
-        return 3;
-    }
+    }/*
 
     /**
      * Sirve para desbloquear a un usuario
@@ -615,7 +577,6 @@ public class Validaciones {
             System.out.println("Elige al curso que perteneces");
             System.out.println("1. ESO");
             System.out.println("2. Grado Medio");
-            System.out.println("3. Soy trabajador");
             elec = sc.nextLine();
 
             switch (elec) {
@@ -697,48 +658,9 @@ public class Validaciones {
 
                     } while (next);
                     break;
-                case "3":
-
-                    do {
-                        System.out.println("1. Crear Profesor, director, etc.");
-                        System.out.println("2. Crear un admin");
-                        System.out.println("3. Crear cociner@");
-                        System.out.println("3. No es lo que quería seleccionar");
-                        elec = sc.nextLine();
-
-                        switch (elec) {
-                            case "1":
-                                curso = "Trabajador";
-                                next = false;
-                                break;
-                            case "2":
-                                do {
-                                    System.out.println("¿Estas seguro?");
-                                    System.out.println("SI");
-                                    System.out.println("NO");
-                                    elec = sc.nextLine();
-
-                                    switch (elec) {
-                                        case "SI":
-                                            curso = "Admin";
-                                            return curso;
-                                        case "NO":
-                                            next = true;
-                                            break;
-                                        default:
-                                            System.out.println("Tienes que seleccionar una de las dos opciones");
-                                            break;
-                                        }
-                                }while (next);
-                            case "3":
-                                curso = "Conina";
-                                next = false;
-                                break;
-                            case "4":
-                                next = false;
-                                break;
-                        }
-                    } while (next);
+                default:
+                    System.out.println("Tienes que seleccionar una opción");
+                    break;
             }
         } while (curso.length()<3);
 
@@ -769,6 +691,36 @@ public class Validaciones {
         return false;
     }
 
+    /**
+     * Este metodo sirve para la creación del expediente del usuario
+     * @param curso coje el curso al que pertenece el usuario
+     * @return devuelve el expediente creado
+     */
+
+    public static String validar_expediente(String curso){
+        int cuenta = 0;
+        String total = "";
+
+        for (User user: GesData.usuarios) {
+            if (user instanceof Alumno) {
+                Alumno a = (Alumno) user;
+                if (curso.equals(a.getCurso())) {
+                    cuenta++;
+                }
+            }
+        }
+
+        ++cuenta;
+
+        if (cuenta < 10) {
+            total = "000"+cuenta;
+        } else {
+            total = "00"+cuenta;
+        }
+
+        return curso+"_"+total;
+    }
+
     public static ArrayList alergiasUsuario(){
         Scanner sc = new Scanner(System.in);
         boolean next = true;
@@ -785,5 +737,33 @@ public class Validaciones {
             System.out.println("Siguiente alergia:");
         }
         return alergias;
+    }
+
+    public static String validarPregunta (){
+        Scanner sc = new Scanner(System.in);
+        boolean next = true;
+
+        do {
+            System.out.println("Ahora elige entre estas preguntas de seguridad");
+            System.out.println("1. ¿Cual es tu comida favorita?");
+            System.out.println("2. ¿Cual es tu juego favorito?");
+            System.out.println("3. ¿Cual es tu numero favorito?");
+            String elec = sc.nextLine();
+            switch (elec){
+                case "1":
+                    System.out.println("¿Cual es tu comida favorita?");
+                    return "¿Cual es tu comida favorita?";
+                case "2":
+                    System.out.println("¿Cual es tu juego favorito?");
+                    return "¿Cual es tu juego favorito?";
+                case "3":
+                    System.out.println("¿Cual es tu numero favorito?");
+                    return "¿Cual es tu numero favorito?";
+                default:
+                    System.out.println("Tienes que elegir una opción");
+                    next = true;
+            }
+        } while (next);
+        return null;
     }
 }

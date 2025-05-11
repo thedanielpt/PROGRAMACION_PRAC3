@@ -1,12 +1,6 @@
 package autentificar;
 
-import data.GesData;
-import menus.Menu;
 import models.User;
-import services.UsuarioServicio;
-import ui.MenuAdministrador;
-import ui.MenuAlumno;
-import ui.MenuCocina;
 
 import java.util.Scanner;
 
@@ -24,17 +18,7 @@ public class MenuAutenticar {
             switch (elec) {
                 case "1":
                     nombreUser = AuathService.login();
-                    for (User user: GesData.usuarios) {
-                        if (user.getNombre().equals(nombreUser)) {
-                            if (user.getRol() == 0) {
-                                MenuAdministrador.menuAdmin();
-                            } else if (user.getRol()==1) {
-                                MenuCocina.menuCocina();
-                            } else if (user.getRol()==2) {
-                                MenuAlumno.menuUsuario();
-                            }
-                        }
-                    }
+
                     System.out.println("Error login");
                     break;
                 case "2":

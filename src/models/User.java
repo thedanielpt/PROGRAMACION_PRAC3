@@ -1,9 +1,9 @@
 package models;
 
+import data.GesData;
 import services.UsuarioServicio;
 import utils.Validaciones;
 
-import java.time.LocalDate;
 import java.util.Scanner;
 
 public class User {
@@ -15,7 +15,19 @@ public class User {
 
     protected String password;
 
+    /**
+     * Contstructor de la clase User, que sirve para crear Users sin atributos
+     */
+
     public User(){}
+
+    /**
+     * Constructor de la clase Usuario, para crear Users con atributos
+     * @param usuario
+     * @param nombre
+     * @param correo
+     * @param password
+     */
 
     public User(String usuario, String nombre, String correo, String password) {
         this.usuario = usuario;
@@ -24,17 +36,23 @@ public class User {
         this.password = password;
     }
 
+    /**
+     * Muestra los datos de de la clase usuario
+     * @return devuelve los valores de la clase usuarios
+     */
+
     @Override
     public String toString() {
         return "User{" +
                 "usuario='" + usuario + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", correo='" + correo + '\'' +
-                ", password='" + password + '\'';
+                ", password='" + password + '\'' +
+                '}';
     }
 
     /**
-     * Sirve para modificar el nombre del usuario
+     * Este metodo sirve para modificar el usuario que tenga el objeto usuario
      * @param usuario es el usuario al que queremos modificar el nombre
      */
     public static void modificarUsuario(User usuario){
@@ -66,13 +84,18 @@ public class User {
         }while (next);
     }
 
+    /**
+     * Este metodo sirve para modificar el nombre y sus apellidos que tenga el objeto usuario
+     * @param usuario coje el objeto que se va a utilizar
+     */
+
     public static void modificarNombreUsuario(User usuario){
         Scanner sc = new Scanner(System.in);
         boolean next = true;
         String nombreNuevo;
 
         do {
-            System.out.println("¿Que nombre de usuario quieres?");
+            System.out.println("¿Que nombre y apellidos quieres?");
             nombreNuevo = sc.nextLine();
 
             System.out.println("Quieres cambiar el nombre de usuario de"+usuario.getNombre()+" a "+nombreNuevo);
@@ -90,6 +113,11 @@ public class User {
                 }
         }while (next);
     }
+
+    /**
+     * Este metodo sirve para modificar el correo que tenga el objeto usuario
+     * @param usuario coje el objeto que se va a utilizar
+     */
 
     public static void modificarCorreo(User usuario){
         Scanner sc = new Scanner(System.in);
@@ -114,6 +142,11 @@ public class User {
         }while (next);
     }
 
+    /**
+     * Este metodo sirve para modificar la contraseña que tenga el objeto usuario
+     * @param usuario coje el objeto que se va a utilizar
+     */
+
     public static void modificarContrasena(User usuario){
         Scanner sc = new Scanner(System.in);
         boolean next = true;
@@ -135,6 +168,34 @@ public class User {
                     break;
             }
         }while (next);
+    }
+
+    public static void mostrarTodosUsers(){
+        System.out.println("ALUMNOS");
+        for (User usuario: GesData.usuarios) {
+            if (usuario instanceof Alumno) {
+                Alumno a = (Alumno) usuario;
+                System.out.println(a.toString());
+            }
+        }
+
+        System.out.println("\nCOCINA");
+
+        for (User usuario: GesData.usuarios) {
+            if (usuario instanceof Cocina) {
+                Cocina c = (Cocina) usuario;
+                System.out.println(c.toString());
+            }
+        }
+
+        System.out.println("\nADMIN");
+
+        for (User usuario: GesData.usuarios) {
+            if (usuario instanceof Admin) {
+                Admin a = (Admin) usuario;
+                System.out.println(a.toString());
+            }
+        }
     }
 
     public String getUsuario() {

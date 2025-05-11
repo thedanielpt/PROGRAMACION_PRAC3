@@ -19,11 +19,11 @@ public class GesData {
         alergias.add("Frutos secos");
         alergias.add("Polen");
 
-        usuarios.add(new Alumno("Daniel", "Daniel Pamies Teruel", "danielpameisteruel@gmail.com", "Daniel_1",false, LocalDate.of(2010, 5, 12), "1º ESO", "1213", false));
-        usuarios.add(new Alumno("Daniel", "Daniel Pamies Teruel", "danielpameisteruel@gmail.com", "Daniel_1",true , LocalDate.of(2010, 5, 12), new String[]{"gluten", "lactosa"}, "1º ESO", "1213", true));
-        usuarios.add(new Alumno("LuciaM", "Lucía Martínez", "lucia.martinez@gmail.com", "Lucia_123",true,LocalDate.of(2009, 9, 23), new String[]{"cacahuetes"}, "2º ESO", "1456", true));
-        usuarios.add(new Alumno("CarlosR", "Carlos Ruiz", "carlos.ruiz@gmail.com", "CarlosR_2024", false,LocalDate.of(2011, 3, 15), null, "1º ESO", "1278", true));
-        usuarios.add(new Alumno("AnaG", "Ana García", "ana.garcia@gmail.com", "AnaG_pass", true, LocalDate.of(2008, 12, 1), new String[]{"mariscos", "huevo"}, "3º ESO", "1679", false));
+        usuarios.add(new Alumno("Daniel", "Daniel Pamies Teruel", "danielpameisteruel@gmail.com", "Daniel_1",false, "1º ESO", "¿Eres mala persona?","No", "1234" ,false ));
+        usuarios.add(new Alumno("Daniel", "Daniel Pamies Teruel", "danielpameisteruel@gmail.com", "Daniel_1",true ,alergias, "1º ESO", "¿Eres mala persona?" ,"SI", "1214", true));
+        usuarios.add(new Alumno("LuciaM", "Lucía Martínez", "lucia.martinez@gmail.com", "Lucia_123",false , "1º ESO", "¿Eres mala persona?" ,"SI", "1215", true));
+        usuarios.add(new Alumno("CarlosR", "Carlos Ruiz", "carlos.ruiz@gmail.com", "CarlosR_2024", false , "1º ESO", "¿Eres mala persona?" ,"SI", "1219", true));
+        usuarios.add(new Alumno("AnaG", "Ana García", "ana.garcia@gmail.com", "AnaG_pass", false , "1º ESO", "¿Eres mala persona?" ,"SI", "1324", true));
         usuarios.add(new Cocina("María", "María la rápida", "marialarapida@gmail.com", "Maria_56"));
         usuarios.add(new Cocina("Evaristo", "Evaristo el roñzas", "evaristoelroñas@gmail.com", "Evaristo_1"));
         usuarios.add(new Admin("Hugo", "Hugo el deportista", "hugodeporte@gmail.com", "Hugo_22"));

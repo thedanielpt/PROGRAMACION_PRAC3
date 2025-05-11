@@ -1,5 +1,8 @@
 package ui;
 
+import models.User;
+import services.UsuarioServicio;
+
 import java.util.Scanner;
 
 public class MenuAdministrador {
@@ -19,7 +22,6 @@ public class MenuAdministrador {
             System.out.println("     Listar usuarios");
             System.out.println("     Añadir usuario");
             System.out.println("     Eliminar usuario");
-            System.out.println("     Cambiar un curso entero");
             System.out.println("     Eliminar un curso entero");
             System.out.println("2. Gestionar Bocadillos:");
             System.out.println("     Listar bocadillos disponibles");
@@ -35,6 +37,10 @@ public class MenuAdministrador {
             System.out.println("4. Consultar Pedidos:");
             System.out.println("     Mostrar pedidos de un usuario");
             System.out.println("     Marcar pedidos como retirado");
+            System.out.println("5. Gestion Calendario");
+            System.out.println("     Modicficar Calendario");
+            System.out.println("     Crear calendario");
+            System.out.println("     Eliminar calendario");
             System.out.println("5. Salir");
             elec = sc.nextLine();
             next = true;
@@ -79,18 +85,19 @@ public class MenuAdministrador {
         do {
             System.out.println("1. Listar usuarios");
             System.out.println("2. Añadir usuario");
-            System.out.println("4. Eliminar usuario");
-            System.out.println("5. Modificar usuario");
-            System.out.println("3. Cambiar un curso entero");
+            System.out.println("3. Eliminar usuario");
+            System.out.println("4. Modificar usuario");
             System.out.println("5. Eliminar un curso entero");
             System.out.println("6. Volver al menu princiapal");
             elec = sc.nextLine();
 
             switch (elec) {
                 case "1":
+                    User.mostrarTodosUsers();
                     next = true;
                     break;
                 case "2":
+
                     next = true;
                     break;
                 case "3":
