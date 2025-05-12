@@ -1,5 +1,7 @@
 package ui;
 
+import models.Alumno;
+
 import java.util.Scanner;
 
 public class MenuAlumno {
@@ -10,7 +12,7 @@ public class MenuAlumno {
      * Metodo donde esta el menu de Usuario
      */
 
-    public static void menuUsuario(){
+    public static void menuUsuario(Alumno alumno){
         Scanner sc = new Scanner(System.in);
         boolean next = true;
         String elec = "";

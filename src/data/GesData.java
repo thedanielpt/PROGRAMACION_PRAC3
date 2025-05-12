@@ -31,19 +31,22 @@ public class GesData {
     }
 
     public static void cargarBocatas(){
-        String[] ingredientes = {"Tortilla, aceite"};
-        String [] alergias = {"Gluten"};
+        ArrayList<String> ingredientes = new ArrayList<>();
+        ingredientes.add("Tortilla");
+        ingredientes.add("Patatas");
+        ArrayList<String> alergias =new ArrayList<>();
+        alergias.add("Gluten");
 
-        bocatas.add(new Bocatas(0, "Bocadillo de tortilla", "Está hecho para la gente que quiere ser feliz", ingredientes, alergias, "Callosa", 3.5, false));
-        bocatas.add(new Bocatas(1, "Bocadillo de tortilla con jamón", "Perfecto para un almuerzo rápido", ingredientes, alergias, "Alcoy", 4.0, true));
-        bocatas.add(new Bocatas(2, "Bocadillo de tortilla con queso", "Ideal para los amantes del queso", ingredientes, alergias, "Elche", 4.2, false));
-        bocatas.add(new Bocatas(3, "Bocadillo de tortilla con atún", "Para los que prefieren el mar", ingredientes, alergias, "Alicante", 4.5, true));
-        bocatas.add(new Bocatas(4, "Bocadillo de tortilla con pimiento", "Una opción más vegetal", ingredientes, alergias, "Benidorm", 3.8, false));
-        bocatas.add(new Bocatas(5, "Bocadillo de tortilla con tomate", "Fresco y delicioso", ingredientes, alergias, "Altea", 4.0, true));
-        bocatas.add(new Bocatas(6, "Bocadillo de tortilla con chistorra", "Para los amantes de los sabores fuertes", ingredientes, alergias, "Castellón", 5.0, false));
-        bocatas.add(new Bocatas(7, "Bocadillo de tortilla con aguacate", "La combinación perfecta para los veganos", ingredientes, alergias, "Orihuela", 4.3, true));
-        bocatas.add(new Bocatas(8, "Bocadillo de tortilla con salchichón", "El clásico con un toque de sabor", ingredientes, alergias, "Elx", 4.1, false));
-        bocatas.add(new Bocatas(9, "Bocadillo de tortilla con espinacas", "Una opción saludable y deliciosa", ingredientes, alergias, "Torrevieja", 4.0, true));
+        bocatas.add(new Bocatas(0, "Bocadillo de tortilla",  ingredientes, "Está hecho para la gente que quiere ser feliz", alergias, "Callosa", 3.5, false));
+        bocatas.add(new Bocatas(1, "Bocadillo de tortilla con jamón", ingredientes,"Perfecto para un almuerzo rápido", alergias, "Alcoy", 4.0, true));
+        bocatas.add(new Bocatas(2, "Bocadillo de tortilla con queso", ingredientes,"Ideal para los amantes del queso", alergias, "Elche", 4.2, false));
+        bocatas.add(new Bocatas(3, "Bocadillo de tortilla con atún", ingredientes,"Para los que prefieren el mar", alergias, "Alicante", 4.5, true));
+        bocatas.add(new Bocatas(4, "Bocadillo de tortilla con pimiento", ingredientes,"Una opción más vegetal", alergias, "Benidorm", 3.8, false));
+        bocatas.add(new Bocatas(5, "Bocadillo de tortilla con tomate", ingredientes,"Fresco y delicioso", alergias, "Altea", 4.0, true));
+        bocatas.add(new Bocatas(6, "Bocadillo de tortilla con chistorra", ingredientes,"Para los amantes de los sabores fuertes", alergias, "Castellón", 5.0, false));
+        bocatas.add(new Bocatas(7, "Bocadillo de tortilla con aguacate", ingredientes,"La combinación perfecta para los veganos", alergias, "Orihuela", 4.3, true));
+        bocatas.add(new Bocatas(8, "Bocadillo de tortilla con salchichón", ingredientes,"El clásico con un toque de sabor", alergias, "Elx", 4.1, false));
+        bocatas.add(new Bocatas(9, "Bocadillo de tortilla con espinacas",  ingredientes,"Una opción saludable y deliciosa", alergias, "Torrevieja", 4.0, true));
     }
 
     //Metodo donde se instancia los pedidos
@@ -64,8 +67,5 @@ public class GesData {
         calendarios.add(new Calendario(2, LocalDate.of(2025, 03,8), LocalDate.of(2025, 03,10), bocata_caliente, bocata_frio));
         calendarios.add(new Calendario(3, LocalDate.of(2025, 03,9), LocalDate.of(2025, 03,11), bocata_caliente, bocata_frio));
         calendarios.add(new Calendario(4, LocalDate.of(2025, 03,10), LocalDate.of(2025, 03,12), bocata_caliente, bocata_frio));
-    }
-    public static void eliminarUsuario(){
-        eliminarUsuario();
     }
 }

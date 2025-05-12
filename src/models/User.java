@@ -170,34 +170,6 @@ public class User {
         }while (next);
     }
 
-    public static void mostrarTodosUsers(){
-        System.out.println("ALUMNOS");
-        for (User usuario: GesData.usuarios) {
-            if (usuario instanceof Alumno) {
-                Alumno a = (Alumno) usuario;
-                System.out.println(a.toString());
-            }
-        }
-
-        System.out.println("\nCOCINA");
-
-        for (User usuario: GesData.usuarios) {
-            if (usuario instanceof Cocina) {
-                Cocina c = (Cocina) usuario;
-                System.out.println(c.toString());
-            }
-        }
-
-        System.out.println("\nADMIN");
-
-        for (User usuario: GesData.usuarios) {
-            if (usuario instanceof Admin) {
-                Admin a = (Admin) usuario;
-                System.out.println(a.toString());
-            }
-        }
-    }
-
     public String getUsuario() {
         return usuario;
     }

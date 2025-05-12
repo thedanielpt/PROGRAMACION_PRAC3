@@ -1,6 +1,9 @@
 package autentificar;
 
+import models.Alumno;
 import models.User;
+import services.UsuarioServicio;
+import ui.MenuAlumno;
 
 import java.util.Scanner;
 
@@ -18,7 +21,12 @@ public class MenuAutenticar {
             switch (elec) {
                 case "1":
                     nombreUser = AuathService.login();
+                    User usuario = UsuarioServicio.buscar(nombreUser);
 
+                    if (usuario instanceof Alumno) {
+                        Alumno a = (Alumno) usuario;
+                        MenuAlumno.menuUsuario(a);
+                    }
                     System.out.println("Error login");
                     break;
                 case "2":

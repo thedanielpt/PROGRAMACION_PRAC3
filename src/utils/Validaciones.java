@@ -2,6 +2,7 @@ package utils;
 
 import data.GesData;
 import models.*;
+import services.UsuarioServicio;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -787,6 +788,29 @@ public class Validaciones {
                     next = true;
             }
         } while (next);
+        return null;
+    }
+
+    public static String pregunta_buscar() {
+        Scanner sc=new Scanner(System.in);
+        boolean next = true;
+
+        UsuarioServicio.mostrarTodosUsers();
+        System.out.println();
+
+        do {
+            System.out.println("¿Que usuario quieres borrar? y si no quieres borrarlo pon 'no'");
+
+            String elec = sc.nextLine();
+
+            if (UsuarioServicio.buscar(elec) != null) {
+                return elec;
+            } else if (elec.equals("no")) {
+                return null;
+            } else {
+                System.out.println("Usuario no encontrado");
+            }
+        }while (next);
         return null;
     }
 }

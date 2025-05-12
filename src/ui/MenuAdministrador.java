@@ -3,6 +3,7 @@ package ui;
 import autentificar.AuathService;
 import models.User;
 import services.UsuarioServicio;
+import utils.Validaciones;
 
 import java.util.Scanner;
 
@@ -88,13 +89,12 @@ public class MenuAdministrador {
             System.out.println("2. Añadir usuario");
             System.out.println("3. Eliminar usuario");
             System.out.println("4. Modificar usuario");
-            System.out.println("5. Eliminar un curso entero");
-            System.out.println("6. Volver al menu princiapal");
+            System.out.println("5. Volver al menu princiapal");
             elec = sc.nextLine();
 
             switch (elec) {
                 case "1":
-                    User.mostrarTodosUsers();
+                    UsuarioServicio.mostrarTodosUsers();
                     next = true;
                     break;
                 case "2":
@@ -102,15 +102,14 @@ public class MenuAdministrador {
                     next = true;
                     break;
                 case "3":
+                    UsuarioServicio.eliminar(Validaciones.pregunta_buscar());
                     next = true;
                     break;
                 case "4":
+                    MenuModificar.modificarUsuarios();
                     next = true;
                     break;
                 case "5":
-                    next = true;
-                    break;
-                case "6":
                     next = false;
                     break;
                 default:
@@ -138,6 +137,7 @@ public class MenuAdministrador {
 
             switch (elec) {
                 case "1":
+
                     next = true;
                     break;
                 case "2":

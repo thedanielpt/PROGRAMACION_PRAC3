@@ -1,118 +1,124 @@
 package models;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Bocatas {
     protected int id;
     protected String nombre;
     protected String descrip;
-    protected String[] ingredientes;
-    protected String[] alergenos;
+    protected ArrayList<String> ingredientes;
+    protected ArrayList<String> alergenos;
     protected String ciudadpopular;
     protected double precio;
     protected boolean caliente;
 
-    public Bocatas (int id,String nombre, String descrip, String [] ingredientes, String[] alergenos, String ciudadpopular, double precio, boolean caliente){
-        this.id=id;
-        this.nombre=nombre;
-        this.descrip=descrip;
-        this.ingredientes=ingredientes;
-        this.alergenos=alergenos;
-        this.ciudadpopular=ciudadpopular;
-        this.precio=precio;
-        this.caliente=caliente;
+    public Bocatas(int id, String nombre, ArrayList<String> ingredientes, String descrip, ArrayList<String> alergenos, String ciudadpopular, double precio, boolean caliente) {
+        this.id = id;
+        this.nombre = nombre;
+        this.ingredientes = ingredientes;
+        this.descrip = descrip;
+        this.alergenos = alergenos;
+        this.ciudadpopular = ciudadpopular;
+        this.precio = precio;
+        this.caliente = caliente;
     }
 
-    public void mostrarCuriosidades(){
+    public void mostrarCuriosidades() {
 
-        System.out.println("Sabes que el "+nombre+" es popular en " +ciudadpopular+ " porque en los momentos dificiles al haber pocos recursos se hacia este bocata");
+        System.out.println("Sabes que el " + nombre + " es popular en " + ciudadpopular + " porque en los momentos dificiles al haber pocos recursos se hacia este bocata");
     }
 
-    public void mostrarAlergenos(String nombre, String[] alergenos){
-        System.out.println("El "+nombre+" tiene estos alergenos:");
+    public void mostrarAlergenos(String nombre, String[] alergenos) {
+        System.out.println("El " + nombre + " tiene estos alergenos:");
         for (int i = 0; i < alergenos.length; i++) {
             System.out.println(alergenos[i]);
         }
     }
 
-    public void mostrarIngredientes(String nombre,String[] ingredientes){
-        System.out.println("El "+nombre+" tiene estos ingredientes:");
+    public void mostrarIngredientes(String nombre, String[] ingredientes) {
+        System.out.println("El " + nombre + " tiene estos ingredientes:");
         for (int i = 0; i < ingredientes.length; i++) {
             System.out.println(ingredientes[i]);
         }
     }
 
-    public void mostrarinfo(){
-
-        System.out.println("----------------\n");
-        System.out.println("Id bocata: "+id+ "\nNombre del bocata: "+nombre+"\nDescripción del bocata: "+descrip+"\nIngredientes del bocata: "+ingredientes+"\nAlergenos del bocata: "+alergenos+"\nCiudad popular del bocata: "+ciudadpopular+"\nPrecio del bocata: "+precio+"\nEsta caliente: "+caliente);
-        System.out.println("\n----------------");
+    @Override
+    public String toString() {
+        return "Bocatas{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", descrip='" + descrip + '\'' +
+                ", ingredientes=" + ingredientes +
+                ", alergenos=" + alergenos +
+                ", ciudadpopular='" + ciudadpopular + '\'' +
+                ", precio=" + precio +
+                ", caliente=" + caliente +
+                '}';
     }
 
     public int getId() {
         return id;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getDescrip() {
-        return descrip;
-    }
-
-    public String[] getIngredientes() {
-        return ingredientes;
-    }
-
-    public String[] getAlergenos() {
-        return alergenos;
-    }
-
-    public String getCiudadpopular() {
-        return ciudadpopular;
-    }
-
-    public double getPrecio() {
-        return precio;
-    }
-
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
     }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    public String getDescrip() {
+        return descrip;
+    }
+
     public void setDescrip(String descrip) {
         this.descrip = descrip;
     }
 
-    public void setIngredientes(String[] ingredientes) {
+    public ArrayList<String> getIngredientes() {
+        return ingredientes;
+    }
+
+    public void setIngredientes(ArrayList<String> ingredientes) {
         this.ingredientes = ingredientes;
     }
 
-    public void setAlergenos(String[] alergenos) {
+    public ArrayList<String> getAlergenos() {
+        return alergenos;
+    }
+
+    public void setAlergenos(ArrayList<String> alergenos) {
         this.alergenos = alergenos;
-    }
-
-    public void setCiudadpopular(String ciudadpopular) {
-        this.ciudadpopular = ciudadpopular;
-    }
-
-    public void setPrecio(double precio) {
-        this.precio = precio;
-    }
-
-    public void setCaliente(boolean caliente) {
-        this.caliente = caliente;
     }
 
     public boolean isCaliente() {
         return caliente;
     }
 
-    public boolean getcaliente() {
-        return caliente;
+    public void setCaliente(boolean caliente) {
+        this.caliente = caliente;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public String getCiudadpopular() {
+        return ciudadpopular;
+    }
+
+    public void setCiudadpopular(String ciudadpopular) {
+        this.ciudadpopular = ciudadpopular;
     }
 }
 
