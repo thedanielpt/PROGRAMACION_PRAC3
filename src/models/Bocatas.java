@@ -9,24 +9,17 @@ public class Bocatas {
     protected String descrip;
     protected ArrayList<String> ingredientes;
     protected ArrayList<String> alergenos;
-    protected String ciudadpopular;
     protected double precio;
     protected boolean caliente;
 
-    public Bocatas(int id, String nombre, ArrayList<String> ingredientes, String descrip, ArrayList<String> alergenos, String ciudadpopular, double precio, boolean caliente) {
+    public Bocatas(int id, String nombre, String descrip, ArrayList<String> ingredientes, ArrayList<String> alergenos, double precio, boolean caliente) {
         this.id = id;
         this.nombre = nombre;
-        this.ingredientes = ingredientes;
         this.descrip = descrip;
+        this.ingredientes = ingredientes;
         this.alergenos = alergenos;
-        this.ciudadpopular = ciudadpopular;
         this.precio = precio;
         this.caliente = caliente;
-    }
-
-    public void mostrarCuriosidades() {
-
-        System.out.println("Sabes que el " + nombre + " es popular en " + ciudadpopular + " porque en los momentos dificiles al haber pocos recursos se hacia este bocata");
     }
 
     public void mostrarAlergenos(String nombre, String[] alergenos) {
@@ -51,10 +44,16 @@ public class Bocatas {
                 ", descrip='" + descrip + '\'' +
                 ", ingredientes=" + ingredientes +
                 ", alergenos=" + alergenos +
-                ", ciudadpopular='" + ciudadpopular + '\'' +
                 ", precio=" + precio +
                 ", caliente=" + caliente +
                 '}';
+    }
+
+    public static ArrayList<String> menuBocatas(){
+        ArrayList<String> bocatas = new ArrayList<>();
+
+
+        return bocatas;
     }
 
     public int getId() {
@@ -111,14 +110,6 @@ public class Bocatas {
 
     public void setPrecio(double precio) {
         this.precio = precio;
-    }
-
-    public String getCiudadpopular() {
-        return ciudadpopular;
-    }
-
-    public void setCiudadpopular(String ciudadpopular) {
-        this.ciudadpopular = ciudadpopular;
     }
 }
 

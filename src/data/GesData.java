@@ -14,10 +14,16 @@ public class GesData {
     public static ArrayList<Calendario> calendarios = new ArrayList<>();
 
 
-    public static void cargarUsuaios(){
+    public static void cargarDatos(){
         ArrayList alergias = new ArrayList();
         alergias.add("Frutos secos");
         alergias.add("Polen");
+        ArrayList<String> ingredientes = new ArrayList<>();
+        ingredientes.add("Tortilla");
+        ingredientes.add("Patatas");
+        alergias.add("Gluten");
+
+        //Usuarios
 
         usuarios.add(new Alumno("Daniel", "Daniel Pamies Teruel", "danielpameisteruel@gmail.com", "Daniel_1",false, "1ºESO", "¿Eres mala persona?","No", "1ºESO_0001" ,false ));
         usuarios.add(new Alumno("Daniel", "Daniel Pamies Teruel", "danielpameisteruel@gmail.com", "Daniel_1",true ,alergias, "1ºESO", "¿Eres mala persona?" ,"SI", "1ºESO_0002", true));
@@ -28,44 +34,32 @@ public class GesData {
         usuarios.add(new Cocina("Evaristo", "Evaristo el roñzas", "evaristoelroñas@gmail.com", "Evaristo_1"));
         usuarios.add(new Admin("Hugo", "Hugo el deportista", "hugodeporte@gmail.com", "Hugo_22"));
         usuarios.add(new Admin("Laura", "Laura la estudiosa", "lauraestudios@gmail.com", "Laura_55"));
-    }
+        usuarios.add(new Admin("admin", "Laura la estudiosa", "lauraestudios@gmail.com", "Admin_1"));
 
-    public static void cargarBocatas(){
-        ArrayList<String> ingredientes = new ArrayList<>();
-        ingredientes.add("Tortilla");
-        ingredientes.add("Patatas");
-        ArrayList<String> alergias =new ArrayList<>();
-        alergias.add("Gluten");
+        //Bocatas
 
-        bocatas.add(new Bocatas(0, "Bocadillo de tortilla",  ingredientes, "Está hecho para la gente que quiere ser feliz", alergias, "Callosa", 3.5, false));
-        bocatas.add(new Bocatas(1, "Bocadillo de tortilla con jamón", ingredientes,"Perfecto para un almuerzo rápido", alergias, "Alcoy", 4.0, true));
-        bocatas.add(new Bocatas(2, "Bocadillo de tortilla con queso", ingredientes,"Ideal para los amantes del queso", alergias, "Elche", 4.2, false));
-        bocatas.add(new Bocatas(3, "Bocadillo de tortilla con atún", ingredientes,"Para los que prefieren el mar", alergias, "Alicante", 4.5, true));
-        bocatas.add(new Bocatas(4, "Bocadillo de tortilla con pimiento", ingredientes,"Una opción más vegetal", alergias, "Benidorm", 3.8, false));
-        bocatas.add(new Bocatas(5, "Bocadillo de tortilla con tomate", ingredientes,"Fresco y delicioso", alergias, "Altea", 4.0, true));
-        bocatas.add(new Bocatas(6, "Bocadillo de tortilla con chistorra", ingredientes,"Para los amantes de los sabores fuertes", alergias, "Castellón", 5.0, false));
-        bocatas.add(new Bocatas(7, "Bocadillo de tortilla con aguacate", ingredientes,"La combinación perfecta para los veganos", alergias, "Orihuela", 4.3, true));
-        bocatas.add(new Bocatas(8, "Bocadillo de tortilla con salchichón", ingredientes,"El clásico con un toque de sabor", alergias, "Elx", 4.1, false));
-        bocatas.add(new Bocatas(9, "Bocadillo de tortilla con espinacas",  ingredientes,"Una opción saludable y deliciosa", alergias, "Torrevieja", 4.0, true));
-    }
+        bocatas.add(new Bocatas(0, "Bocadillo de tortilla", "Está hecho para la gente que quiere ser feliz" ,ingredientes , alergias, 3.5, false));
+        bocatas.add(new Bocatas(1, "Bocadillo de tortilla con jamón", "Perfecto para un almuerzo rápido",ingredientes, alergias,  4.0, true));
+        bocatas.add(new Bocatas(2, "Bocadillo de tortilla con queso", "Ideal para los amantes del queso",ingredientes, alergias,  4.2, false));
+        bocatas.add(new Bocatas(3, "Bocadillo de tortilla con atún", "Para los que prefieren el mar",ingredientes, alergias,  4.5, true));
+        bocatas.add(new Bocatas(4, "Bocadillo de tortilla con pimiento", "Una opción más vegetal",ingredientes, alergias,  3.8, false));
+        bocatas.add(new Bocatas(5, "Bocadillo de tortilla con tomate", "Fresco y delicioso",ingredientes, alergias,  4.0, true));
+        bocatas.add(new Bocatas(6, "Bocadillo de tortilla con chistorra", "Para los amantes de los sabores fuertes",ingredientes, alergias,  5.0, false));
+        bocatas.add(new Bocatas(7, "Bocadillo de tortilla con aguacate", "La combinación perfecta para los veganos",ingredientes, alergias,  4.3, true));
+        bocatas.add(new Bocatas(8, "Bocadillo de tortilla con salchichón", "El clásico con un toque de sabor",ingredientes, alergias, 4.1, false));
+        bocatas.add(new Bocatas(10, "Bocadillo de tortilla con espinacas",  "Una opción saludable y deliciosa",ingredientes, alergias, 4.0, true));
 
-    //Metodo donde se instancia los pedidos
+        //Pedidos
 
-    public static void cargarPedidos(){
         pedidos.add(new Pedidos(0, "Daniel", 0, LocalDate.now(), "Pendiente"));
         pedidos.add(new Pedidos(1, "Maria", 1, LocalDate.now().minusDays(1), "Entregado"));
         pedidos.add(new Pedidos(2, "Ana", 2, LocalDate.now().plusDays(2), "En proceso"));
         pedidos.add(new Pedidos(3, "Hugo", 3, LocalDate.now(), "Cancelado"));
         pedidos.add(new Pedidos(4, "Laura", 4, LocalDate.now().minusDays(3), "Pendiente"));
-    }
 
-    public static void cargarCalendario(){
-        String [] bocata_frio = {bocatas.get(0).getNombre(), bocatas.get(1).getNombre()};
-        String [] bocata_caliente = {bocatas.get(2).getNombre(), bocatas.get(3).getNombre()};
-        calendarios.add(new Calendario(0, LocalDate.of(2025, 03,6), LocalDate.of(2025, 03,8), bocata_caliente, bocata_frio));
-        calendarios.add(new Calendario(1, LocalDate.of(2025, 03,7), LocalDate.of(2025, 03,9), bocata_caliente, bocata_frio));
-        calendarios.add(new Calendario(2, LocalDate.of(2025, 03,8), LocalDate.of(2025, 03,10), bocata_caliente, bocata_frio));
-        calendarios.add(new Calendario(3, LocalDate.of(2025, 03,9), LocalDate.of(2025, 03,11), bocata_caliente, bocata_frio));
-        calendarios.add(new Calendario(4, LocalDate.of(2025, 03,10), LocalDate.of(2025, 03,12), bocata_caliente, bocata_frio));
+        //Calendario
+
+        calendarios.add(new Calendario(0, bocatas.get(0), bocatas.get(1)));
+        calendarios.add(new Calendario(1, bocatas.get(2), bocatas.get(3)));
     }
 }

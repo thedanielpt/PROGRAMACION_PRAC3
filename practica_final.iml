@@ -7,13 +7,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="junit.jupiter" level="project" />
   </component>
-  <!-- https://mvnrepository.com/artifact/org.junit/junit-bom -->
-  <dependency>
-      <groupId>org.junit</groupId>
-      <artifactId>junit-bom</artifactId>
-      <version>5.13.0-M3</version>
-      <type>pom</type>
-      <scope>test</scope>
-  </dependency>
 </module>

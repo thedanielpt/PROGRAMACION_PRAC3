@@ -2,6 +2,7 @@ package ui;
 
 import autentificar.AuathService;
 import models.User;
+import services.BocatasServicio;
 import services.UsuarioServicio;
 import utils.Validaciones;
 
@@ -98,7 +99,7 @@ public class MenuAdministrador {
                     next = true;
                     break;
                 case "2":
-                    AuathService.registro();
+                    UsuarioServicio.registroUsers();
                     next = true;
                     break;
                 case "3":
@@ -127,12 +128,11 @@ public class MenuAdministrador {
         boolean next = true;
 
         do {
-            System.out.println("1. Listar bocadillos disponibles");
-            System.out.println("2. Ver curiosidades de un bocadillo");
-            System.out.println("3. Crear bocadillo");
-            System.out.println("4. Eliminar bocadillo");
-            System.out.println("5. Modificar bocadillo");
-            System.out.println("6. Volver al menu princiapal");
+            System.out.println("1. Listar bocadillos disponibles");//Priemro se tiene que hacer admin_calendario
+            System.out.println("2. Crear bocadillo");
+            System.out.println("3. Eliminar bocadillo");
+            System.out.println("4. Modificar bocadillo");
+            System.out.println("5. Volver al menu princiapal");
             elec = sc.nextLine();
 
             switch (elec) {
@@ -141,6 +141,7 @@ public class MenuAdministrador {
                     next = true;
                     break;
                 case "2":
+                    BocatasServicio.registroBocatas();
                     next = true;
                     break;
                 case "3":
@@ -151,9 +152,6 @@ public class MenuAdministrador {
                     break;
                 case "5":
                     next = true;
-                    break;
-                case "6":
-                    next = false;
                     break;
                 default:
                     next = true;

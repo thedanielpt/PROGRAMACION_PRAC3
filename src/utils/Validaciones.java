@@ -2,9 +2,13 @@ package utils;
 
 import data.GesData;
 import models.*;
+import org.junit.jupiter.api.Test;
 import services.UsuarioServicio;
 
+import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -670,7 +674,7 @@ public class Validaciones {
         return curso;
     }
 
-    public static boolean tienesalergias(){
+    public static boolean tienesAlergias(){
         Scanner sc = new Scanner(System.in);
         String elec;
         boolean next = true;
@@ -748,6 +752,11 @@ public class Validaciones {
         return false;
     }
 
+    /**
+     * En este metodo se tienen que poner todas las alergias del usuario
+     * @return devuelve un ArrayLinst con las alergias que tiene
+     */
+
     public static ArrayList alergiasUsuario(){
         Scanner sc = new Scanner(System.in);
         boolean next = true;
@@ -766,7 +775,12 @@ public class Validaciones {
         return alergias;
     }
 
-    public static String validarPregunta (){
+    /**
+     * Valida la pregunta que el usuario tiene que elegir
+     * @return devuelve la pregunta elegida
+     */
+
+    public static String validarPregunta(){
         Scanner sc = new Scanner(System.in);
         boolean next = true;
 
@@ -791,6 +805,11 @@ public class Validaciones {
         return null;
     }
 
+    /**
+     * Te pide que pngas al usuario que quieres buscar y te lo busca
+     * @return devuelve el usuario del User
+     */
+
     public static String pregunta_buscar() {
         Scanner sc=new Scanner(System.in);
         boolean next = true;
@@ -799,7 +818,7 @@ public class Validaciones {
         System.out.println();
 
         do {
-            System.out.println("¿Que usuario quieres borrar? y si no quieres borrarlo pon 'no'");
+            System.out.println("¿Que usuario quieres? y si no quieres borrarlo pon 'no'");
 
             String elec = sc.nextLine();
 
@@ -812,5 +831,228 @@ public class Validaciones {
             }
         }while (next);
         return null;
+    }
+
+    /**
+     * Valida si la hora esta dentro del rango o no
+     * @return true si esta dentro del rango de la hora
+     */
+
+    public static boolean validarHora(){
+        LocalTime ahora = LocalTime.now();
+        LocalTime limite_principio = LocalTime.of(8, 0, 0);
+        LocalTime limite_final = LocalTime.of(10, 30, 0);
+
+        if (ahora.isBefore(limite_principio) && ahora.isAfter(limite_final)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Nos da el id del bocata que se quiere crear, sumando todos los bocatas y luego sumando uno a esa cuenta
+     * @return devuelve la cuenta que se ha hecho
+     */
+
+    public static int validarIdBocata() {
+        int cuenta = 0;
+
+        for (Bocatas bocata : GesData.bocatas) {
+            if (bocata.getId() == cuenta) {
+                cuenta++;
+            } else {
+                System.out.println(cuenta);
+                return cuenta;
+            }
+        }
+        return 0;
+    }
+
+    /**
+     * Metodo para la creacion del nombre del bocata
+     * @return devuelve el nombre del bocata que tu hayas puesto
+     */
+
+    public static String validarNombreBocata(){
+        Scanner sc = new Scanner(System.in);
+        boolean next = true;
+        String nombre = "";
+
+
+        do {
+            System.out.println("¿Que nombre le quieres poner al bocata?");
+
+            nombre = sc.nextLine();
+
+            System.out.println("Quieres ponerle de nombre: "+nombre);
+            if (estasSeguro()) {
+                return nombre;
+            } else {
+                next = true;
+            }
+        }while (next);
+        return null;
+    }
+
+    /**
+     * Valida la descripcion del bocadillo
+     * @return devuelve la descripcion del bocadillo
+     */
+
+    public static String validarDescripcionBocata(){
+        Scanner sc = new Scanner(System.in);
+        boolean next = true;
+        String descripcion = "";
+
+        do {
+            System.out.println("¿Que descripción le quieres poner al bocata?");
+
+            descripcion = sc.nextLine();
+
+            System.out.println("¿Quieres esta descripción para tu bocata?: "+descripcion);
+            if (estasSeguro()) {
+                return descripcion;
+            } else {
+                next = true;
+            }
+        }while (next);
+        return null;
+    }
+
+    /**
+     * Este metodo le pide al admin los alergenos del bocata
+     * @return devuelve los alergenos del bocata
+     */
+
+    public static ArrayList validarAlergenosBocatas(){
+        Scanner sc = new Scanner(System.in);
+        boolean next = true;
+        ArrayList alergias = new ArrayList<>();
+
+        System.out.println("Ingrese los alergenos, cuando las pongas todas pon 'terminado'");
+
+        while (next) {
+            String alergia = sc.nextLine();
+            if (alergia.equalsIgnoreCase("terminado")) {
+                break;
+            }
+            alergias.add(alergia);
+            System.out.println("Siguiente alergeno:");
+        }
+        return alergias;
+    }
+
+    /**
+     * Este metodo le pide al admin los ingredientes del bocata
+     * @return devuelve los ingredientes del bocata
+     */
+
+    public static ArrayList validarIngredientesBocatas(){
+        Scanner sc = new Scanner(System.in);
+        boolean next = true;
+        ArrayList ingredientes = new ArrayList<>();
+
+        System.out.println("Ingrese los ingredientes del bocata, cuando pongas todos los ingredientes pon 'terminado'");
+
+        while (next) {
+            String ingrediente = sc.nextLine();
+            if (ingrediente.equalsIgnoreCase("terminado")) {
+                break;
+            }
+            ingredientes.add(ingredientes);
+            System.out.println("Siguiente ingrediente:");
+        }
+        return ingredientes;
+    }
+
+    /**
+     * Valida el coste del bocata
+     * @return devuelve el coste del bocata que le hayas puesto
+     */
+
+    public static float costeBocata(){
+        Scanner sc = new Scanner(System.in);
+        boolean next = true;
+        float precio_final = 0;
+
+        do {
+            System.out.println("Pon el coste del bocata");
+
+            String precio = sc.nextLine();
+
+            try {
+                precio_final = Float.parseFloat(precio);
+                System.out.println("¿Quieres que cueste "+precio_final+"?");
+                System.out.println("Di 'si' o 'no'");
+                if (estasSeguro()) {
+                    return precio_final;
+                } else {
+                    next = true;
+                }
+            }catch (NumberFormatException e) {
+                System.out.println("Tiene que ser solo nuemros");
+                next = true;
+            }
+        }while (next);
+        return precio_final;
+    }
+
+    public static boolean estasSeguro(){
+        Scanner sc = new Scanner(System.in);
+        String elec = "";
+        boolean next = true;
+
+        System.out.println("si o no");
+
+        elec = sc.nextLine();
+        elec=elec.toLowerCase();
+
+        switch (elec){
+            case "si":
+                return true;
+            case "no":
+                return false;
+            default:
+                System.out.println("elige una opcion");
+                break;
+        }
+        return false;
+    }
+
+    public static boolean validarCalienteBocata() {
+        Scanner sc = new Scanner(System.in);
+        boolean caliente = true;
+        boolean next = true;
+        String elec = "";
+
+        do {
+            System.out.println("¿Que tipo de bocadillo quieres caliente o frio?");
+            System.out.println("Pon 'caliente' o 'frio'");
+
+            elec = sc.nextLine();
+            elec = elec.toLowerCase();
+
+            switch (elec) {
+                case "frio":
+                    caliente = false;
+                    next = false;
+                    break;
+                case "caliente":
+                    caliente = true;
+                    next = false;
+                    break;
+                default:
+                    System.out.println("Elige una de las opciones");
+                    break;
+            }
+            System.out.println("¿Estas seguro que quieres que el estado sea: "+caliente+"?");
+            if (estasSeguro()) {
+                return caliente;
+            } else {
+                next = true;
+            }
+        } while (next);
+        return false;
     }
 }

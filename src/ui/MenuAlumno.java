@@ -1,7 +1,9 @@
 package ui;
 
 import models.Alumno;
+import utils.Validaciones;
 
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class MenuAlumno {
@@ -19,11 +21,12 @@ public class MenuAlumno {
 
         do {
             System.out.println("----MENU USUARIO----");
+            System.out.println("----8:00 - 10:30----");
+            System.out.println("Hora"+LocalDateTime.now());
             System.out.println("1. Pedir bocata");
-            System.out.println("2. Horario bocata");
-            System.out.println("3. Cancelar pedido");
-            System.out.println("4. Historial de pedidos");
-            System.out.println("5. Deslogueo");
+            System.out.println("2. Cancelar pedido");
+            System.out.println("3. Historial de pedidos");
+            System.out.println("4. Deslogueo");
             elec = sc.nextLine();
             next = true;
 
@@ -33,19 +36,16 @@ public class MenuAlumno {
                     next = true;
                     break;
                 case "2":
-                    usuarioHorarioBocata();
-                    next = true;
-                    break;
-                case "3":
                     usuarioCancelarBocata();
                     next = true;
                     break;
-                case "4":
+                case "3":
                     usuarioHistorialPedidos();
                     next = true;
                     break;
-                case "5":
-                    next = false;
+                case "4":
+
+                    next = true;
                     break;
                 default:
                     System.out.println("Tienes que seleccionar una opción");
@@ -59,7 +59,11 @@ public class MenuAlumno {
      * Metodo para pedir un bocata
      */
     public static void usuarioPedirBocata(){
-        //TODO: usuario pide bocata
+        if (Validaciones.validarHora()) {
+            MenuBocatas.menuPedirBocata();
+        } else {
+            System.out.println("Fuera de horario");
+        }
     }
 
     /**

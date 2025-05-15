@@ -72,7 +72,7 @@ public class Alumno extends User{
         boolean next = true;
 
         do {
-            boolean alergicico  = Validaciones.tienesalergias();
+            boolean alergicico  = Validaciones.tienesAlergias();
 
             System.out.println("Quieres cambiar de alergico: "+ usuario.isAlergico()+" por alergico: "+alergicico+"?");
             System.out.println("Di 'si' o 'no'");
@@ -105,7 +105,7 @@ public class Alumno extends User{
         boolean next = true;
 
         do {
-            boolean alergicico  = Validaciones.tienesalergias();
+            boolean alergicico  = Validaciones.tienesAlergias();
 
             System.out.println("Quieres cambiar los alergenos viejos: "+ usuario.isAlergico()+" por alergenos nuevos: "+alergicico+"?");
             System.out.println("Di 'si' o 'no'");

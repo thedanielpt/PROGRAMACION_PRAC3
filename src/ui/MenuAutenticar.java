@@ -1,9 +1,11 @@
-package autentificar;
+package ui;
 
+import autentificar.AuathService;
+import models.Admin;
 import models.Alumno;
+import models.Cocina;
 import models.User;
 import services.UsuarioServicio;
-import ui.MenuAlumno;
 
 import java.util.Scanner;
 
@@ -13,27 +15,29 @@ public class MenuAutenticar {
         String nombreUser = "";
         do {
             System.out.println("1. Iniciar sesión");
-            System.out.println("2. Registro");
-            System.out.println("3. Recuperar contraseña");
+            System.out.println("2. Recuperar contraseña");
             System.out.println("0. Salir");
             String elec = sc.nextLine();
 
             switch (elec) {
                 case "1":
                     nombreUser = AuathService.login();
-                    User usuario = UsuarioServicio.buscar(nombreUser);
+                    User usuario = UsuarioServicio.buscar(nombreUser);// Arreglar login
 
                     if (usuario instanceof Alumno) {
                         Alumno a = (Alumno) usuario;
                         MenuAlumno.menuUsuario(a);
+                    } else if (usuario instanceof Cocina) {
+                        Cocina c = (Cocina) usuario;
+                        MenuCocina.menuCocina();
+                    } else if (usuario instanceof Admin) {
+                        Admin a = (Admin) usuario;
+                        MenuAdministrador.menuAdmin();
                     }
                     System.out.println("Error login");
                     break;
                 case "2":
-                    AuathService.registro();
-                    break;
-                case "3":
-
+                    //hacer lo de recuperar contraseña
                 case "0":
                     nombreUser = "a";
                 default:
