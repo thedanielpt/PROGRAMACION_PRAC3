@@ -125,8 +125,10 @@ public class BocatasServicio {
             System.out.println("¿Quieres cambiar de nombre: "+ bocata.getNombre()+" por nombre: "+nombre+"?");
             if (Validaciones.validarEstasSeguro()) {
                 bocata.setNombre(nombre);
+                break;
             } else {
                 System.out.println("No se ha cambiado el nombre del bocata");
+                break;
             }
         }while (next);
     }
@@ -138,11 +140,13 @@ public class BocatasServicio {
         do {
             String descripcion  = Validaciones.validarDescripcionBocata();
 
-            System.out.println("¿Quieres cambiar de descripción: \n"+ bocata.getDescrip()+"\n por alergico: \n"+descripcion+"?");
+            System.out.println("¿Quieres cambiar de descripción: \n"+ bocata.getDescrip()+"\n por esta descripción: \n"+descripcion+"?");
             if (Validaciones.validarEstasSeguro()) {
                 bocata.setDescrip(descripcion);
+                break;
             } else {
                 System.out.println("No se ha cambiado la descripción del bocata");
+                break;
             }
         }while (next);
     }
@@ -154,11 +158,16 @@ public class BocatasServicio {
         do {
             ArrayList<String> ingredientes  = Validaciones.validarIngredientesBocatas();
 
-            System.out.println("¿Quieres cambiar los ingredientes: \n"+ bocata.getIngredientes()+" por estos ingredientes: \n"+ingredientes+"?");
+            System.out.println("¿Quieres cambiar los ingredientes: \n"+ bocata.getIngredientes()+" por estos ingredientes?");
+            for (String st: ingredientes) {
+                System.out.println(st);
+            }
             if (Validaciones.validarEstasSeguro()) {
                 bocata.setIngredientes(ingredientes);
+                break;
             } else {
                 System.out.println("No se ha cambiado los ingredientes del bocata");
+                break;
             }
         }while (next);
     }
@@ -173,8 +182,10 @@ public class BocatasServicio {
             System.out.println("¿Quieres cambiar los alergenos: "+ bocata.getAlergenos()+" por estos alergenos: "+alergenos+"?");
             if (Validaciones.validarEstasSeguro()) {
                 bocata.setAlergenos(alergenos);
+                break;
             } else {
                 System.out.println("No se ha cambiado el nombre del bocata");
+                break;
             }
         }while (next);
     }
@@ -189,8 +200,10 @@ public class BocatasServicio {
             System.out.println("¿Quieres cambiar el precio: "+ bocata.getPrecio()+" por este precio: "+precio+"?");
             if (Validaciones.validarEstasSeguro()) {
                 bocata.setPrecio(precio);
+                break;
             } else {
                 System.out.println("No se ha cambiado el precio del bocata");
+                break;
             }
         }while (next);
     }
@@ -209,8 +222,10 @@ public class BocatasServicio {
 
             if (Validaciones.validarEstasSeguro()) {
                 bocata.setCaliente(caliente);
+                break;
             } else {
                 System.out.println("No se ha cambiado el precio del bocata");
+                break;
             }
         }while (next);
     }

@@ -149,6 +149,11 @@ public class UsuarioServicio {
         GesData.usuarios.add(new Admin(usuario, nombre, correo, password));
     }
 
+    /**
+     * Modifica las alergias del usuario
+     * @param usuario le das el ususario para que coja las alergias de ese usuario
+     */
+
     public static void modificarAlergias(Alumno usuario){
         Scanner sc = new Scanner(System.in);
         boolean next = true;
@@ -174,6 +179,11 @@ public class UsuarioServicio {
         }while (next);
     }
 
+    /**
+     * Modifica el curso de usuario
+     * @param usuario le das el ususario para que coja el curso de ese usuario
+     */
+
     public static void modificarCurso(Alumno usuario){
         Scanner sc = new Scanner(System.in);
         boolean next = true;
@@ -192,24 +202,29 @@ public class UsuarioServicio {
         }while (next);
     }
 
+    /**
+     * Modifica el estado de alergico
+     * @param usuario le das el ususario para que coja el estado de alergico
+     */
+
     public static void modificarAlergico(Alumno usuario){
         Scanner sc = new Scanner(System.in);
         boolean next = true;
 
         do {
-            boolean alergicico  = Validaciones.tienesAlergias();
+            boolean alergico  = Validaciones.tienesAlergias();
 
-            System.out.println("Quieres cambiar de alergico: "+ usuario.isAlergico()+" por alergico: "+alergicico+"?");
+            System.out.println("Quieres cambiar de alergico: "+ usuario.isAlergico()+" por alergico: "+alergico+"?");
 
             if (Validaciones.validarEstasSeguro()) {
-                if (alergicico) {
+                if (alergico) {
                     ArrayList<String> alergias = new ArrayList<>();
                     alergias = Validaciones.alergiasUsuario();
                     usuario.setAlergias(alergias);
                     GesData.usuarios.remove(usuario);
                     next = false;
                 } else {
-                    usuario.setAlergico(alergicico);
+                    usuario.setAlergico(alergico);
                 }
             } else {
                 next=true;

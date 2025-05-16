@@ -734,7 +734,7 @@ public class Validaciones {
 
 
         System.out.println("¿Quieres dar de alta a este usuario?");
-        if (estasSeguro()) {
+        if (Validaciones.validarEstasSeguro()) {
             return true;
         } else {
             return false;
@@ -875,7 +875,7 @@ public class Validaciones {
             nombre = sc.nextLine();
 
             System.out.println("Quieres ponerle de nombre: "+nombre);
-            if (estasSeguro()) {
+            if (Validaciones.validarEstasSeguro()) {
                 return nombre;
             } else {
                 next = true;
@@ -900,7 +900,7 @@ public class Validaciones {
             descripcion = sc.nextLine();
 
             System.out.println("¿Quieres esta descripción para tu bocata?: "+descripcion);
-            if (estasSeguro()) {
+            if (Validaciones.validarEstasSeguro()) {
                 return descripcion;
             } else {
                 next = true;
@@ -949,7 +949,7 @@ public class Validaciones {
             if (ingrediente.equalsIgnoreCase("terminado")) {
                 break;
             }
-            ingredientes.add(ingredientes);
+            ingredientes.add(ingrediente);
             System.out.println("Siguiente ingrediente:");
         }
         return ingredientes;
@@ -974,7 +974,7 @@ public class Validaciones {
                 precio_final = Float.parseFloat(precio);
                 System.out.println("¿Quieres que cueste "+precio_final+"?");
                 System.out.println("Di 'si' o 'no'");
-                if (estasSeguro()) {
+                if (Validaciones.validarEstasSeguro()) {
                     precio_final = (precio_final + ((precio_final*Bocatas.iva)/100));
                     return precio_final;
                 } else {
@@ -1044,7 +1044,7 @@ public class Validaciones {
                     break;
             }
             System.out.println("¿Estas seguro que quieres que el estado sea: "+caliente+"?");
-            if (estasSeguro()) {
+            if (Validaciones.validarEstasSeguro()) {
                 return caliente;
             } else {
                 next = true;

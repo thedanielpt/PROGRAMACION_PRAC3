@@ -16,7 +16,9 @@ public class MenuModificar {
         User user = new User();
         String usuario;
 
-        System.out.println("Pon el nombre del usuario que quieras modificar");
+        UsuarioServicio.mostrarTodosUsers();
+
+        System.out.println("\nPon el nombre del usuario que quieras modificar");
 
         usuario = sc.nextLine();
 
@@ -113,7 +115,9 @@ public class MenuModificar {
         Bocatas bocata = new Bocatas();
         String bocatas;
 
-        System.out.println("Pon el nombre del bocata que quieras modificar");
+        BocatasServicio.mostrarTodosBocatas();
+
+        System.out.println("\nPon el nombre del bocata que quieras modificar");
 
         bocatas = sc.nextLine();
 
@@ -160,6 +164,8 @@ public class MenuModificar {
                 }
 
             } while (next);
+        } else {
+            System.out.println("Bocata no encontrado");
         }
 
         return null;

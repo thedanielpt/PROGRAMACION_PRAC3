@@ -38,16 +38,16 @@ public class GesData {
 
         //Bocatas
 
-        bocatas.add(new Bocatas(0, "Bocadillo de tortilla", "Está hecho para la gente que quiere ser feliz" ,ingredientes , alergias, 3.5, false));
-        bocatas.add(new Bocatas(1, "Bocadillo de tortilla con jamón", "Perfecto para un almuerzo rápido",ingredientes, alergias,  4.0, true));
-        bocatas.add(new Bocatas(2, "Bocadillo de tortilla con queso", "Ideal para los amantes del queso",ingredientes, alergias,  4.2, false));
-        bocatas.add(new Bocatas(3, "Bocadillo de tortilla con atún", "Para los que prefieren el mar",ingredientes, alergias,  4.5, true));
-        bocatas.add(new Bocatas(4, "Bocadillo de tortilla con pimiento", "Una opción más vegetal",ingredientes, alergias,  3.8, false));
-        bocatas.add(new Bocatas(5, "Bocadillo de tortilla con tomate", "Fresco y delicioso",ingredientes, alergias,  4.0, true));
-        bocatas.add(new Bocatas(6, "Bocadillo de tortilla con chistorra", "Para los amantes de los sabores fuertes",ingredientes, alergias,  5.0, false));
-        bocatas.add(new Bocatas(7, "Bocadillo de tortilla con aguacate", "La combinación perfecta para los veganos",ingredientes, alergias,  4.3, true));
-        bocatas.add(new Bocatas(8, "Bocadillo de tortilla con salchichón", "El clásico con un toque de sabor",ingredientes, alergias, 4.1, false));
-        bocatas.add(new Bocatas(10, "Bocadillo de tortilla con espinacas",  "Una opción saludable y deliciosa",ingredientes, alergias, 4.0, true));
+        bocatas.add(new Bocatas(0, "Bocadillo de tortilla", "Está hecho para la gente que quiere ser feliz" ,new ArrayList<>(ingredientes) , new ArrayList<>(alergias), 3.5, false));
+        bocatas.add(new Bocatas(1, "Bocadillo de tortilla con jamón", "Perfecto para un almuerzo rápido",new ArrayList<>(ingredientes), new ArrayList<>(alergias),  4.0, true));
+        bocatas.add(new Bocatas(2, "Bocadillo de tortilla con queso", "Ideal para los amantes del queso",new ArrayList<>(ingredientes), new ArrayList<>(alergias),  4.2, false));
+        bocatas.add(new Bocatas(3, "Bocadillo de tortilla con atún", "Para los que prefieren el mar",new ArrayList<>(ingredientes), new ArrayList<>(alergias),  4.5, true));
+        bocatas.add(new Bocatas(4, "Bocadillo de tortilla con pimiento", "Una opción más vegetal",new ArrayList<>(ingredientes), new ArrayList<>(alergias),  3.8, false));
+        bocatas.add(new Bocatas(5, "Bocadillo de tortilla con tomate", "Fresco y delicioso",new ArrayList<>(ingredientes), new ArrayList<>(alergias),  4.0, true));
+        bocatas.add(new Bocatas(6, "Bocadillo de tortilla con chistorra", "Para los amantes de los sabores fuertes",new ArrayList<>(ingredientes), new ArrayList<>(alergias),  5.0, false));
+        bocatas.add(new Bocatas(7, "Bocadillo de tortilla con aguacate", "La combinación perfecta para los veganos",new ArrayList<>(ingredientes), new ArrayList<>(alergias),  4.3, true));
+        bocatas.add(new Bocatas(8, "Bocadillo de tortilla con salchichón", "El clásico con un toque de sabor",new ArrayList<>(ingredientes), new ArrayList<>(alergias), 4.1, false));
+        bocatas.add(new Bocatas(10, "Bocadillo de tortilla con espinacas",  "Una opción saludable y deliciosa",new ArrayList<>(ingredientes), new ArrayList<>(alergias), 4.0, true));
 
         //Pedidos
 
