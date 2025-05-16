@@ -33,8 +33,10 @@ public class MenuAutenticar {
                     } else if (usuario instanceof Admin) {
                         Admin a = (Admin) usuario;
                         MenuAdministrador.menuAdmin();
+                    } else {
+                        System.out.println("Error login");
                     }
-                    System.out.println("Error login");
+
                     break;
                 case "2":
                     //hacer lo de recuperar contraseña

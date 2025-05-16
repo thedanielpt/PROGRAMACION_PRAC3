@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Bocatas {
+
+    public static final int iva = 21;
+
     protected int id;
     protected String nombre;
     protected String descrip;
@@ -11,6 +14,8 @@ public class Bocatas {
     protected ArrayList<String> alergenos;
     protected double precio;
     protected boolean caliente;
+
+    public Bocatas(){}
 
     public Bocatas(int id, String nombre, String descrip, ArrayList<String> ingredientes, ArrayList<String> alergenos, double precio, boolean caliente) {
         this.id = id;
@@ -47,13 +52,6 @@ public class Bocatas {
                 ", precio=" + precio +
                 ", caliente=" + caliente +
                 '}';
-    }
-
-    public static ArrayList<String> menuBocatas(){
-        ArrayList<String> bocatas = new ArrayList<>();
-
-
-        return bocatas;
     }
 
     public int getId() {

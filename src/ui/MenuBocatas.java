@@ -6,6 +6,6 @@ import java.util.ArrayList;
 
 public class MenuBocatas {
     public static void menuPedirBocata(){
-        ArrayList<String> menuBocatas = Bocatas.menuBocatas();
+        ArrayList<String> menuBocatas;
     }
 }

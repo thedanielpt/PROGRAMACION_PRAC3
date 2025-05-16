@@ -7,6 +7,7 @@ import utils.Validaciones;
 
 import java.awt.font.FontRenderContext;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Clase donde se ubican los servicios de los bocatas
@@ -107,11 +108,110 @@ public class BocatasServicio {
 
         ArrayList<String> alergenos = Validaciones.validarAlergenosBocatas();
 
-        double precio = Validaciones.costeBocata();
+        double precio = Validaciones.validarPrecioBocata();
 
         boolean caliente = Validaciones.validarCalienteBocata();
 
         insertarBocatas(id_bocata,nombre,descripcion,ingredientes,alergenos,precio,caliente);
+    }
 
+    public static void modificarNombreBocata(Bocatas bocata){
+        Scanner sc = new Scanner(System.in);
+        boolean next = true;
+
+        do {
+            String nombre  = Validaciones.validarNombreBocata();
+
+            System.out.println("¿Quieres cambiar de nombre: "+ bocata.getNombre()+" por nombre: "+nombre+"?");
+            if (Validaciones.validarEstasSeguro()) {
+                bocata.setNombre(nombre);
+            } else {
+                System.out.println("No se ha cambiado el nombre del bocata");
+            }
+        }while (next);
+    }
+
+    public static void modificarDescripcionBocata(Bocatas bocata){
+        Scanner sc = new Scanner(System.in);
+        boolean next = true;
+
+        do {
+            String descripcion  = Validaciones.validarDescripcionBocata();
+
+            System.out.println("¿Quieres cambiar de descripción: \n"+ bocata.getDescrip()+"\n por alergico: \n"+descripcion+"?");
+            if (Validaciones.validarEstasSeguro()) {
+                bocata.setDescrip(descripcion);
+            } else {
+                System.out.println("No se ha cambiado la descripción del bocata");
+            }
+        }while (next);
+    }
+
+    public static void modificarIngredientesBocata(Bocatas bocata){
+        Scanner sc = new Scanner(System.in);
+        boolean next = true;
+
+        do {
+            ArrayList<String> ingredientes  = Validaciones.validarIngredientesBocatas();
+
+            System.out.println("¿Quieres cambiar los ingredientes: \n"+ bocata.getIngredientes()+" por estos ingredientes: \n"+ingredientes+"?");
+            if (Validaciones.validarEstasSeguro()) {
+                bocata.setIngredientes(ingredientes);
+            } else {
+                System.out.println("No se ha cambiado los ingredientes del bocata");
+            }
+        }while (next);
+    }
+
+    public static void modificarAlergenosBocata(Bocatas bocata){
+        Scanner sc = new Scanner(System.in);
+        boolean next = true;
+
+        do {
+            ArrayList<String> alergenos  = Validaciones.validarAlergenosBocatas();
+
+            System.out.println("¿Quieres cambiar los alergenos: "+ bocata.getAlergenos()+" por estos alergenos: "+alergenos+"?");
+            if (Validaciones.validarEstasSeguro()) {
+                bocata.setAlergenos(alergenos);
+            } else {
+                System.out.println("No se ha cambiado el nombre del bocata");
+            }
+        }while (next);
+    }
+
+    public static void modificarPrecioBocata(Bocatas bocata){
+        Scanner sc = new Scanner(System.in);
+        boolean next = true;
+
+        do {
+            float precio  = Validaciones.validarPrecioBocata();
+
+            System.out.println("¿Quieres cambiar el precio: "+ bocata.getPrecio()+" por este precio: "+precio+"?");
+            if (Validaciones.validarEstasSeguro()) {
+                bocata.setPrecio(precio);
+            } else {
+                System.out.println("No se ha cambiado el precio del bocata");
+            }
+        }while (next);
+    }
+
+    public static void modificarCalienteBocata(Bocatas bocata){
+        Scanner sc = new Scanner(System.in);
+        boolean next = true;
+
+        do {
+            boolean caliente  = Validaciones.validarCalienteBocata();
+
+            if (caliente = bocata.isCaliente()) {
+                System.out.println("Es el mismo estado");
+                break;
+            }
+
+            if (Validaciones.validarEstasSeguro()) {
+                bocata.setCaliente(caliente);
+            } else {
+                System.out.println("No se ha cambiado el precio del bocata");
+            }
+        }while (next);
     }
 }

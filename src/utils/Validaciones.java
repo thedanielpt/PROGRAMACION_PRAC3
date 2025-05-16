@@ -732,24 +732,14 @@ public class Validaciones {
         Scanner sc = new Scanner(System.in);
         boolean next = true;
 
-        do {
-            System.out.println("¿Quieres dar de alta a este usuario?");
-            System.out.println("si o no");
-            String elec = sc.nextLine();
-            elec = elec.toLowerCase();
 
-            switch (elec) {
-                case "si":
-                    return true;
-                case "no":
-                    return false;
-                default:
-                    System.out.println("Tienes que elegir una opción");
-                    break;
-            }
-        }while (next);
+        System.out.println("¿Quieres dar de alta a este usuario?");
+        if (estasSeguro()) {
+            return true;
+        } else {
+            return false;
+        }
 
-        return false;
     }
 
     /**
@@ -862,7 +852,6 @@ public class Validaciones {
             if (bocata.getId() == cuenta) {
                 cuenta++;
             } else {
-                System.out.println(cuenta);
                 return cuenta;
             }
         }
@@ -971,7 +960,7 @@ public class Validaciones {
      * @return devuelve el coste del bocata que le hayas puesto
      */
 
-    public static float costeBocata(){
+    public static float validarPrecioBocata(){
         Scanner sc = new Scanner(System.in);
         boolean next = true;
         float precio_final = 0;
@@ -986,6 +975,7 @@ public class Validaciones {
                 System.out.println("¿Quieres que cueste "+precio_final+"?");
                 System.out.println("Di 'si' o 'no'");
                 if (estasSeguro()) {
+                    precio_final = (precio_final + ((precio_final*Bocatas.iva)/100));
                     return precio_final;
                 } else {
                     next = true;
@@ -998,7 +988,12 @@ public class Validaciones {
         return precio_final;
     }
 
-    public static boolean estasSeguro(){
+    /**
+     * Te pregunta si o no
+     * @return un booleano dependiendo de la respuesta
+     */
+
+    public static boolean validarEstasSeguro(){
         Scanner sc = new Scanner(System.in);
         String elec = "";
         boolean next = true;
@@ -1019,6 +1014,8 @@ public class Validaciones {
         }
         return false;
     }
+
+    
 
     public static boolean validarCalienteBocata() {
         Scanner sc = new Scanner(System.in);

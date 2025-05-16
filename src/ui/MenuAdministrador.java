@@ -99,7 +99,7 @@ public class MenuAdministrador {
                     next = true;
                     break;
                 case "2":
-                    UsuarioServicio.registroUsers();
+                    MenuCrearUsuarios.registroUsers();
                     next = true;
                     break;
                 case "3":
@@ -145,9 +145,11 @@ public class MenuAdministrador {
                     next = true;
                     break;
                 case "3":
+                    BocatasServicio.eliminar(Validaciones.pregunta_buscar());
                     next = true;
                     break;
                 case "4":
+                    MenuModificar.modificarBocata(); // Se tiene que seguir haciendo
                     next = true;
                     break;
                 case "5":
