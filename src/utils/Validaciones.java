@@ -960,10 +960,10 @@ public class Validaciones {
      * @return devuelve el coste del bocata que le hayas puesto
      */
 
-    public static float validarPrecioBocata(){
+    public static double validarPrecioBocata(){
         Scanner sc = new Scanner(System.in);
         boolean next = true;
-        float precio_final = 0;
+        double precio_final = 0;
 
         do {
             System.out.println("Pon el coste del bocata");
@@ -973,19 +973,19 @@ public class Validaciones {
             try {
                 precio_final = Float.parseFloat(precio);
                 System.out.println("¿Quieres que cueste "+precio_final+"?");
-                System.out.println("Di 'si' o 'no'");
                 if (Validaciones.validarEstasSeguro()) {
-                    precio_final = (precio_final + ((precio_final*Bocatas.iva)/100));
-                    return precio_final;
+                    int precioConMuchosDecimales = (int) ((precio_final * (1+Bocatas.iva))*100);
+                    precio_final = Math.floor(precioConMuchosDecimales)/100;
+                    return  precio_final;
                 } else {
                     next = true;
                 }
             }catch (NumberFormatException e) {
-                System.out.println("Tiene que ser solo nuemros");
+                System.out.println("Tiene que ser solo numeros");
                 next = true;
             }
         }while (next);
-        return precio_final;
+        return 0;
     }
 
     /**

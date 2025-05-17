@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class Bocatas {
 
-    public static final int iva = 21;
+    public static final double iva = 0.21;
 
     protected int id;
     protected String nombre;

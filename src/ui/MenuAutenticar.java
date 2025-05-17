@@ -22,7 +22,7 @@ public class MenuAutenticar {
             switch (elec) {
                 case "1":
                     nombreUser = AuathService.login();
-                    User usuario = UsuarioServicio.buscar(nombreUser);// Arreglar login
+                    User usuario = UsuarioServicio.buscar(nombreUser);
 
                     if (usuario instanceof Alumno) {
                         Alumno a = (Alumno) usuario;

@@ -158,10 +158,7 @@ public class BocatasServicio {
         do {
             ArrayList<String> ingredientes  = Validaciones.validarIngredientesBocatas();
 
-            System.out.println("¿Quieres cambiar los ingredientes: \n"+ bocata.getIngredientes()+" por estos ingredientes?");
-            for (String st: ingredientes) {
-                System.out.println(st);
-            }
+            System.out.println("¿Quieres cambiar los ingredientes: \n"+ bocata.getIngredientes()+" por estos ingredientes: \n"+ingredientes+"?");
             if (Validaciones.validarEstasSeguro()) {
                 bocata.setIngredientes(ingredientes);
                 break;
@@ -195,7 +192,7 @@ public class BocatasServicio {
         boolean next = true;
 
         do {
-            float precio  = Validaciones.validarPrecioBocata();
+            double precio  = Validaciones.validarPrecioBocata();
 
             System.out.println("¿Quieres cambiar el precio: "+ bocata.getPrecio()+" por este precio: "+precio+"?");
             if (Validaciones.validarEstasSeguro()) {
