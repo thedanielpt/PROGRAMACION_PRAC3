@@ -964,6 +964,7 @@ public class Validaciones {
         Scanner sc = new Scanner(System.in);
         boolean next = true;
         double precio_final = 0;
+        double precio_inicio = 0;
 
         do {
             System.out.println("Pon el coste del bocata");
@@ -971,11 +972,11 @@ public class Validaciones {
             String precio = sc.nextLine();
 
             try {
-                precio_final = Float.parseFloat(precio);
+                precio_inicio = Float.parseFloat(precio);
                 System.out.println("¿Quieres que cueste "+precio_final+"?");
                 if (Validaciones.validarEstasSeguro()) {
-                    int precioConMuchosDecimales = (int) ((precio_final * (1+Bocatas.iva))*100);
-                    precio_final = Math.floor(precioConMuchosDecimales)/100;
+                    int precioConDecimales = (int) ((precio_inicio * (1+Bocatas.iva))*100);
+                    precio_final = (double) precioConDecimales/100;
                     return  precio_final;
                 } else {
                     next = true;
