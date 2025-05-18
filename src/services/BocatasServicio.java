@@ -40,7 +40,7 @@ public class BocatasServicio {
      * @return todos los bocatas en un ArrayList<String>
      */
 
-    public static ArrayList<Bocatas> obtenerTodosBocatas(){
+    public static ArrayList<Bocatas> obtenerTodosLosBocatas(){
         ArrayList<Bocatas> bocatas = new ArrayList<>();
         for (Bocatas bocata: GesData.bocatas) {
             bocatas.add(bocata);

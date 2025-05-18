@@ -16,7 +16,7 @@ public class PedidosServicio {
      * Coje todos los pedidos registrados
      * @return devuelve los pedidos en un ArrayList<Pedidos>
      */
-    public static ArrayList<Pedidos> optenerTodosPedidos(){
+    public static ArrayList<Pedidos> optenerTodosLosPedidos(){
         ArrayList<Pedidos> pedidos = new ArrayList<>();
         for (Pedidos pedido: GesData.pedidos) {
             pedidos.add(pedido);
