@@ -83,12 +83,9 @@ public class PedidosServicio {
                         System.out.println(pedido.getEstado());
                     }
                 }
-            } catch (NumberFormatException N) {
+            } catch (NumberFormatException n) {
                 System.out.println("Tienes que poner un numero");
             }
         }
-
-
-
     }
 }

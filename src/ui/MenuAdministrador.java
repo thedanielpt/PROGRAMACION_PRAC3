@@ -199,6 +199,7 @@ public class MenuAdministrador {
         boolean next = true;
 
         do {
+            System.out.println("1. Listar calendarios");
             System.out.println("1. Mostrar pedidos de un usuario");
             System.out.println("2. Cambiar el estado de los pedidos");
             System.out.println("3. Volver al menu princiapal");
@@ -206,7 +207,7 @@ public class MenuAdministrador {
 
             switch (elec) {
                 case "1":
-                    PedidosServicio.mostrarPedidosDeAlumno(UsuarioServicio.buscarUsuarios(Validaciones.pregunta_buscar()));
+
                     next = true;
                     break;
                 case "2":
@@ -225,9 +226,38 @@ public class MenuAdministrador {
     }
 
     public static void adminGestionarCalendario(){
-        System.out.println("5. Gestion Calendario");
-        System.out.println("     Modicficar Calendario");
-        System.out.println("     Crear calendario");
-        System.out.println("     Eliminar calendario");
+        Scanner sc = new Scanner(System.in);
+        String elec = "";
+        boolean next = true;
+
+        do {
+            System.out.println("1. Modicficar Calendario");
+            System.out.println("2. Crear calendario");
+            System.out.println("3. Eliminar calendario");
+            elec = sc.nextLine();
+
+            switch (elec) {
+                case "1":
+
+                    next = true;
+                    break;
+                case "2":
+
+                    next = true;
+                    break;
+                case "3":
+
+                    next = true;
+                    break;
+                case "4":
+                    next = false;
+                    break;
+                default:
+                    next = true;
+                    break;
+            }
+            next = true;
+        } while (next);
+
     }
 }
