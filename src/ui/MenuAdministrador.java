@@ -1,6 +1,7 @@
 package ui;
 
 import autentificar.AuathService;
+import models.Alumno;
 import models.User;
 import services.BocatasServicio;
 import services.PedidosServicio;
@@ -79,7 +80,6 @@ public class MenuAdministrador {
     /**
      * Menu de admin de gestion de usuarios
      */
-
     public static void adminGestionUsers(){
         Scanner sc = new Scanner(System.in);
         String elec = "";
@@ -119,8 +119,9 @@ public class MenuAdministrador {
         } while (next);
     }
 
-    //Menu de admin para la gestion de bocadillos
-
+    /**
+     * Menu de admin para la gestion de bocadillos
+     */
     public static void adminGestionarBocadillos(){
         Scanner sc = new Scanner(System.in);
         String elec = "";
@@ -162,13 +163,13 @@ public class MenuAdministrador {
     }
 
     /**
-     * Metodo para la realización de los pedidos
+     * Menu de admin para la realización de los pedidos con un Alumno
      */
-
     public static void adminPedirBocata(){
         Scanner sc = new Scanner(System.in);
         String elec = "";
         boolean next = true;
+        Alumno a = new Alumno();
 
         do {
             System.out.println("1. Seleccionar usuario");
@@ -193,6 +194,9 @@ public class MenuAdministrador {
         } while (next);
     }
 
+    /**
+     * Menu de admin para las consultas de los pedidos
+     */
     public static void adminConsultarPedidos(){
         Scanner sc = new Scanner(System.in);
         String elec = "";
@@ -225,6 +229,9 @@ public class MenuAdministrador {
         } while (next);
     }
 
+    /**
+     * Menu de admin para la gestion del calendario
+     */
     public static void adminGestionarCalendario(){
         Scanner sc = new Scanner(System.in);
         String elec = "";
