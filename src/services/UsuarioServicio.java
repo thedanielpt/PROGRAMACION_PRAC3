@@ -49,7 +49,7 @@ public class UsuarioServicio {
      * @return los devuelve en un ArrayList
      */
 
-    public static ArrayList<User> obtenerTodos(){
+    public static ArrayList<User> obtenerTodosLosUsuarios(){
         ArrayList<User> usuarios = new ArrayList<>();
         for (User usuario: GesData.usuarios) {
             usuarios.add(usuario);
@@ -63,11 +63,15 @@ public class UsuarioServicio {
      * @return si se encuentra el usuario lo devuelve, si no lo encuentra devuelve null
      */
 
-    public static User buscar(String usuario){
-        for (User usuarios: GesData.usuarios) {
-            if (usuarios.getUsuario().equals(usuario)) {
-                return usuarios;
+    public static User buscarUsuarios(String usuario){
+        try {
+            for (User usuarios: GesData.usuarios) {
+                if (usuarios.getUsuario().equals(usuario)) {
+                    return usuarios;
+                }
             }
+        } catch (NullPointerException e) {
+            System.out.println("Error en  la busqueda del usuario");
         }
         return null;
     }

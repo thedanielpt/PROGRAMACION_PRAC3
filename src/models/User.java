@@ -63,7 +63,7 @@ public class User {
         do {
             System.out.println("¿Que nombre de usuario quieres?");
             nombreNuevo = sc.nextLine();
-            if (UsuarioServicio.buscar(nombreNuevo) != null) {
+            if (UsuarioServicio.buscarUsuarios(nombreNuevo) != null) {
                 System.out.println("Este nombre esta ya cogido por un usuario");
                 next = true;
             } else {

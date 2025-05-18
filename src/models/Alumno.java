@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Alumno extends User{
+
     protected boolean alergico;
 
     protected ArrayList<String> alergias;

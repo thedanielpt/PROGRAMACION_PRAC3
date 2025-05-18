@@ -808,11 +808,11 @@ public class Validaciones {
         System.out.println();
 
         do {
-            System.out.println("¿Que usuario quieres? y si no quieres borrarlo pon 'no'");
+            System.out.println("¿Que usuario quieres, si quieres salir pon 'no' ?");
 
             String elec = sc.nextLine();
 
-            if (UsuarioServicio.buscar(elec) != null) {
+            if (UsuarioServicio.buscarUsuarios(elec) != null) {
                 return elec;
             } else if (elec.equals("no")) {
                 return null;
@@ -1016,7 +1016,10 @@ public class Validaciones {
         return false;
     }
 
-    
+    /**
+     * Te valida si el bocata va aestar caliente o no
+     * @return devuelve true si es caliente y false si es frio
+     */
 
     public static boolean validarCalienteBocata() {
         Scanner sc = new Scanner(System.in);

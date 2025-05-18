@@ -3,6 +3,7 @@ package ui;
 import autentificar.AuathService;
 import models.User;
 import services.BocatasServicio;
+import services.PedidosServicio;
 import services.UsuarioServicio;
 import utils.Validaciones;
 
@@ -28,19 +29,17 @@ public class MenuAdministrador {
             System.out.println("     Eliminar un curso entero");
             System.out.println("2. Gestionar Bocadillos:");
             System.out.println("     Listar bocadillos disponibles");
-            System.out.println("     Ver curiosidades de un bocadillo");
             System.out.println("     Crear bocadillo");
             System.out.println("     Eliminar bocadillo");
             System.out.println("     Modificar bocadillo");
-            System.out.println("     Realizar Pedido:");
             System.out.println("3. Pedir bocata");
             System.out.println("     Seleccionar usuario");
-            System.out.println("     Eligir Bocadillo");
-            System.out.println("     Confirmar pedido");
+            System.out.println("     Pedir bocadillo");
             System.out.println("4. Consultar Pedidos:");
             System.out.println("     Mostrar pedidos de un usuario");
-            System.out.println("     Marcar pedidos como retirado");
+            System.out.println("     Cambiar el estado de los pedidos");
             System.out.println("5. Gestion Calendario");
+            System.out.println("     Listar calendario");
             System.out.println("     Modicficar Calendario");
             System.out.println("     Crear calendario");
             System.out.println("     Eliminar calendario");
@@ -149,11 +148,11 @@ public class MenuAdministrador {
                     next = true;
                     break;
                 case "4":
-                    MenuModificar.modificarBocata(); // Se tiene que seguir haciendo
+                    MenuModificar.modificarBocata();
                     next = true;
                     break;
                 case "5":
-                    next = true;
+                    next = false;
                     break;
                 default:
                     next = true;
@@ -173,7 +172,7 @@ public class MenuAdministrador {
 
         do {
             System.out.println("1. Seleccionar usuario");
-            System.out.println("2. Pedir bocadillo bocadillo");
+            System.out.println("2. Pedir bocadillo");
             System.out.println("3. Volver al menu princiapal");
             elec = sc.nextLine();
 
@@ -200,18 +199,18 @@ public class MenuAdministrador {
         boolean next = true;
 
         do {
-            System.out.println("1. Gestion usuarios");
-            System.out.println("2. Gestion bocatas");
-            System.out.println("3. Gestion calendario");
-            System.out.println("4. gestion pedidos");
+            System.out.println("1. Mostrar pedidos de un usuario");
+            System.out.println("2. Cambiar el estado de los pedidos");
             System.out.println("3. Volver al menu princiapal");
             elec = sc.nextLine();
 
             switch (elec) {
                 case "1":
+                    PedidosServicio.mostrarPedidosDeAlumno(UsuarioServicio.buscarUsuarios(Validaciones.pregunta_buscar()));
                     next = true;
                     break;
                 case "2":
+
                     next = true;
                     break;
                 case "3":
@@ -223,5 +222,12 @@ public class MenuAdministrador {
             }
             next = true;
         } while (next);
+    }
+
+    public static void adminGestionarCalendario(){
+        System.out.println("5. Gestion Calendario");
+        System.out.println("     Modicficar Calendario");
+        System.out.println("     Crear calendario");
+        System.out.println("     Eliminar calendario");
     }
 }

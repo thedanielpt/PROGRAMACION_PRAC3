@@ -17,9 +17,15 @@ public class Pedidos {
         this.estado = estado;
     }
 
-    public String mostrarDetallesPedidos(){
-
-        return "id_pedido = "+id_pedido+"\nid_usuario = "+id_usuario+"\nid_bocadillo = "+id_bocadillo+"\nfecha del pedido= "+fecha+"\nEstado del peiddo = "+estado;
+    @Override
+    public String toString() {
+        return "Pedidos{" +
+                "id_pedido=" + id_pedido +
+                ", id_usuario=" + id_usuario +
+                ", id_bocadillo=" + id_bocadillo +
+                ", fecha=" + fecha +
+                ", estado='" + estado + '\'' +
+                '}';
     }
 
     public void marcarRetirado(String estado) {
@@ -58,10 +64,6 @@ public class Pedidos {
         return id_pedido;
     }
 
-    public String getId_usuario() {
-        return id_usuario;
-    }
-
     public int getId_bocadillo() {
         return id_bocadillo;
     }
@@ -78,10 +80,6 @@ public class Pedidos {
         this.id_pedido = id_pedido;
     }
 
-    public void setId_usuario(String id_usuario) {
-        this.id_usuario = id_usuario;
-    }
-
     public void setId_bocadillo(int id_bocadillo) {
         this.id_bocadillo = id_bocadillo;
     }
@@ -92,5 +90,13 @@ public class Pedidos {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public String getId_usuario() {
+        return id_usuario;
+    }
+
+    public void setId_usuario(String id_usuario) {
+        this.id_usuario = id_usuario;
     }
 }

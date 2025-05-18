@@ -40,7 +40,7 @@ public class BocatasServicio {
      * @return todos los bocatas en un ArrayList<String>
      */
 
-    public static ArrayList<Bocatas> obtenerTodos(){
+    public static ArrayList<Bocatas> obtenerTodosBocatas(){
         ArrayList<Bocatas> bocatas = new ArrayList<>();
         for (Bocatas bocata: GesData.bocatas) {
             bocatas.add(bocata);
@@ -54,7 +54,7 @@ public class BocatasServicio {
      * @return devuelve el bocadillo si se encontro, si no devuelve null
      */
 
-    public static Bocatas buscar(String bocadillo){
+    public static Bocatas buscarBocata(String bocadillo){
         for (Bocatas bocata: GesData.bocatas) {
             if (bocata.getNombre().equalsIgnoreCase(bocadillo)) {
                 return bocata;
@@ -115,6 +115,11 @@ public class BocatasServicio {
         insertarBocatas(id_bocata,nombre,descripcion,ingredientes,alergenos,precio,caliente);
     }
 
+    /**
+     * Modifica el nombre del bocata
+     * @param bocata bocata al que se le quiere modificar el nombre
+     */
+
     public static void modificarNombreBocata(Bocatas bocata){
         Scanner sc = new Scanner(System.in);
         boolean next = true;
@@ -132,6 +137,11 @@ public class BocatasServicio {
             }
         }while (next);
     }
+
+    /**
+     * Modifica la descripción del bocata
+     * @param bocata bocata al que se le quiere modificar la descripción
+     */
 
     public static void modificarDescripcionBocata(Bocatas bocata){
         Scanner sc = new Scanner(System.in);
@@ -151,6 +161,11 @@ public class BocatasServicio {
         }while (next);
     }
 
+    /**
+     * Modifica los ingredientes del bocata
+     * @param bocata bocata al que se le quiere modificar los ingredientes
+     */
+
     public static void modificarIngredientesBocata(Bocatas bocata){
         Scanner sc = new Scanner(System.in);
         boolean next = true;
@@ -168,6 +183,11 @@ public class BocatasServicio {
             }
         }while (next);
     }
+
+    /**
+     * Modifica los alergenos del bocata
+     * @param bocata bocata al que se le quiere modificar los alergenos
+     */
 
     public static void modificarAlergenosBocata(Bocatas bocata){
         Scanner sc = new Scanner(System.in);
@@ -187,6 +207,11 @@ public class BocatasServicio {
         }while (next);
     }
 
+    /**
+     * Modifica el precio del bocata
+     * @param bocata bocata al que se le quiere modificar el precio
+     */
+
     public static void modificarPrecioBocata(Bocatas bocata){
         Scanner sc = new Scanner(System.in);
         boolean next = true;
@@ -204,6 +229,11 @@ public class BocatasServicio {
             }
         }while (next);
     }
+
+    /**
+     * Modifica el estado de caliente del bocata
+     * @param bocata bocata al que se le quiere modificar el estado
+     */
 
     public static void modificarCalienteBocata(Bocatas bocata){
         Scanner sc = new Scanner(System.in);

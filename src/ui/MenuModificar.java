@@ -7,10 +7,12 @@ import utils.Validaciones;
 
 import java.util.Scanner;
 
-import static services.UsuarioServicio.buscar;
-
 public class MenuModificar {
-    public static User modificarUsuarios(){
+
+    /**
+     * Menu para modificar los atributos de usuario
+     */
+    public static void modificarUsuarios(){
         Scanner sc = new Scanner(System.in);
         boolean next = true;
         User user = new User();
@@ -22,9 +24,9 @@ public class MenuModificar {
 
         usuario = sc.nextLine();
 
-        user = buscar(usuario);
+        user = UsuarioServicio.buscarUsuarios(usuario);
 
-        if (buscar(usuario) != null && user instanceof Alumno) {
+        if (UsuarioServicio.buscarUsuarios(usuario) != null && user instanceof Alumno) {
             Alumno a = (Alumno) user;
             do {
                 next = true;
@@ -105,11 +107,13 @@ public class MenuModificar {
                 }
             }while (next);
         }
-
-        return null;
     }
 
-    public static Bocatas modificarBocata(){
+    /**
+     * Menu para modificar los atributos de los bocatas
+     */
+
+    public static void modificarBocata(){
         Scanner sc = new Scanner(System.in);
         boolean next = true;
         Bocatas bocata = new Bocatas();
@@ -121,7 +125,7 @@ public class MenuModificar {
 
         bocatas = sc.nextLine();
 
-        bocata = BocatasServicio.buscar(bocatas);
+        bocata = BocatasServicio.buscarBocata(bocatas);
 
         if (bocata != null) {
             do {
@@ -167,7 +171,5 @@ public class MenuModificar {
         } else {
             System.out.println("Bocata no encontrado");
         }
-
-        return null;
     }
 }

@@ -51,11 +51,11 @@ public class GesData {
 
         //Pedidos
 
-        pedidos.add(new Pedidos(0, "Daniel", 0, LocalDate.now(), "Pendiente"));
-        pedidos.add(new Pedidos(1, "Maria", 1, LocalDate.now().minusDays(1), "Entregado"));
-        pedidos.add(new Pedidos(2, "Ana", 2, LocalDate.now().plusDays(2), "En proceso"));
-        pedidos.add(new Pedidos(3, "Hugo", 3, LocalDate.now(), "Cancelado"));
-        pedidos.add(new Pedidos(4, "Laura", 4, LocalDate.now().minusDays(3), "Pendiente"));
+        pedidos.add(new Pedidos(0, "Hugo", 0, LocalDate.now(), "Pendiente"));
+        pedidos.add(new Pedidos(1, "AnaG", 1, LocalDate.now(), "Finalizado"));
+        pedidos.add(new Pedidos(2, "Hugo", 2, LocalDate.now(), "Finalizado"));
+        pedidos.add(new Pedidos(3, "Hugo", 3, LocalDate.now(), "Pendiente"));
+        pedidos.add(new Pedidos(4, "Hugo", 4, LocalDate.now(), "Pendiente"));
 
         //Calendario
 
