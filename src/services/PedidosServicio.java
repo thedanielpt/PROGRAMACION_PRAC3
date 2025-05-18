@@ -24,6 +24,11 @@ public class PedidosServicio {
         return pedidos;
     }
 
+    /**
+     * Busca un pedido
+     * @param id_pedido id del pedido
+     * @return devuelve el pedido si lo encuentra, si no devuelve null
+     */
     public static Pedidos buscarPedido(int id_pedido){
         for (Pedidos pedido: GesData.pedidos) {
             if (pedido.getId_pedido() == id_pedido) {
@@ -33,10 +38,22 @@ public class PedidosServicio {
         return null;
     }
 
-    public static void inseerarPedido( int id_pedido, String id_usuario, int id_bocadillo, LocalDate fecha, String estado){
+    /**
+     * Crea una instancia de un pedido
+     * @param id_pedido id del peiddo
+     * @param id_usuario id del usuario que lo ha pedido
+     * @param id_bocadillo id del bocadillo que ha pedido
+     * @param fecha fecha del momento en el que lo pide
+     * @param estado estado en el que se encuentra el pedido
+     */
+    public static void insertarPedido( int id_pedido, String id_usuario, int id_bocadillo, LocalDate fecha, String estado){
         GesData.pedidos.add(new Pedidos(id_pedido, id_usuario, id_bocadillo, fecha, estado));
     }
 
+    /**
+     * Elimina el bocadillo elegido
+     * @param id_pedido id del bocadillo
+     */
     public static void eliminarPedido(int id_pedido){
         for (Pedidos pedido: GesData.pedidos) {
             if (pedido.getId_pedido() == id_pedido) {
@@ -45,6 +62,10 @@ public class PedidosServicio {
         }
     }
 
+    /**
+     * Muestra los pedidos de un alumno
+     * @param user alumno elegido
+     */
     public static void mostrarPedidosDeAlumno(User user){
         try {
             for (Pedidos pedido: GesData.pedidos){
@@ -57,6 +78,9 @@ public class PedidosServicio {
         }
     }
 
+    /**
+     * Cambia el estado de los bocadillos a finalizado
+     */
     public static void cambiarEstadoAFinalizado(){
         Scanner sc = new Scanner(System.in);
         ArrayList<Pedidos> pedidos = new ArrayList<>();
