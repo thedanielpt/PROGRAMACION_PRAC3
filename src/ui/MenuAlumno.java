@@ -29,7 +29,7 @@ public class MenuAlumno {
             System.out.println("2. Cancelar pedido");
             System.out.println("3. Historial de pedidos");
             System.out.println("4. Hacer una incidencia");
-            System.out.println("4. Deslogueo");
+            System.out.println("5. Deslogueo");
             elec = sc.nextLine();
             next = true;
 
@@ -49,6 +49,9 @@ public class MenuAlumno {
                 case "4":
                     IncidenciasServicio.crearIncidencia();
                     next = true;
+                    break;
+                case "5":
+                    next = false;
                     break;
                 default:
                     System.out.println("Tienes que seleccionar una opción");

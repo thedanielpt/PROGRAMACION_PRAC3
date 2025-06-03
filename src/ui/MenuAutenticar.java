@@ -1,6 +1,7 @@
 package ui;
 
 import Excepciones.MensajeLargoException;
+import Excepciones.MenuUsuarioNoEncontrado;
 import autentificar.AuathService;
 import models.Admin;
 import models.Alumno;
@@ -15,7 +16,7 @@ public class MenuAutenticar {
     /**
      * Menu principal para el login
      */
-    public static void menAutentificar() throws MensajeLargoException {
+    public static void menAutentificar() throws MensajeLargoException, MenuUsuarioNoEncontrado{
         Scanner sc = new Scanner(System.in);
         String nombreUser = "";
         do {
@@ -28,7 +29,6 @@ public class MenuAutenticar {
                 case "1":
                     nombreUser = AuathService.login();
                     User usuario = UsuarioServicio.buscarUsuarios(nombreUser);
-
                     if (usuario instanceof Alumno) {
                         Alumno a = (Alumno) usuario;
                         MenuAlumno.menuUsuario(a);
@@ -39,7 +39,7 @@ public class MenuAutenticar {
                         Admin a = (Admin) usuario;
                         MenuAdministrador.menuAdmin();
                     } else {
-                        System.out.println("Error login");
+                        throw new MenuUsuarioNoEncontrado("Error a la hora de buscar el menu del usuaio elegido");
                     }
 
                     break;
