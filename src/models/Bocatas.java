@@ -1,10 +1,18 @@
 package models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Bocatas {
 
+/**
+ * Clase de bocatas
+ */
+public class Bocatas implements Serializable {
+
+    /**
+     * Iva de los bocatas
+     */
     public static final double iva = 0.21;
 
     protected int id;
@@ -15,8 +23,21 @@ public class Bocatas {
     protected double precio;
     protected boolean caliente;
 
+    /**
+     * Constructor sin atributos de bocatas
+     */
     public Bocatas(){}
 
+    /**
+     * Constructor con atributos de bocatas
+     * @param id identificador del bocadillo
+     * @param nombre nombre del bocadillo
+     * @param descrip descripcion del bocadillo
+     * @param ingredientes ingredientes del bocata
+     * @param alergenos alergenos del bocadillo
+     * @param precio  precio el bocata
+     * @param caliente si esta caliente es true
+     */
     public Bocatas(int id, String nombre, String descrip, ArrayList<String> ingredientes, ArrayList<String> alergenos, double precio, boolean caliente) {
         this.id = id;
         this.nombre = nombre;
@@ -27,20 +48,10 @@ public class Bocatas {
         this.caliente = caliente;
     }
 
-    public void mostrarAlergenos(String nombre, String[] alergenos) {
-        System.out.println("El " + nombre + " tiene estos alergenos:");
-        for (int i = 0; i < alergenos.length; i++) {
-            System.out.println(alergenos[i]);
-        }
-    }
-
-    public void mostrarIngredientes(String nombre, String[] ingredientes) {
-        System.out.println("El " + nombre + " tiene estos ingredientes:");
-        for (int i = 0; i < ingredientes.length; i++) {
-            System.out.println(ingredientes[i]);
-        }
-    }
-
+    /**
+     * Metodo para mostrar todos los atributos del bocata
+     * @return devuelve la infromaciónd del bcoata en string
+     */
     @Override
     public String toString() {
         return "Bocatas{" +

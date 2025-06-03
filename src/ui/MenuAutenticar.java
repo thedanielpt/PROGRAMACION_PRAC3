@@ -1,5 +1,6 @@
 package ui;
 
+import Excepciones.MensajeLargoException;
 import autentificar.AuathService;
 import models.Admin;
 import models.Alumno;
@@ -10,7 +11,11 @@ import services.UsuarioServicio;
 import java.util.Scanner;
 
 public class MenuAutenticar {
-    public static User menAutentificar(){
+
+    /**
+     * Menu principal para el login
+     */
+    public static void menAutentificar() throws MensajeLargoException {
         Scanner sc = new Scanner(System.in);
         String nombreUser = "";
         do {
@@ -47,6 +52,5 @@ public class MenuAutenticar {
                     break;
             }
         }while (nombreUser!=null);
-        return null;
     }
 }

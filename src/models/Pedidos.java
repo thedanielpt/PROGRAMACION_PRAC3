@@ -1,13 +1,28 @@
 package models;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Pedidos {
+/**
+ * Clase del objeto pedidos
+ */
+
+public class Pedidos implements Serializable {
+
     protected int id_pedido;
     protected String id_usuario;
     protected int id_bocadillo;
     protected LocalDate fecha;
     protected String estado;
+
+    /**
+     *Constructor de pedidos
+     * @param id_pedido identificador de pedidos
+     * @param id_usuario identificador del usuario
+     * @param id_bocadillo identificador de bocadillos
+     * @param fecha fecha del pedido
+     * @param estado estado del pedido
+     */
 
     public Pedidos(int id_pedido, String id_usuario, int id_bocadillo, LocalDate fecha, String estado) {
         this.id_pedido = id_pedido;
@@ -16,6 +31,11 @@ public class Pedidos {
         this.fecha = fecha;
         this.estado = estado;
     }
+
+    /**
+     * to string de pedidos
+     * @return devuelve un string con todda la información del objeto pedido
+     */
 
     @Override
     public String toString() {
@@ -28,36 +48,24 @@ public class Pedidos {
                 '}';
     }
 
-    public void marcarRetirado(String estado) {
-        String pedido = "pedido";
-        String retirado = "retirado";
+    /**
+     * Comprueba los alergenos el usuario con los del bocata
+     * @param a objeto alumno
+     * @param b objeto bocata
+     * @return verdad si encuentra un alergeno peligroso para el usuario, false si no lo encuentra
+     */
 
-        System.out.println("id_pedido: "+ estado);
-        if (estado.equals(pedido)) {
-            estado = retirado;
-        } else if (estado.equals(retirado)) {
-            estado = pedido;
-        }else {
-            System.out.println("Lo siento, solo sirve para modificar el estado del pedido");
-        }
-    }
-
-    public void mostrarNotificaciones(String alergias_user[], String alergenos_bocata[]){
+    public static boolean comprobarAlergenosBocatasYAlumno(Alumno a, Bocatas b){
         boolean alerta = false;
 
-        for (int i = 0; i < alergias_user.length; i++) {
-            for (int j = 0; j < alergenos_bocata.length; j++) {
-                if (alergenos_bocata[j].equals(alergias_user[i])){
-                    alerta = true;
+        for (int i = 0; i < a.getAlergias().size(); i++) {
+            for (int j = 0; j < b.getAlergenos().size(); j++) {
+                if (b.getAlergenos().equals(a.getAlergias())){
+                    return true;
                 }
             }
         }
-
-        if (alerta) {
-            System.out.println("No puede pedir este bocata, porque tiene alergenos");
-        } else {
-            System.out.println("El bocata no tiene alergenos que le puedan afectar al usuario");
-        }
+        return false;
     }
 
     public int getId_pedido() {

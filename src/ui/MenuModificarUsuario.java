@@ -1,13 +1,12 @@
 package ui;
 
 import models.*;
-import services.BocatasServicio;
 import services.UsuarioServicio;
 import utils.Validaciones;
 
 import java.util.Scanner;
 
-public class MenuModificar {
+public class MenuModificarUsuario {
 
     /**
      * Menu para modificar los atributos de usuario
@@ -30,7 +29,7 @@ public class MenuModificar {
             Alumno a = (Alumno) user;
             do {
                 next = true;
-                System.out.println("¿Que quieres modificar?");
+                System.out.println("¿Que atributo quieres modificar?");
                 System.out.println("0. Salir");
                 System.out.println("1. Usuario");
                 System.out.println("2. Nombre");
@@ -109,67 +108,5 @@ public class MenuModificar {
         }
     }
 
-    /**
-     * Menu para modificar los atributos de los bocatas
-     */
 
-    public static void modificarBocata(){
-        Scanner sc = new Scanner(System.in);
-        boolean next = true;
-        Bocatas bocata = new Bocatas();
-        String bocatas;
-
-        BocatasServicio.mostrarTodosBocatas();
-
-        System.out.println("\nPon el nombre del bocata que quieras modificar");
-
-        bocatas = sc.nextLine();
-
-        bocata = BocatasServicio.buscarBocata(bocatas);
-
-        if (bocata != null) {
-            do {
-                System.out.println("¿Que atributo quieres modificar?");
-                System.out.println("1. Nombre");
-                System.out.println("2. Descripción");
-                System.out.println("3. Ingredientes");
-                System.out.println("4. Alergenos");
-                System.out.println("5. Precio");
-                System.out.println("6. Caliente");
-                System.out.println("7. Salir");
-
-                String elec = sc.nextLine();
-
-                switch (elec) {
-                    case"1":
-                        BocatasServicio.modificarNombreBocata(bocata);
-                        break;
-                    case"2":
-                        BocatasServicio.modificarDescripcionBocata(bocata);
-                        break;
-                    case"3":
-                        BocatasServicio.modificarIngredientesBocata(bocata);
-                        break;
-                    case"4":
-                        BocatasServicio.modificarAlergenosBocata(bocata);
-                        break;
-                    case"5":
-                        BocatasServicio.modificarPrecioBocata(bocata);
-                        break;
-                    case"6":
-                        BocatasServicio.modificarCalienteBocata(bocata);
-                        break;
-                    case"7":
-                        next = false;
-                        break;
-                    default:
-                        System.out.println("Elige una opción");
-                        break;
-                }
-
-            } while (next);
-        } else {
-            System.out.println("Bocata no encontrado");
-        }
-    }
 }

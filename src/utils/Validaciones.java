@@ -1,13 +1,13 @@
 package utils;
 
+import Excepciones.MensajeLargoException;
 import data.GesData;
 import models.*;
-import org.junit.jupiter.api.Test;
+import services.BocatasServicio;
+import services.CalendariosServicio;
+import services.PedidosServicio;
 import services.UsuarioServicio;
 
-import java.sql.Time;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -800,25 +800,84 @@ public class Validaciones {
      * @return devuelve el usuario del User
      */
 
-    public static String pregunta_buscar() {
+    //Probar
+
+    public static String pregunta_buscar(int numero) {
         Scanner sc=new Scanner(System.in);
         boolean next = true;
-
-        UsuarioServicio.mostrarTodosUsers();
-        System.out.println();
+        String elec = "";
 
         do {
-            System.out.println("¿Que usuario quieres, si quieres salir pon 'no' ?");
+            if (numero == 1) {
+                UsuarioServicio.mostrarTodosUsers();
+                System.out.println();
+                System.out.println("¿Que usuario quieres, pon su usuario, si quieres salir pon 'no' ?");
 
-            String elec = sc.nextLine();
+                elec = sc.nextLine();
 
-            if (UsuarioServicio.buscarUsuarios(elec) != null) {
-                return elec;
-            } else if (elec.equals("no")) {
-                return null;
-            } else {
-                System.out.println("Usuario no encontrado");
+                if (UsuarioServicio.buscarUsuarios(elec) != null) {
+                    return elec;
+                } else if (elec.equals("no")) {
+                    return null;
+                } else {
+                    System.out.println("Usuario no encontrado");
+                }
+            } else if (2 == numero) {
+                BocatasServicio.mostrarTodosBocatas();
+                System.out.println();
+                System.out.println("¿Que bocata quieres, pon su nombre, si quieres salir pon 'no' ?");
+
+                elec = sc.nextLine();
+
+                if (BocatasServicio.buscarBocata(elec) != null) {
+                    return elec;
+                } else if (elec.equals("no")) {
+                    return null;
+                } else {
+                    System.out.println("Bocata no encontrado");
+                }
+            } else if (3 == numero) {
+                PedidosServicio.mostrarTodosPedidos();
+                System.out.println();
+                System.out.println("¿Que pedido quieres, pon su id, si quieres salir pon 'no' ?");
+
+                elec = sc.nextLine();
+                if (Validaciones.soloNum(elec)) {
+                    int id_buscado = Integer.parseInt(elec);
+                    if (PedidosServicio.buscarPedido(id_buscado) != null) {
+                        return elec;
+                    } else if (elec.equals("no")) {
+                        return null;
+                    } else {
+                        System.out.println("Pedido no encontrado");
+                    }
+                } else {
+                    System.out.println("Solo deben ser numeros");
+                }
+
+
+            } else if (4 == numero) {
+                CalendariosServicio.mostrarTodosCalendarios();
+                System.out.println();
+                System.out.println("¿Que calendario quieres, pon su id, si quieres salir pon 'no' ?");
+
+                elec = sc.nextLine();
+                if (Validaciones.soloNum(elec)) {
+                    int id_buscado = Integer.parseInt(elec);
+                    if (CalendariosServicio.buscarCalendario(id_buscado) != null) {
+                        return elec;
+                    } else if (elec.equals("no")) {
+                        return null;
+                    } else {
+                        System.out.println("Calendario no encontrado");
+                    }
+                } else {
+                    System.out.println("Solo deben ser numeros");
+                }
             }
+
+
+
         }while (next);
         return null;
     }
@@ -867,7 +926,6 @@ public class Validaciones {
         Scanner sc = new Scanner(System.in);
         boolean next = true;
         String nombre = "";
-
 
         do {
             System.out.println("¿Que nombre le quieres poner al bocata?");
@@ -1055,5 +1113,87 @@ public class Validaciones {
             }
         } while (next);
         return false;
+    }
+
+    /**
+     * Valida el id calenairo
+     * @return devuelve id dle calendario
+     */
+    public static int validarIdCalendario(){
+        int cuenta = 0;
+
+        for (Calendario calendario : GesData.calendarios) {
+            if (calendario.getId() == cuenta) {
+                cuenta++;
+            } else {
+                return cuenta;
+            }
+        }
+        return 0;
+    }
+
+    /**
+     * Valida el id del pedido
+     * @return devuelve id del pedido
+     */
+    public static int validarIdPedido(){
+        int cuenta = 0;
+
+        for (Pedidos pedido : GesData.pedidos) {
+            if (pedido.getId_pedido() == cuenta) {
+                cuenta++;
+            } else {
+                return cuenta;
+            }
+        }
+        return 0;
+    }
+
+    public static int validarIdIncidencia(){
+        int cuenta = 0;
+
+        for (Incidencia incidencia: GesData.incidencias) {
+            if (incidencia.getId() == cuenta) {
+                cuenta++;
+            } else {
+                return cuenta;
+            }
+        }
+        return 0;
+    }
+
+    public static String validarNombreIncidencia() throws MensajeLargoException {
+        Scanner sc = new Scanner(System.in);
+        boolean next = true;
+        String nombre = "";
+
+        System.out.println("¿Que nombre le quieres poner a la incidencia?");
+
+        do {
+            nombre = sc.nextLine();
+
+            if (nombre.length()>50) {
+                throw new MensajeLargoException("Error de longitud, se ha pasado del limite establecido");
+            }
+            return nombre;
+        }while (next);
+    }
+
+    public static String validarDescripcionIncidencia() throws MensajeLargoException {
+        Scanner sc = new Scanner(System.in);
+        boolean next = true;
+        String descripcion = "";
+
+        System.out.println("¿Que nombre le quieres poner a la incidencia?");
+
+        do {
+            descripcion = sc.nextLine();
+
+            if (descripcion.length()>255) {
+                throw new MensajeLargoException("Error de longitud, se ha pasado del limite establecido");
+            }
+
+            return descripcion;
+        }while (next);
     }
 }

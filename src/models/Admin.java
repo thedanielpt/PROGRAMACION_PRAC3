@@ -3,7 +3,7 @@ package models;
 import data.GesData;
 
 /**
- *
+ *Clase de adminsitrador
  */
 
 public class Admin extends User{
@@ -22,6 +22,10 @@ public class Admin extends User{
         super(usuario, nombre, correo, password);
     }
 
+    /**
+     * Metodo de to string
+     * @return devuelve la información el administrador
+     */
     @Override
     public String toString() {
         return "Admin{" +

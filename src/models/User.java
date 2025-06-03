@@ -4,9 +4,10 @@ import data.GesData;
 import services.UsuarioServicio;
 import utils.Validaciones;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class User {
+public class User implements Serializable {
     protected String usuario;
 
     protected String nombre;

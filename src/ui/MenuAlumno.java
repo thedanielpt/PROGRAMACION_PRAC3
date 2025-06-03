@@ -1,9 +1,12 @@
 package ui;
 
+import Excepciones.MensajeLargoException;
 import models.Alumno;
+import services.IncidenciasServicio;
+import services.PedidosServicio;
 import utils.Validaciones;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Scanner;
 
 public class MenuAlumno {
@@ -14,37 +17,37 @@ public class MenuAlumno {
      * Metodo donde esta el menu de Usuario
      */
 
-    public static void menuUsuario(Alumno alumno){
+    public static void menuUsuario(Alumno alumno) throws MensajeLargoException {
         Scanner sc = new Scanner(System.in);
         boolean next = true;
         String elec = "";
 
         do {
             System.out.println("----MENU USUARIO----");
-            System.out.println("----8:00 - 10:30----");
-            System.out.println("Hora"+LocalDateTime.now());
+            System.out.println("Horario para pedir: 8:00 - 10:30");
             System.out.println("1. Pedir bocata");
             System.out.println("2. Cancelar pedido");
             System.out.println("3. Historial de pedidos");
+            System.out.println("4. Hacer una incidencia");
             System.out.println("4. Deslogueo");
             elec = sc.nextLine();
             next = true;
 
             switch (elec) {
                 case "1":
-                    usuarioPedirBocata();
+                    usuarioPedirBocata(alumno);
                     next = true;
                     break;
                 case "2":
-                    usuarioCancelarBocata();
+                    usuarioCancelarPedido(alumno);
                     next = true;
                     break;
                 case "3":
-                    usuarioHistorialPedidos();
+                    usuarioHistorialPedidos(alumno);
                     next = true;
                     break;
                 case "4":
-
+                    IncidenciasServicio.crearIncidencia();
                     next = true;
                     break;
                 default:
@@ -58,32 +61,25 @@ public class MenuAlumno {
     /**
      * Metodo para pedir un bocata
      */
-    public static void usuarioPedirBocata(){
+    public static void usuarioPedirBocata(Alumno alumno){
         if (Validaciones.validarHora()) {
-            MenuBocatas.menuPedirBocata();
+            PedidosServicio.pedirBocadillo(alumno);
         } else {
             System.out.println("Fuera de horario");
         }
     }
 
     /**
-     * Metodo para ver el horario de los bocatas
-     */
-    public static void usuarioHorarioBocata(){
-        //TODO: usuario mira horario
-    }
-
-    /**
      * Metodo para cancelar el bocata
      */
-    public static void usuarioCancelarBocata(){
-        //TODO: usuario cancela bocata
+    public static void usuarioCancelarPedido(Alumno alumno){
+        PedidosServicio.cancelarPedido(alumno);
     }
 
     /**
      * Metodo para ver el historial de pedidos
      */
-    public static void usuarioHistorialPedidos(){
-        //TODO: usuario mira su historial de pedidos
+    public static void usuarioHistorialPedidos(Alumno alumno){
+        PedidosServicio.mostrarPedidosDeAlumno(alumno);
     }
 }

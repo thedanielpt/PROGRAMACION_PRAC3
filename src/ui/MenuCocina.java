@@ -1,5 +1,9 @@
 package ui;
 
+import Excepciones.MensajeLargoException;
+import services.IncidenciasServicio;
+import services.PedidosServicio;
+
 import java.util.Scanner;
 
 public class MenuCocina {
@@ -10,7 +14,7 @@ public class MenuCocina {
      * Este metodo muestra el menu de cocina
      */
 
-    public static void menuCocina(){
+    public static void menuCocina() throws MensajeLargoException {
         Scanner sc = new Scanner(System.in);
         boolean next = true;
         String elec = "";
@@ -18,7 +22,8 @@ public class MenuCocina {
         System.out.println("----MENU COCINA----");
         System.out.println("1. Modificar estado");
         System.out.println("2. Ver pedidos");
-        System.out.println("3. Deslogueo");
+        System.out.println("3. CRear incidencia");
+        System.out.println("4. Deslogueo");
         elec = sc.nextLine();
 
         switch (elec) {
@@ -31,6 +36,10 @@ public class MenuCocina {
                 next = true;
                 break;
             case "3":
+                IncidenciasServicio.crearIncidencia();
+                next = true;
+                break;
+            case "4":
                 next = false;
                 break;
             default:
@@ -40,11 +49,17 @@ public class MenuCocina {
         }
     }
 
+    /**
+     * Metodo que utiliza el menu de cocina para modificarlo
+     */
     public static void cocinaModificarestado(){
-        //TODO: cocina podra modificar el estado de los pedidos
+        PedidosServicio.cambiarEstadoAFinalizado();
     }
 
+    /**
+     * Metodo para que cocina vea los pedidos
+     */
     public static void cocinaVerPedidos(){
-        //TODO: cocina podra mirar los pedidos
+        PedidosServicio.mostrarTodosPedidos();
     }
 }

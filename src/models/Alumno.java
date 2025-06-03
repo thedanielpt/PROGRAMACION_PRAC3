@@ -6,6 +6,9 @@ import utils.Validaciones;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Clase de Alumno
+ */
 public class Alumno extends User{
 
     protected boolean alergico;
@@ -22,8 +25,26 @@ public class Alumno extends User{
 
     protected boolean alta;
 
+    /**
+     * Constructor sin ningun atributo
+     */
     public Alumno (){}
 
+
+    /**
+     * Constructor del alumno con alergias
+     * @param usuario usuario del alumno.
+     * @param nombre nombre completo del alumno.
+     * @param correo correo electrónico del alumno.
+     * @param password contraseña del alumno.
+     * @param alergico dice si es alergico o no
+     * @param alergias alergias del usuario
+     * @param curso matriculado del alumno.
+     * @param pregunta pregunta de seguridad del alumno.
+     * @param respuesta respuesta a la pregunta de seguridad.
+     * @param num_expediente número de expediente del alumno.
+     * @param alta si esta de alta o no.
+     */
     public Alumno(String usuario, String nombre, String correo, String password, boolean alergico, ArrayList<String> alergias, String curso, String pregunta, String respuesta, String num_expediente, boolean alta) {
         super(usuario, nombre, correo, password);
         this.alergico = alergico;
@@ -35,6 +56,19 @@ public class Alumno extends User{
         this.alta = alta;
     }
 
+    /**
+     * Constructor del alumno con alergias
+     * @param usuario usuario del alumno.
+     * @param nombre nombre completo del alumno.
+     * @param correo correo electrónico del alumno.
+     * @param password contraseña del alumno.
+     * @param alergico dice si es alergico o no
+     * @param curso matriculado del alumno.
+     * @param pregunta pregunta de seguridad del alumno.
+     * @param respuesta respuesta a la pregunta de seguridad.
+     * @param num_expediente número de expediente del alumno.
+     * @param alta si esta de alta o no.
+     */
     public Alumno(String usuario, String nombre, String correo, String password, boolean alergico, String curso, String pregunta, String respuesta, String num_expediente, boolean alta) {
         super(usuario, nombre, correo, password);
         this.alergico = alergico;
@@ -46,7 +80,10 @@ public class Alumno extends User{
     }
 
 
-
+    /**
+     * Metodo que muestra la información del Alumno
+     * @return devuelve un string con la información el alumno
+     */
     @Override
     public String toString() {
         return "Alumno{" +

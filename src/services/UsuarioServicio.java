@@ -7,11 +7,61 @@ import models.Cocina;
 import models.User;
 import utils.Validaciones;
 
+import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class UsuarioServicio {
+
+    public static List<User> obtenerUsuario (){
+        List<User> lista=new ArrayList<>();
+        FileInputStream fis=null;
+        ObjectInputStream ois = null;
+
+        try {
+            fis=new FileInputStream("src/persistencia/Usuario.dat");
+            ois = new ObjectInputStream(fis);
+            User u = new User();
+            while (true) {
+                u=(User) ois.readObject();
+                lista.add(u);
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                if (ois!=null){ois.close();}
+                if (fis!=null){ois.close();}
+            }catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public static void volcarListas(){
+        try {
+            FileOutputStream fos = new FileOutputStream("src/persistencia/Usuario.txt",true);//Para que tenga pueda tener mas de un usuario
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+            for (User u : GesData.usuarios) {
+                oos.writeObject(u);
+            }
+            fos.close();
+            oos.close();
+            //Vacia por si acaso el tunel
+            oos.flush();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     /**
      * Muestra a todos los usuarios distribuidos entre alumno, cocina y administrador
@@ -235,4 +285,13 @@ public class UsuarioServicio {
             }
         }while (next);
     }
+
+    /*public static ArrayList<String> recogerArrayDeTxT(){
+        ArrayList array = new ArrayList<>();
+
+        for (int i = 0; i < ; i++) {
+            
+        }
+        return array;
+    }*/
 }

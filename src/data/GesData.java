@@ -8,22 +8,39 @@ import java.util.ArrayList;
 
 public class GesData {
 
+    /**
+     * Array e usuarios
+     */
     public static ArrayList<User> usuarios = new ArrayList<>();
+
+    /**
+     * Array de bocatas
+     */
     public static ArrayList<Bocatas> bocatas = new ArrayList<>();
+
+    /**
+     * Array de pedidos
+     */
     public static ArrayList<Pedidos> pedidos = new ArrayList<>();
+
+    /**
+     * Array de calendarios
+     */
     public static ArrayList<Calendario> calendarios = new ArrayList<>();
 
+    /**
+     * Array de incidencias
+     */
+    public static ArrayList<Incidencia> incidencias = new ArrayList<>();
 
-    public static void cargarDatos(){
+
+    /**
+     * Metodo para cargar usuarios
+     */
+    public static void cargarUsuario(){
         ArrayList alergias = new ArrayList();
         alergias.add("Frutos secos");
         alergias.add("Polen");
-        ArrayList<String> ingredientes = new ArrayList<>();
-        ingredientes.add("Tortilla");
-        ingredientes.add("Patatas");
-        alergias.add("Gluten");
-
-        //Usuarios
 
         usuarios.add(new Alumno("Daniel", "Daniel Pamies Teruel", "danielpameisteruel@gmail.com", "Daniel_1",false, "1ºESO", "¿Eres mala persona?","No", "1ºESO_0001" ,false ));
         usuarios.add(new Alumno("Daniel", "Daniel Pamies Teruel", "danielpameisteruel@gmail.com", "Daniel_1",true ,alergias, "1ºESO", "¿Eres mala persona?" ,"SI", "1ºESO_0002", true));
@@ -35,6 +52,20 @@ public class GesData {
         usuarios.add(new Admin("Hugo", "Hugo el deportista", "hugodeporte@gmail.com", "Hugo_22"));
         usuarios.add(new Admin("Laura", "Laura la estudiosa", "lauraestudios@gmail.com", "Laura_55"));
         usuarios.add(new Admin("admin", "Laura la estudiosa", "lauraestudios@gmail.com", "Admin_1"));
+    }
+
+
+    /**
+     * metodo para caragr bocatas
+     */
+    public static void cargarBocatas(){
+        ArrayList alergias = new ArrayList();
+        alergias.add("Frutos secos");
+        alergias.add("Polen");
+        ArrayList<String> ingredientes = new ArrayList<>();
+        ingredientes.add("Tortilla");
+        ingredientes.add("Patatas");
+        alergias.add("Gluten");
 
         //Bocatas
 
@@ -48,7 +79,12 @@ public class GesData {
         bocatas.add(new Bocatas(7, "Bocadillo de tortilla con aguacate", "La combinación perfecta para los veganos",new ArrayList<>(ingredientes), new ArrayList<>(alergias),  4.3, true));
         bocatas.add(new Bocatas(8, "Bocadillo de tortilla con salchichón", "El clásico con un toque de sabor",new ArrayList<>(ingredientes), new ArrayList<>(alergias), 4.1, false));
         bocatas.add(new Bocatas(10, "Bocadillo de tortilla con espinacas",  "Una opción saludable y deliciosa",new ArrayList<>(ingredientes), new ArrayList<>(alergias), 4.0, true));
+    }
 
+    /**
+     * metodo para cargar pedidos
+     */
+    public static void cargarPedidos(){
         //Pedidos
 
         pedidos.add(new Pedidos(0, "Hugo", 0, LocalDate.now(), "Pendiente"));
@@ -56,9 +92,13 @@ public class GesData {
         pedidos.add(new Pedidos(2, "Hugo", 2, LocalDate.now(), "Finalizado"));
         pedidos.add(new Pedidos(3, "Hugo", 3, LocalDate.now(), "Pendiente"));
         pedidos.add(new Pedidos(4, "Hugo", 4, LocalDate.now(), "Pendiente"));
+    }
 
-        //Calendario
 
+    /**
+     * metodo para cargar calendario
+     */
+    public static void cargarCalendario(){
         calendarios.add(new Calendario(0, bocatas.get(0), bocatas.get(1)));
         calendarios.add(new Calendario(1, bocatas.get(2), bocatas.get(3)));
     }

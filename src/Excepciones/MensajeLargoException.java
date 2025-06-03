@@ -1,6 +1,6 @@
 package Excepciones;
 
-public class MensajeLargoException {
+public class MensajeLargoException extends Exception{
     protected String mensaje;
 
     public MensajeLargoException(String mensaje) {
@@ -9,9 +9,5 @@ public class MensajeLargoException {
 
     public String getMensaje() {
         return mensaje;
-    }
-
-    public void setMensaje(String mensaje) {
-        this.mensaje = mensaje;
     }
 }

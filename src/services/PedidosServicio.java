@@ -1,10 +1,8 @@
 package services;
 
 import data.GesData;
-import models.Alumno;
-import models.Bocatas;
-import models.Pedidos;
-import models.User;
+import models.*;
+import utils.Validaciones;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -51,6 +49,15 @@ public class PedidosServicio {
     }
 
     /**
+     * Muestra todos los pedidos en pantalla
+     */
+    public static void mostrarTodosPedidos(){
+        for(Pedidos pedido: GesData.pedidos) {
+            System.out.println(pedido);
+        }
+    }
+
+    /**
      * Elimina el bocadillo elegido
      * @param id_pedido id del bocadillo
      */
@@ -58,6 +65,7 @@ public class PedidosServicio {
         for (Pedidos pedido: GesData.pedidos) {
             if (pedido.getId_pedido() == id_pedido) {
                 GesData.pedidos.remove(pedido);
+                return;
             }
         }
     }
@@ -68,10 +76,16 @@ public class PedidosServicio {
      */
     public static void mostrarPedidosDeAlumno(User user){
         try {
+            int cuenta = 0;
             for (Pedidos pedido: GesData.pedidos){
                 if (user.getUsuario().equals(pedido.getId_usuario())) {
+                    System.out.println();
                     System.out.println(pedido);
+                    cuenta++;
                 }
+            }
+            if (cuenta == 0){
+                System.out.println("No tienes hechos pedidos");
             }
         } catch (NullPointerException n) {
             System.out.println("Error en la busqueda");
@@ -83,25 +97,23 @@ public class PedidosServicio {
      */
     public static void cambiarEstadoAFinalizado(){
         Scanner sc = new Scanner(System.in);
-        ArrayList<Pedidos> pedidos = new ArrayList<>();
         int contador = 0;
         boolean next = true;
-
-        for (Pedidos pedido: GesData.pedidos) {
-            pedidos.add(pedido);
-        }
+        
         while (next) {
-            for (Pedidos pedido: pedidos) {
-                System.out.println(pedido);
+            for (Pedidos pedido: GesData.pedidos) {
+                if (pedido.getEstado().equals("Pendiente")){
+                    System.out.println(pedido);
+                }
             }
-            System.out.println("Pon el id del pedido para cambiarle de estado, si quieres salir por 'termine'");
+            System.out.println("Pon el id del pedido para cambiarle de estado, si quieres salir pon 'termine'");
             String respuesta = sc.nextLine();
             if (respuesta.equals("termine")) {
                 return;
             }
             try {
                 int respuesta_id = Integer.parseInt(respuesta);
-                for (Pedidos pedido: pedidos) {
+                for (Pedidos pedido: GesData.pedidos) {
                     if (respuesta_id == pedido.getId_pedido()) {
                         pedido.setEstado("Finalizado");
                         System.out.println(pedido.getEstado());
@@ -111,5 +123,76 @@ public class PedidosServicio {
                 System.out.println("Tienes que poner un numero");
             }
         }
+    }
+
+    /**
+     * Pie el bocadillo que haya selecionado el alumno
+     * @param a alumno que pide el bocata
+     */
+    public static void pedirBocadillo(Alumno a){
+        Scanner sc = new Scanner(System.in);
+        Bocatas elec = new Bocatas();
+        boolean next = true;
+
+        System.out.println("Elige el menu de hoy");
+
+        elec = CalendariosServicio.menuHoy();
+
+        if (elec == null) {
+            System.out.println("Bocata no pedido");
+            return;
+        }
+        int id_pedido = Validaciones.validarIdPedido();
+
+        PedidosServicio.insertarPedido(id_pedido, a.getUsuario(), elec.getId(), LocalDate.now(), "Pendiente");
+        System.out.println("Bocadillo pedido con exito");
+    }
+
+    /**
+     * Metodo que se utiliza para cancelar el pedido
+     * @param a Alumno al que se le va a borrar el pedido
+     */
+    public static void cancelarPedido(Alumno a){
+        Scanner sc = new Scanner(System.in);
+        boolean next = true;
+        String elec = "";
+        int cuenta = 0;
+        ArrayList<Pedidos> pedidosAlumno = new ArrayList<>();
+
+        for(Pedidos pedido: GesData.pedidos) {
+            if (pedido.getFecha().equals(LocalDate.now()) && pedido.getId_usuario().equals(a.getUsuario())) {
+                System.out.println(pedido);
+                pedidosAlumno.add(pedido);
+                cuenta++;
+            }
+        }
+
+        if (cuenta == 0) {
+            System.out.println("No se ha encontrado ningun pedido");
+            return;
+        }
+
+        System.out.println("Elige el id del pedido que quieres cancelar");
+        cuenta = 0;
+        do {
+            elec = sc.nextLine();
+
+            if (Validaciones.soloNum(elec)) {
+                int id_buscando = Integer.parseInt(elec);
+                for (Pedidos pedido : pedidosAlumno) {
+                    if (id_buscando == pedido.getId_pedido() && pedido.getFecha().equals(LocalDate.now())) {
+                        GesData.pedidos.remove(pedido);
+                        System.out.println("Eliminado correctamente");
+                        cuenta++;
+                        return;
+                    }
+                }
+                if (cuenta == 0) {
+                    System.out.println("No se ha encontrado el pedido con la id recibida");
+                }
+            } else {
+                System.out.println("Pedido no encontrado");
+            }
+        }while (next);
     }
 }

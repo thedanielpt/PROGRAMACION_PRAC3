@@ -14,7 +14,16 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
 
+/**
+ * Clase de autentificar
+ */
+
 public class AuathService {
+
+    /**
+     * Metodo de logueo del usuario
+     * @return devuelve el usuario del User
+     */
     public static String login(){
         Scanner sc = new Scanner(System.in);
         String nameL = "";

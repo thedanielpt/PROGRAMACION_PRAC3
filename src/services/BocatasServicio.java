@@ -256,4 +256,58 @@ public class BocatasServicio {
             }
         }while (next);
     }
+
+    /**
+     * Elige un bocadillo frío
+     * @return devuelve un objeto bocata
+     */
+
+    public static Bocatas ElegirBocata(int a){
+        Scanner sc = new Scanner(System.in);
+        Bocatas bocatas = new Bocatas();
+        boolean next = true;
+        String elec = "";
+
+        if (a == 1) {
+            System.out.println("--------Calientes--------");
+            System.out.println();
+
+            //Muestra los bocatas calientes
+            for (Bocatas bocata: GesData.bocatas) {
+                if (bocata.isCaliente()) {
+                    System.out.println(bocata.toString());
+                }
+            }
+        } else if (a == 2) {
+            System.out.println("--------Frios--------");
+            System.out.println();
+
+            //Muestra los bocatas frios
+            for (Bocatas bocata: GesData.bocatas) {
+                if (!bocata.isCaliente()) {
+                    System.out.println(bocata.toString());
+                }
+            }
+        } else {
+            System.out.println("Error al encontrar el numero");
+        }
+
+        System.out.println("Elige el nombre de el bocata que quieres poner");
+
+        do {
+            elec = sc.nextLine();
+            bocatas = BocatasServicio.buscarBocata(elec);
+            if (bocatas == null) {
+                System.out.println("Bocata no encontrado, elige uno");
+            } else {
+                if (Validaciones.validarEstasSeguro()) {
+                    return bocatas;
+                } else {
+                    System.out.println("Vuelve a escribir el bocata que quieres por su nombre");
+                }
+            }
+
+        }while (next);
+        return null;
+    }
 }
