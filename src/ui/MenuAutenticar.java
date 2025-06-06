@@ -18,6 +18,7 @@ public class MenuAutenticar {
      */
     public static void menAutentificar() throws MensajeLargoException, MenuUsuarioNoEncontrado{
         Scanner sc = new Scanner(System.in);
+        boolean next = true;
         String nombreUser = "";
         do {
             System.out.println("1. Iniciar sesión");
@@ -34,23 +35,23 @@ public class MenuAutenticar {
                         MenuAlumno.menuUsuario(a);
                     } else if (usuario instanceof Cocina) {
                         Cocina c = (Cocina) usuario;
-                        MenuCocina.menuCocina();
+                        MenuCocina.menuCocina(c);
                     } else if (usuario instanceof Admin) {
                         Admin a = (Admin) usuario;
-                        MenuAdministrador.menuAdmin();
+                        MenuAdministrador.menuAdmin(a);
                     } else {
                         throw new MenuUsuarioNoEncontrado("Error a la hora de buscar el menu del usuaio elegido");
                     }
-
                     break;
                 case "2":
                     //hacer lo de recuperar contraseña
                 case "0":
-                    nombreUser = "a";
+                    next = false;
+                    break;
                 default:
                     System.out.println("Tienes que elegir una opción");
                     break;
             }
-        }while (nombreUser!=null);
+        }while (next);
     }
 }

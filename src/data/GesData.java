@@ -42,16 +42,17 @@ public class GesData {
         alergias.add("Frutos secos");
         alergias.add("Polen");
 
-        usuarios.add(new Alumno("Daniel", "Daniel Pamies Teruel", "danielpameisteruel@gmail.com", "Daniel_1",false, "1ºESO", "¿Eres mala persona?","No", "1ºESO_0001" ,false ));
+        usuarios.add(new Alumno("Alumno", "Daniel Pamies Teruel", "danielpameisteruel@gmail.com", "Alumno_1",false, "1ºESO", "¿Eres mala persona?","No", "1ºESO_0001" ,false ));
         usuarios.add(new Alumno("Daniel", "Daniel Pamies Teruel", "danielpameisteruel@gmail.com", "Daniel_1",true ,alergias, "1ºESO", "¿Eres mala persona?" ,"SI", "1ºESO_0002", true));
         usuarios.add(new Alumno("LuciaM", "Lucía Martínez", "lucia.martinez@gmail.com", "Lucia_123",false , "1ºESO", "¿Eres mala persona?" ,"SI", "1ºESO_0003", true));
         usuarios.add(new Alumno("CarlosR", "Carlos Ruiz", "carlos.ruiz@gmail.com", "CarlosR_2024", false , "1ºESO", "¿Eres mala persona?" ,"SI", "1ºESO_0004", true));
         usuarios.add(new Alumno("AnaG", "Ana García", "ana.garcia@gmail.com", "AnaG_pass", false , "1ºESO", "¿Eres mala persona?" ,"SI", "1ºESO_0005", true));
         usuarios.add(new Cocina("María", "María la rápida", "marialarapida@gmail.com", "Maria_56"));
+        usuarios.add(new Cocina("Cocina", "María la rápida", "marialarapida@gmail.com", "Cocina_1"));
         usuarios.add(new Cocina("Evaristo", "Evaristo el roñzas", "evaristoelroñas@gmail.com", "Evaristo_1"));
         usuarios.add(new Admin("Hugo", "Hugo el deportista", "hugodeporte@gmail.com", "Hugo_22"));
         usuarios.add(new Admin("Laura", "Laura la estudiosa", "lauraestudios@gmail.com", "Laura_55"));
-        usuarios.add(new Admin("admin", "Laura la estudiosa", "lauraestudios@gmail.com", "Admin_1"));
+        usuarios.add(new Admin("Admin", "Laura la estudiosa", "lauraestudios@gmail.com", "Admin_1"));
     }
 
 

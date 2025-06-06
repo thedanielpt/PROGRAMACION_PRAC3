@@ -1,5 +1,6 @@
 package ui;
 
+import models.Admin;
 import models.Alumno;
 import models.User;
 import services.*;
@@ -12,12 +13,14 @@ import java.util.Scanner;
  */
 
 public class MenuAdministrador {
+    private static boolean usuarioEsta=true;
+
     //ADMIN
 
     /**
      *Metodo donde esta el menu Admin
      */
-    public static void menuAdmin(){
+    public static void menuAdmin(Admin admin){
         Scanner sc = new Scanner(System.in);
         boolean next = true;
         String elec = "";
@@ -25,36 +28,25 @@ public class MenuAdministrador {
         do {
             System.out.println("Menu Principal");
             System.out.println("1. Gestionar usuarios:");
-            System.out.println("     Listar usuarios");
-            System.out.println("     Añadir usuario");
-            System.out.println("     Eliminar usuario");
-            System.out.println("     Eliminar un curso entero");
             System.out.println("2. Gestionar Bocadillos:");
-            System.out.println("     Listar bocadillos disponibles");
-            System.out.println("     Crear bocadillo");
-            System.out.println("     Eliminar bocadillo");
-            System.out.println("     Modificar bocadillo");
             System.out.println("3. Pedir bocata");
-            System.out.println("     Seleccionar usuario");
-            System.out.println("     Pedir bocadillo");
             System.out.println("4. Gestionar Pedidos:");
-            System.out.println("     Listar calendarios");
-            System.out.println("     Mostrar pedidos de un usuario");
-            System.out.println("     Cambiar el estado de los pedidos");
-            System.out.println("     Eliminar pedido");
             System.out.println("5. Gestionar Calendario");
-            System.out.println("     Listar calendario");
-            System.out.println("     Modicficar Calendario");
-            System.out.println("     Crear calendario");
-            System.out.println("     Eliminar calendario");
             System.out.println("6  Incidencias");
             System.out.println("7. Salir");
             elec = sc.nextLine();
-            next = true;
-
+            if (!usuarioEsta) {
+                next = false;
+            } else {
+                next = true;
+            }
             switch (elec) {
                 case "1":
-                    adminGestionUsers();
+                    adminGestionUsers(admin);
+                    if (UsuarioServicio.buscarUsuarios(admin.getUsuario()) == null) {
+                        System.out.println("Usuario administrador eliminado");
+                        return;
+                    }
                     next = true;
                     break;
                 case "2":
@@ -78,6 +70,7 @@ public class MenuAdministrador {
                     next = true;
                     break;
                 case "7":
+                    usuarioEsta = false;
                     next = false;
                     break;
                 default:
@@ -92,7 +85,7 @@ public class MenuAdministrador {
     /**
      * Menu de admin de gestion de usuarios
      */
-    private static void adminGestionUsers(){
+    private static void adminGestionUsers(Admin admin){
         Scanner sc = new Scanner(System.in);
         String elec = "";
         boolean next = true;
@@ -115,7 +108,11 @@ public class MenuAdministrador {
                     break;
                 case "3":
                     UsuarioServicio.eliminar(Validaciones.pregunta_buscar(1));
-                    next = true;
+                    if (UsuarioServicio.buscarUsuarios(admin.getUsuario()) == null) {
+                        return;
+                    } else {
+                        next = true;
+                    }
                     break;
                 case "4":
                     MenuModificarUsuario.modificarUsuarios();
@@ -331,6 +328,5 @@ public class MenuAdministrador {
             }
             next = true;
         } while (next);
-
     }
 }

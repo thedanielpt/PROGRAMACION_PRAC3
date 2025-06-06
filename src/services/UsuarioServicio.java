@@ -1,10 +1,7 @@
 package services;
 
 import data.GesData;
-import models.Admin;
-import models.Alumno;
-import models.Cocina;
-import models.User;
+import models.*;
 import utils.Validaciones;
 
 import java.io.*;
@@ -15,7 +12,8 @@ import java.util.Scanner;
 
 public class UsuarioServicio {
 
-    public static List<User> obtenerUsuario (){
+    //Hecho en clase
+    public static ArrayList<User> obtenerUsuario (){
         List<User> lista=new ArrayList<>();
         FileInputStream fis=null;
         ObjectInputStream ois = null;
@@ -171,10 +169,26 @@ public class UsuarioServicio {
     public static void eliminar(String eliminar){
         for (User usuario: GesData.usuarios) {
             if (usuario.getUsuario().equals(eliminar)) {
+                //Si hay solo un administrador no lo elimina
+                if (usuario instanceof Admin && contarAdministradores() < 2 &&
+                usuario.getUsuario().equals(eliminar)) {
+                    System.out.println("No se puede eliminar al administrador");
+                    return;
+                }
                 GesData.usuarios.remove(usuario);
                 break;
             }
         }
+    }
+
+    public static int contarAdministradores(){
+        int cuenta = 0;
+        for (User usuario: GesData.usuarios){
+            if (usuario instanceof Admin) {
+                ++cuenta;
+            }
+        }
+        return cuenta;
     }
 
     /**
@@ -286,12 +300,13 @@ public class UsuarioServicio {
         }while (next);
     }
 
-    /*public static ArrayList<String> recogerArrayDeTxT(){
-        ArrayList array = new ArrayList<>();
-
-        for (int i = 0; i < ; i++) {
-            
+    public static boolean esAlmuno(String usuario){
+        User a = new User();
+        for (Pedidos pedidos: GesData.pedidos){
+            if (pedidos.getId_usuario().equals(usuario)){
+                return true;
+            }
         }
-        return array;
-    }*/
+        return false;
+    }
 }

@@ -138,6 +138,15 @@ public class BocatasServicio {
         }while (next);
     }
 
+    public static boolean comprobarAlergenosDeBocataAlumno(Bocatas bocata, Alumno alumno){
+        for (int i = 0; i < alumno.getAlergias().size(); i++) {
+            for (int j = 0; j < bocata.getAlergenos().size(); j++) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * Modifica la descripción del bocata
      * @param bocata bocata al que se le quiere modificar la descripción
@@ -310,4 +319,6 @@ public class BocatasServicio {
         }while (next);
         return null;
     }
+
+   // public static boolean comprobar
 }

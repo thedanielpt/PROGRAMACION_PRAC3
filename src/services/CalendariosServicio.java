@@ -1,6 +1,7 @@
 package services;
 
 import data.GesData;
+import models.Alumno;
 import models.Bocatas;
 import models.Calendario;
 import utils.Validaciones;
@@ -224,7 +225,7 @@ public class CalendariosServicio {
      * Dice el menu de hoy
      * @return devuelve el bocata que pediste
      */
-    public static Bocatas menuHoy(){
+    public static Bocatas menuHoy(Alumno a){
         Scanner sc = new Scanner(System.in);
         Bocatas bocataFrio = new Bocatas();
         Bocatas bocataCaliente = new Bocatas();
@@ -240,7 +241,7 @@ public class CalendariosServicio {
                 bocataFrio = calendario.getBocadillo_frio();
                 bocataCaliente = calendario.getBocadillo_caliente();
 
-                System.out.println("------BOCATA Frio------");
+                System.out.println("1. ------BOCATA FRIO------");
                 System.out.println("Nombre de bocata frio: "+ bocataFrio.getNombre());
                 System.out.println();
                 System.out.println("Descripción de bocatafrio: "+ bocataFrio.getDescrip());
@@ -249,7 +250,7 @@ public class CalendariosServicio {
                 System.out.println(bocataFrio.getAlergenos());
                 System.out.println();
 
-                System.out.println("------BOCATA CALIENTE------");
+                System.out.println("2. ------BOCATA CALIENTE------");
                 System.out.println("Nombre de bocata caliente: "+ bocataCaliente.getNombre());
                 System.out.println();
                 System.out.println("Descripción de bocata caliente: "+ bocataCaliente.getDescrip());
@@ -259,20 +260,33 @@ public class CalendariosServicio {
                 break;
             }
         }
-
-        while (next) {
-            if (elec.equalsIgnoreCase("No quiero")) {
-                return null;
-            }
+        do {
             System.out.println("Elige que bocata quieres con su nombre");
             System.out.println("Si no lo quieres pedir pon 'No quiero'");
-
             elec = sc.nextLine();
-            if (bocataCaliente.getNombre().equalsIgnoreCase(elec) || bocataFrio.getNombre().equalsIgnoreCase(elec)){
-                bocata = BocatasServicio.buscarBocata(elec);
-                return bocata;
+            switch (elec) {
+                case "1":
+                    if (BocatasServicio.comprobarAlergenosDeBocataAlumno(bocataFrio, a)) {
+                        System.out.println("Alergeno peligroso encontrado");
+                        return null;
+                    } else {
+                        return bocataFrio;
+                    }
+                case "2":
+                    if (BocatasServicio.comprobarAlergenosDeBocataAlumno(bocataCaliente, a)) {
+                        System.out.println("Alergeno peligroso encontrado");
+                        return null;
+                    } else {
+                        return bocataCaliente;
+                    }
+                case "No quiero":
+                    return null;
+                default:
+                    next = true;
+                    System.out.println("No elegistes ningun bocata");
+                    break;
             }
-        }
+        }while (next);
         return null;
     }
 }

@@ -192,32 +192,40 @@ public class Validaciones {
      */
     public static boolean captcha () {
         Scanner scan = new Scanner(System.in);
+        boolean next = true;
         int num2 = (int) (Math.random() * 10);
         int num1 = (int) (Math.random() * 10);
         String respuesta;
         int respuestaPreg;
         int resultado;
-        System.out.println("Haz esta suma");
-        System.out.println(num1 + " + " + num2);
-        for (int i = 0; i < 3; i++) {
-            respuesta = scan.nextLine();
-            //Comprueba si solo son numeros
-            if (Validaciones.soloNum(respuesta)) {
-                respuestaPreg = Integer.parseInt(respuesta);
-                resultado = num1 + num2;
-                //Comprueba si la respuesta puesta es igual al resultado, haciendo de que te saque de la funcion con un true
-                if (respuestaPreg == resultado) {
-                    return true;
-                    //Si lo has intentado 3 veces te devuelve false
-                } else if (i == 2) {
-                    return false;
-                } else {
-                    System.out.println("Vuelve a intentarlo");
+        do {
+            try {
+                System.out.println("Haz esta suma");
+                System.out.println(num1 + " + " + num2);
+                for (int i = 0; i < 3; i++) {
+                    respuesta = scan.nextLine();
+                    //Comprueba si solo son numeros
+                    if (Validaciones.soloNum(respuesta)) {
+                        respuestaPreg = Integer.parseInt(respuesta);
+                        resultado = num1 + num2;
+                        //Comprueba si la respuesta puesta es igual al resultado, haciendo de que te saque de la funcion con un true
+                        if (respuestaPreg == resultado) {
+                            return true;
+                            //Si lo has intentado 3 veces te devuelve false
+                        } else if (i == 2) {
+                            return false;
+                        } else {
+                            System.out.println("Vuelve a intentarlo");
+                        }
+                    } else {
+                        System.out.println("Vuelve a intenarlo");
+                    }
                 }
-            } else {
-                System.out.println("Vuelve a intenarlo");
+            }catch (NumberFormatException e) {
+                System.out.println("tienes que poner un numero");
             }
-        }
+        }while (next);
+
         return false;
     }
 
@@ -239,17 +247,17 @@ public class Validaciones {
         do {
             System.out.println("Introduce el nombre");
             nombre = sc.nextLine();
-        }while (!Validaciones.validarAlfabetoLat(nombre));
+        }while (!Validaciones.validarAlfabetoLat(nombre) || nombre.length()< 3);
 
         do {
             System.out.println("Introduce el primer apellido: ");
             apellido1 = sc.nextLine();
-        }while (!Validaciones.validarAlfabetoLat(apellido1));
+        }while (!Validaciones.validarAlfabetoLat(apellido1) || apellido1.length()< 3);
 
         do {
             System.out.println("Introduce el segundo apellido: ");
             apellido2 = sc.nextLine();
-        }while (!Validaciones.validarAlfabetoLat(apellido2));
+        }while (!Validaciones.validarAlfabetoLat(apellido2) || apellido2.length()< 3);
 
         String nombreApellidos = nombre + " " + apellido1 + " " + apellido2;
 
@@ -890,12 +898,12 @@ public class Validaciones {
     public static boolean validarHora(){
         LocalTime ahora = LocalTime.now();
         LocalTime limite_principio = LocalTime.of(8, 0, 0);
-        LocalTime limite_final = LocalTime.of(10, 30, 0);
+        LocalTime limite_final = LocalTime.of(20, 30, 0);
 
-        if (ahora.isBefore(limite_principio) && ahora.isAfter(limite_final)) {
-            return true;
-        } else {
+        if (ahora.isBefore(limite_principio) || ahora.isAfter(limite_final)) {
             return false;
+        } else {
+            return true;
         }
     }
 
@@ -1167,16 +1175,29 @@ public class Validaciones {
         boolean next = true;
         String nombre = "";
 
-        System.out.println("¿Que nombre le quieres poner a la incidencia?");
+
 
         do {
+            System.out.println("¿Que tipo de incidencia es pasado?");
+            System.out.println("1. Sobre mi pedido");
+            System.out.println("2. Sobre mi usuario");
+            System.out.println("3. No crear incidencia");
+            System.out.println();
+
             nombre = sc.nextLine();
 
-            if (nombre.length()>50) {
-                throw new MensajeLargoException("Error de longitud, se ha pasado del limite establecido");
+            switch (nombre) {
+                case "1":
+                    return "Sobre mi pedido";
+                case "2":
+                    return "Sobre mi usuario";
+                case "3":
+                    return "nocrear";
+                default:
+                    System.out.println("Tienes que elegir una opción");
             }
-            return nombre;
         }while (next);
+        return "a;";
     }
 
     public static String validarDescripcionIncidencia() throws MensajeLargoException {
@@ -1184,7 +1205,7 @@ public class Validaciones {
         boolean next = true;
         String descripcion = "";
 
-        System.out.println("¿Que nombre le quieres poner a la incidencia?");
+        System.out.println("Describe tu problema");
 
         do {
             descripcion = sc.nextLine();
@@ -1192,7 +1213,6 @@ public class Validaciones {
             if (descripcion.length()>255) {
                 throw new MensajeLargoException("Error de longitud, se ha pasado del limite establecido");
             }
-
             return descripcion;
         }while (next);
     }

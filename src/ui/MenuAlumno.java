@@ -6,7 +6,6 @@ import services.IncidenciasServicio;
 import services.PedidosServicio;
 import utils.Validaciones;
 
-import java.time.LocalTime;
 import java.util.Scanner;
 
 public class MenuAlumno {
@@ -47,7 +46,7 @@ public class MenuAlumno {
                     next = true;
                     break;
                 case "4":
-                    IncidenciasServicio.crearIncidencia();
+                    IncidenciasServicio.crearIncidenciaAlumno(alumno.getUsuario());
                     next = true;
                     break;
                 case "5":

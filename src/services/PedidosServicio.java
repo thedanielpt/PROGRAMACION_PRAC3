@@ -92,6 +92,15 @@ public class PedidosServicio {
         }
     }
 
+    public static boolean siAlumnoTienePedidos(Alumno nombre_alumno){
+        for (Pedidos pedido: GesData.pedidos){
+            if (nombre_alumno.getUsuario().equals(pedido.getId_usuario())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * Cambia el estado de los bocadillos a finalizado
      */
@@ -99,12 +108,18 @@ public class PedidosServicio {
         Scanner sc = new Scanner(System.in);
         int contador = 0;
         boolean next = true;
-        
-        while (next) {
+
+         do {
+             contador = 0;
             for (Pedidos pedido: GesData.pedidos) {
                 if (pedido.getEstado().equals("Pendiente")){
                     System.out.println(pedido);
+                    contador++;
                 }
+            }
+            if (contador == 0) {
+                System.out.println("No hay pedidos pendientes");
+                return;
             }
             System.out.println("Pon el id del pedido para cambiarle de estado, si quieres salir pon 'termine'");
             String respuesta = sc.nextLine();
@@ -116,13 +131,12 @@ public class PedidosServicio {
                 for (Pedidos pedido: GesData.pedidos) {
                     if (respuesta_id == pedido.getId_pedido()) {
                         pedido.setEstado("Finalizado");
-                        System.out.println(pedido.getEstado());
                     }
                 }
             } catch (NumberFormatException n) {
                 System.out.println("Tienes que poner un numero");
             }
-        }
+        }while (next);
     }
 
     /**
@@ -130,18 +144,19 @@ public class PedidosServicio {
      * @param a alumno que pide el bocata
      */
     public static void pedirBocadillo(Alumno a){
-        Scanner sc = new Scanner(System.in);
         Bocatas elec = new Bocatas();
         boolean next = true;
 
         System.out.println("Elige el menu de hoy");
 
-        elec = CalendariosServicio.menuHoy();
-
+        elec = CalendariosServicio.menuHoy(a);
+        
         if (elec == null) {
             System.out.println("Bocata no pedido");
             return;
-        }
+        } //else if (PedidosServicio.) {
+            
+        //}
         int id_pedido = Validaciones.validarIdPedido();
 
         PedidosServicio.insertarPedido(id_pedido, a.getUsuario(), elec.getId(), LocalDate.now(), "Pendiente");
