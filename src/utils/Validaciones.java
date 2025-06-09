@@ -266,7 +266,6 @@ public class Validaciones {
 
     //NOMBRE DE USUARIO
 
-
     /**
      * Valida el nombre de usuario
      * @return nameUser Contiene el nombre de usuario
@@ -284,12 +283,13 @@ public class Validaciones {
             nameUser = scan.nextLine();
             /*Valida si hay espacios, si hay caracteres especiales y si mide menos de 5 caracteres
             Si no cumple saldras del bucle  */
-            if (nameUser.length() < 5 || Validaciones.hayEspacio(nameUser) || Validaciones.hayEspecial(nameUser)) {
+            if (nameUser.length() < 5 || Validaciones.hayEspacio(nameUser) || Validaciones.hayEspecial(nameUser)
+            || validarUserRepetio(nameUser)) {
                 System.out.println("Usuario no valido");
                 next = true;
-            } else next = false;
-
-
+            } else {
+                next = false;
+            }
         } while (next);
         return nameUser;
     }
@@ -917,7 +917,7 @@ public class Validaciones {
 
         for (Bocatas bocata : GesData.bocatas) {
             if (bocata.getId() == cuenta) {
-                cuenta++;
+                ++cuenta;
             } else {
                 return cuenta;
             }
@@ -1132,7 +1132,7 @@ public class Validaciones {
 
         for (Calendario calendario : GesData.calendarios) {
             if (calendario.getId() == cuenta) {
-                cuenta++;
+                ++cuenta;
             } else {
                 return cuenta;
             }
@@ -1149,7 +1149,7 @@ public class Validaciones {
 
         for (Pedidos pedido : GesData.pedidos) {
             if (pedido.getId_pedido() == cuenta) {
-                cuenta++;
+                ++cuenta;
             } else {
                 return cuenta;
             }
@@ -1162,7 +1162,7 @@ public class Validaciones {
 
         for (Incidencia incidencia: GesData.incidencias) {
             if (incidencia.getId() == cuenta) {
-                cuenta++;
+                ++cuenta;
             } else {
                 return cuenta;
             }
@@ -1215,5 +1215,14 @@ public class Validaciones {
             }
             return descripcion;
         }while (next);
+    }
+
+    public static boolean validarUserRepetio(String usuario){
+        for (User u: GesData.usuarios) {
+            if (usuario.equals(u.getUsuario())){
+                return true;
+            }
+        }
+        return false;
     }
 }

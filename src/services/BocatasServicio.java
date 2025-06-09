@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import utils.Validaciones;
 
 import java.awt.font.FontRenderContext;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,6 +15,47 @@ import java.util.Scanner;
  */
 
 public class BocatasServicio {
+
+    public static void leerBocatas () throws IOException {
+        FileInputStream fis = null;
+        ObjectInputStream ois = null;
+        try {
+            fis = new FileInputStream("src/persistencia/Bocadillos.dat");
+            ois = new ObjectInputStream(fis);
+            Bocatas b;
+            while (true) {
+                b = (Bocatas) ois.readObject();
+                GesData.bocatas.add(b);
+            }
+        } catch (IOException e) {
+
+        } catch (ClassNotFoundException e) {
+
+        } finally {
+            if (ois!=null){
+                ois.close();
+                fis.close();
+            }
+        }
+    }
+
+    public static void escribirBocatas(){
+        try {
+            FileOutputStream fos = new FileOutputStream("src/persistencia/Bocadillos.dat");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+            for (Bocatas b : GesData.bocatas) {
+                oos.writeObject(b);
+            }
+            oos.flush();
+            fos.close();
+            oos.close();
+        } catch (FileNotFoundException e) {
+
+        } catch (IOException e) {
+
+        }
+    }
 
     /**
      * Metodo que muestra todos los bocatas diferenciando entre calientes y frios
@@ -139,12 +181,17 @@ public class BocatasServicio {
     }
 
     public static boolean comprobarAlergenosDeBocataAlumno(Bocatas bocata, Alumno alumno){
-        for (int i = 0; i < alumno.getAlergias().size(); i++) {
-            for (int j = 0; j < bocata.getAlergenos().size(); j++) {
-                return true;
+        try {
+            for (int i = 0; i < alumno.getAlergias().size(); i++) {
+                for (int j = 0; j < bocata.getAlergenos().size(); j++) {
+                    return true;
+                }
             }
+            return false;
+        } catch (NullPointerException e){
+            return false;
         }
-        return false;
+
     }
 
     /**

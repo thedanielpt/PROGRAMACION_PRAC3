@@ -5,59 +5,50 @@ import models.*;
 import utils.Validaciones;
 
 import java.io.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class UsuarioServicio {
 
-    //Hecho en clase
-    public static ArrayList<User> obtenerUsuario (){
-        List<User> lista=new ArrayList<>();
-        FileInputStream fis=null;
-        ObjectInputStream ois = null;
 
+    public static void leerUsuarios () throws IOException {
+        FileInputStream fis = null;
+        ObjectInputStream ois = null;
         try {
-            fis=new FileInputStream("src/persistencia/Usuario.dat");
+            fis = new FileInputStream("src/persistencia/Usuarios.dat");
             ois = new ObjectInputStream(fis);
-            User u = new User();
+            User u;
             while (true) {
-                u=(User) ois.readObject();
-                lista.add(u);
+                u = (User) ois.readObject();
+                GesData.usuarios.add(u);
             }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+
         } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+
         } finally {
-            try {
-                if (ois!=null){ois.close();}
-                if (fis!=null){ois.close();}
-            }catch (IOException e) {
-                System.out.println(e.getMessage());
+            if (ois!=null){
+                ois.close();
+                fis.close();
             }
         }
     }
 
-    public static void volcarListas(){
+    public static void escribirUsuarios(){
         try {
-            FileOutputStream fos = new FileOutputStream("src/persistencia/Usuario.txt",true);//Para que tenga pueda tener mas de un usuario
+            FileOutputStream fos = new FileOutputStream("src/persistencia/Usuarios.dat");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
 
             for (User u : GesData.usuarios) {
                 oos.writeObject(u);
             }
+            oos.flush();
             fos.close();
             oos.close();
-            //Vacia por si acaso el tunel
-            oos.flush();
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+
         } catch (IOException e) {
-            throw new RuntimeException(e);
+
         }
     }
 

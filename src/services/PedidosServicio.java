@@ -4,11 +4,53 @@ import data.GesData;
 import models.*;
 import utils.Validaciones;
 
+import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PedidosServicio {
+
+    public static void leerPedido () throws IOException {
+        FileInputStream fis = null;
+        ObjectInputStream ois = null;
+        try {
+            fis = new FileInputStream("src/persistencia/Pedidos.dat");
+            ois = new ObjectInputStream(fis);
+            Pedidos p;
+            while (true) {
+                p = (Pedidos) ois.readObject();
+                GesData.pedidos.add(p);
+            }
+        } catch (IOException e) {
+
+        } catch (ClassNotFoundException e) {
+
+        } finally {
+            if (ois!=null){
+                ois.close();
+                fis.close();
+            }
+        }
+    }
+
+    public static void escribirPedidos(){
+        try {
+            FileOutputStream fos = new FileOutputStream("src/persistencia/Pedidos.dat");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+            for (Pedidos p : GesData.pedidos) {
+                oos.writeObject(p);
+            }
+            oos.flush();
+            fos.close();
+            oos.close();
+        } catch (FileNotFoundException e) {
+
+        } catch (IOException e) {
+
+        }
+    }
 
     /**
      * Coje todos los pedidos registrados

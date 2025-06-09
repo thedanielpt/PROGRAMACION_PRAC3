@@ -1,8 +1,9 @@
 package models;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Incidencia {
+public class Incidencia implements Serializable {
 
     protected int id;
 

@@ -1,8 +1,9 @@
 package data;
 
 import models.*;
-import services.UsuarioServicio;
+import services.*;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -102,5 +103,37 @@ public class GesData {
     public static void cargarCalendario(){
         calendarios.add(new Calendario(0, bocatas.get(0), bocatas.get(1)));
         calendarios.add(new Calendario(1, bocatas.get(2), bocatas.get(3)));
+        calendarios.add(new Calendario(3, bocatas.get(4),bocatas.get(5)));
+        calendarios.add(new Calendario(4, bocatas.get(6),bocatas.get(7)));
+        calendarios.add(new Calendario(5, bocatas.get(8),bocatas.get(9)));
+    }
+
+    public static void cargarIncidencia(){
+        incidencias.add(new Incidencia("Sobre mi pedido", 0, "No me deja pedir un bocata", LocalDate.of(2025, 03,03)));
+        incidencias.add(new Incidencia("Sobre mi usuario", 1, "No me deja entrar al usuario", LocalDate.of(2025, 07,05)));
+    }
+
+    public static void cargarTodosLosDatos(){
+        cargarPedidos();
+        cargarBocatas();
+        cargarCalendario();
+        cargarUsuario();
+        cargarIncidencia();
+    }
+
+    public static void leerTodo() throws IOException {
+        UsuarioServicio.leerUsuarios();
+        BocatasServicio.leerBocatas();
+        PedidosServicio.leerPedido();
+        CalendariosServicio.leerCalendarios();
+        IncidenciasServicio.leerIncidencias();
+    }
+
+    public static void escribirTodos(){
+        UsuarioServicio.escribirUsuarios();
+        BocatasServicio.escribirBocatas();
+        PedidosServicio.escribirPedidos();
+        CalendariosServicio.escribirCalendarios();
+        IncidenciasServicio.escribirIncidencias();
     }
 }

@@ -6,6 +6,7 @@ import models.Bocatas;
 import models.Calendario;
 import utils.Validaciones;
 
+import java.io.*;
 import java.sql.SQLOutput;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -13,11 +14,51 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CalendariosServicio {
+
+    public static void leerCalendarios() throws IOException {
+        FileInputStream fis = null;
+        ObjectInputStream ois = null;
+        try{
+            fis = new FileInputStream("src/persistencia/Calendarios.dat");
+            ois = new ObjectInputStream(fis);
+            Calendario c;
+            while (true){
+                c = (Calendario) ois.readObject();
+                GesData.calendarios.add(c);
+            }
+        } catch (ClassNotFoundException e) {
+            System.out.println("CLASSNOTFOUNDEXCEPTION");
+        } catch (IOException e){
+            System.out.println("IOEXCEPTION");
+        } finally {
+            if (ois!= null){
+                ois.close();
+                fis.close();
+            }
+        }
+    }
+
+    public static void escribirCalendarios(){
+        try {
+            FileOutputStream fos = new FileOutputStream("src/persistencia/Calendarios.dat");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            for (Calendario c : GesData.calendarios) {
+                oos.writeObject(c);
+            }
+            oos.flush();
+            fos.close();
+            oos.close();
+        } catch (FileNotFoundException e) {
+
+        } catch (IOException e) {
+
+        }
+    }
+
     /**
      * Calendario que se muestra a los usuarios
      */
-    private static int[] calendarioSemana = {0,1,0,1,0};
-
+    private static int[] calendarioSemana = {0,1,2,3,4};
 
     /**
      * Coge todos los calendarios

@@ -1,12 +1,13 @@
 package models;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Arrays;
 
 /**
  * Clase del calendario
  */
-public class Calendario {
+public class Calendario implements Serializable {
     protected int id;
     protected Bocatas bocadillo_frio;
     protected Bocatas bocadillo_caliente;

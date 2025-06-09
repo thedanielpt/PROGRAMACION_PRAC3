@@ -3,13 +3,57 @@ package services;
 import Excepciones.MensajeLargoException;
 import data.GesData;
 import models.Alumno;
+import models.Bocatas;
 import models.Incidencia;
 import models.User;
 import utils.Validaciones;
 
+import java.io.*;
 import java.time.LocalDate;
 
 public class IncidenciasServicio {
+
+    public static void leerIncidencias() throws IOException {
+        FileInputStream fis = null;
+        ObjectInputStream ois = null;
+        try {
+            fis = new FileInputStream("src/persistencia/Incidencias.dat");
+            ois = new ObjectInputStream(fis);
+            Incidencia i;
+            while (true) {
+                i = (Incidencia) ois.readObject();
+                GesData.incidencias.add(i);
+            }
+        } catch (FileNotFoundException e) {
+
+        } catch (ClassNotFoundException e) {
+
+        } catch (IOException e) {
+
+        }finally {
+            if (ois!=null){
+                fis.close();
+                ois.close();
+            }
+        }
+    }
+
+    public static void escribirIncidencias(){
+        try {
+            FileOutputStream fos = new FileOutputStream("src/persistencia/Incidencias.dat");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            for (Incidencia i: GesData.incidencias){
+                oos.writeObject(i);
+            }
+            oos.flush();
+            oos.close();
+            fos.close();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static void mostrarIncidencias(){
         for (Incidencia incidencia: GesData.incidencias) {
