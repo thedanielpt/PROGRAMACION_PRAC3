@@ -25,7 +25,7 @@ public class MenuModificarUsuario {
 
         user = UsuarioServicio.buscarUsuarios(usuario);
 
-        if (UsuarioServicio.buscarUsuarios(usuario) != null && user instanceof Alumno) {
+        if (user != null && user instanceof Alumno) {
             Alumno a = (Alumno) user;
             do {
                 next = true;
@@ -105,8 +105,77 @@ public class MenuModificarUsuario {
                     }
                 }
             }while (next);
+        } else if ((user instanceof Cocina || user instanceof Admin) && user != null) {
+            if (user instanceof Cocina) {
+                Cocina u = (Cocina) user;
+
+                do {
+                    next = true;
+                    System.out.println("¿Que atributo quieres modificar?");
+                    System.out.println("0. Salir");
+                    System.out.println("1. Usuario");
+                    System.out.println("2. Nombre");
+                    System.out.println("3. Correo");
+                    System.out.println("4. Contraseña");
+
+                    String elec = sc.nextLine();
+
+                    switch (elec) {
+                        case "0":
+                            next = false;
+                            break;
+                        case "1":
+                            User.modificarUsuario(u);
+                            break;
+                        case "2":
+                            User.modificarNombreUsuario(u);
+                            break;
+                        case "3":
+                            User.modificarCorreo(u);
+                            break;
+                        case "4":
+                            User.modificarContrasena(u);
+                            break;
+                        default:
+                            System.out.println("Tienes que elegir una opción");
+                            break;
+                    }
+                }while (next);
+            } else if (user instanceof  Admin) {
+                Admin u = (Admin) user;
+                do {
+                    next = true;
+                    System.out.println("¿Que atributo quieres modificar?");
+                    System.out.println("0. Salir");
+                    System.out.println("1. Usuario");
+                    System.out.println("2. Nombre");
+                    System.out.println("3. Correo");
+                    System.out.println("4. Contraseña");
+
+                    String elec = sc.nextLine();
+
+                    switch (elec) {
+                        case "0":
+                            next = false;
+                            break;
+                        case "1":
+                            User.modificarUsuario(u);
+                            break;
+                        case "2":
+                            User.modificarNombreUsuario(u);
+                            break;
+                        case "3":
+                            User.modificarCorreo(u);
+                            break;
+                        case "4":
+                            User.modificarContrasena(u);
+                            break;
+                        default:
+                            System.out.println("Tienes que elegir una opción");
+                            break;
+                    }
+                }while (next);
+            }while (next);
         }
     }
-
-
 }

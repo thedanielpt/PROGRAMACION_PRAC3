@@ -514,70 +514,29 @@ public class Validaciones {
 
     /**
      * Recuperar la contraseña
-     * @param pregunta Pregunta elegida cuando se haya hecho el registro
-     * @param respuesta Respuesta escrita por el usuario, para responder a la pregunta
      * @return contrasenaNueva Contiene la nueva contraseña que se a esrito el usuario, si el usuario no a podido cambiarla, no
      * tendra ningun caracter
      */
-    public static String recuperacionContrasena(String pregunta, String respuesta) {
-        Scanner scan = new Scanner(System.in);
-        boolean next = false;
-        String contrasena = "";
-        String compContrasena = "";
+    public static void recuperacionContrasena(Alumno a) {
+        Scanner sc = new Scanner(System.in);
+        String respuesta = "";
         String contrasenaNueva = "";
-        String respuestaPre = "";
-        boolean vete = false;
-        do {
-            for (int i = 0; i < 3; i++) {
-                System.out.println(pregunta);
-                respuestaPre = scan.nextLine();
-                //Comprueba si la respuesta qeu a escrito es igual a la respuesta correcta
-                if (respuestaPre.equals(respuesta)) {
-                    System.out.println("Pon tu nueva contraseña");
-                    for (int j = 0; j < 3; j++) {
-                        contrasenaNueva = scan.nextLine();
-                        /*
-                        Comprueba si contrasena tiene caracteres especiales, si mide 8 caracteres, si hay mayusculas, si hay
-                        mminusculas y si hay numeros
-                         */
-                        if (Validaciones.hayEspecial(contrasenaNueva) && contrasenaNueva.length() >= 8 && Validaciones.hayMayus(contrasenaNueva) &&
-                                Validaciones.hayMinus(contrasenaNueva) && Validaciones.hayNum(contrasenaNueva)) {
-                            System.out.println("Ponme otra vez la contraseña que  has escrito");
-                            for (int e = 0; e < 3; e++) {
-                                compContrasena = scan.nextLine();
-                                //Devuelve a repetir que pongas la contrasena para que se canvie.
-                                if (compContrasena.equals(contrasenaNueva)) {
-                                    contrasena = contrasenaNueva;
-                                    return contrasena;
-                                    //Si lo intentas tres veces y no funciona te saca y no habras cambieado la contraseña
-                                } else if (e == 2) {
-                                    contrasena = "";
-                                    vete = true;
-                                    System.out.println("La has puesto mal demasiadas veces");
-                                    return contrasena;
-                                } else {
-                                    System.out.println("vuelve a intentarlo");
-                                }
-                            }
-                        } else if (j == 2) {
-                            System.out.println("demasiados intentos");
-                            return contrasena;
-                        } else {
-                            System.out.println("vuelve a intentarlo");
-                        }
-                    }
-                    System.out.println("Confirma la nueva contraseña");
+        boolean next = false;
+
+        for (int i = 0; i < 3; i++) {
+            System.out.println(a.getPregunta());
+            respuesta = sc.nextLine();
+            if (a.getRespuesta().equalsIgnoreCase(respuesta)) {
+                contrasenaNueva = Validaciones.validarContrasena();
+                if (contrasenaNueva.length() < 8){
+                    System.out.println("No se puedo cambiar la contrasena");
+                    return;
                 } else {
-                    System.out.println(" vuelve a intentarlo");
-                    if (i == 2) {
-                        return contrasena;
-                    }
+                    a.setPassword(contrasenaNueva);
+                    return;
                 }
             }
-        } while (next);
-
-        vete = false;
-        return contrasenaNueva;
+        }
     }
 
     public static String cursoUsuario(){
@@ -914,15 +873,12 @@ public class Validaciones {
 
     public static int validarIdBocata() {
         int cuenta = 0;
-
-        for (Bocatas bocata : GesData.bocatas) {
-            if (bocata.getId() == cuenta) {
+        for (Pedidos pedido : GesData.pedidos) {
+            if (pedido.getId_pedido() == cuenta) {
                 ++cuenta;
-            } else {
-                return cuenta;
             }
         }
-        return 0;
+        return cuenta;
     }
 
     /**
@@ -1129,15 +1085,12 @@ public class Validaciones {
      */
     public static int validarIdCalendario(){
         int cuenta = 0;
-
-        for (Calendario calendario : GesData.calendarios) {
-            if (calendario.getId() == cuenta) {
+        for (Pedidos pedido : GesData.pedidos) {
+            if (pedido.getId_pedido() == cuenta) {
                 ++cuenta;
-            } else {
-                return cuenta;
             }
         }
-        return 0;
+        return cuenta;
     }
 
     /**
@@ -1146,28 +1099,22 @@ public class Validaciones {
      */
     public static int validarIdPedido(){
         int cuenta = 0;
-
         for (Pedidos pedido : GesData.pedidos) {
             if (pedido.getId_pedido() == cuenta) {
                 ++cuenta;
-            } else {
-                return cuenta;
             }
         }
-        return 0;
+        return cuenta;
     }
 
     public static int validarIdIncidencia(){
         int cuenta = 0;
-
-        for (Incidencia incidencia: GesData.incidencias) {
-            if (incidencia.getId() == cuenta) {
+        for (Pedidos pedido : GesData.pedidos) {
+            if (pedido.getId_pedido() == cuenta) {
                 ++cuenta;
-            } else {
-                return cuenta;
             }
         }
-        return 0;
+        return cuenta;
     }
 
     public static String validarNombreIncidencia() throws MensajeLargoException {
@@ -1224,5 +1171,23 @@ public class Validaciones {
             }
         }
         return false;
+    }
+
+    public static String recuperarContrasenaPreguntaUsuario(){
+        Scanner sc = new Scanner(System.in);
+        String elec = "";
+
+        System.out.println("¿Que usuario quieres, pon su usuario, si quieres salir pon 'no' ?");
+
+        elec = sc.nextLine();
+
+        if (UsuarioServicio.buscarUsuarios(elec) != null) {
+            return elec;
+        } else if (elec.equals("no")) {
+            return null;
+        } else {
+            System.out.println("Usuario no encontrado");
+        }
+        return null;
     }
 }

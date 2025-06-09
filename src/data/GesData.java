@@ -80,7 +80,7 @@ public class GesData {
         bocatas.add(new Bocatas(6, "Bocadillo de tortilla con chistorra", "Para los amantes de los sabores fuertes",new ArrayList<>(ingredientes), new ArrayList<>(alergias),  5.0, false));
         bocatas.add(new Bocatas(7, "Bocadillo de tortilla con aguacate", "La combinación perfecta para los veganos",new ArrayList<>(ingredientes), new ArrayList<>(alergias),  4.3, true));
         bocatas.add(new Bocatas(8, "Bocadillo de tortilla con salchichón", "El clásico con un toque de sabor",new ArrayList<>(ingredientes), new ArrayList<>(alergias), 4.1, false));
-        bocatas.add(new Bocatas(10, "Bocadillo de tortilla con espinacas",  "Una opción saludable y deliciosa",new ArrayList<>(ingredientes), new ArrayList<>(alergias), 4.0, true));
+        bocatas.add(new Bocatas(9, "Bocadillo de tortilla con espinacas",  "Una opción saludable y deliciosa",new ArrayList<>(ingredientes), new ArrayList<>(alergias), 4.0, true));
     }
 
     /**
