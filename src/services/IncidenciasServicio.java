@@ -75,7 +75,7 @@ public class IncidenciasServicio {
 
         if (nombre.equals("nocrear")) {
             return;
-        } else if (nombre.equals("Sobre mi pedido") && UsuarioServicio.esAlmuno(usuario)) {
+        } else if (nombre.equals("Sobre mi pedido")) {
             a = UsuarioServicio.buscarUsuarios(usuario);
             Alumno alumno = (Alumno) a;
             if (!PedidosServicio.siAlumnoTienePedidos(alumno)) {

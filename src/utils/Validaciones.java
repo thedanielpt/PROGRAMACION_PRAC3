@@ -1122,8 +1122,6 @@ public class Validaciones {
         boolean next = true;
         String nombre = "";
 
-
-
         do {
             System.out.println("¿Que tipo de incidencia es pasado?");
             System.out.println("1. Sobre mi pedido");
@@ -1139,7 +1137,7 @@ public class Validaciones {
                 case "2":
                     return "Sobre mi usuario";
                 case "3":
-                    return "nocrear";
+                    return "no crear";
                 default:
                     System.out.println("Tienes que elegir una opción");
             }
