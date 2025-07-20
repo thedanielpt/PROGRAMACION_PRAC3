@@ -12,6 +12,6 @@ public class Main {
     public static void main(String[] args) throws MensajeLargoException, MenuUsuarioNoEncontrado, IOException {
         GesData.leerTodo();
         MenuAutenticar.menAutentificar();
-        //GesData.escribirTodos();
+        GesData.escribirTodos();
     }
 }

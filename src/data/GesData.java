@@ -27,7 +27,7 @@ public class GesData {
     /**
      * Array de calendarios
      */
-    public static ArrayList<Calendario> calendarios = new ArrayList<>();
+    public static ArrayList<Calendario> calendarios = new ArrayList<Calendario>();
 
     /**
      * Array de incidencias
@@ -39,7 +39,7 @@ public class GesData {
      * Metodo para cargar usuarios
      */
     public static void cargarUsuario(){
-        ArrayList alergias = new ArrayList();
+        ArrayList<String> alergias = new ArrayList();
         alergias.add("Frutos secos");
         alergias.add("Polen");
 

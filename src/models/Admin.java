@@ -26,6 +26,7 @@ public class Admin extends User{
      * Metodo de to string
      * @return devuelve la información el administrador
      */
+
     @Override
     public String toString() {
         return "Admin{" +

@@ -196,7 +196,7 @@ public class PedidosServicio {
         if (elec == null) {
             System.out.println("Bocata no pedido");
             return;
-        } //else if (PedidosServicio.) {
+        }
             
         //}
         int id_pedido = Validaciones.validarIdPedido();

@@ -325,8 +325,7 @@ public class MenuAdministrador {
                 default:
                     next = true;
                     break;
-            }
-            next = true;
+            }   
         } while (next);
     }
 }

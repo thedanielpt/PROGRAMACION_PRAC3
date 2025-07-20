@@ -100,14 +100,18 @@ public class Validaciones {
      * @return boolean Si todos son numeros te devolvera true en caso contrario te devolvera false
      */
     public static boolean soloNum(String num){
-        int cuenta = 0;
-        for (int i = 0; i < num.length(); i++) {
-            if (num.charAt(i) >= '0' && num.charAt(i) <= '9'){
-                cuenta++;
+        if (num.length() != 0) {
+            int cuenta = 0;
+            for (int i = 0; i < num.length(); i++) {
+                if (num.charAt(i) >= '0' && num.charAt(i) <= '9'){
+                    cuenta++;
+                }
             }
-        }
-        if (cuenta == num.length()) {
-            return true;
+            if (cuenta == num.length()) {
+                return true;
+            } else {
+                return false;
+            }
         } else {
             return false;
         }
@@ -1109,8 +1113,8 @@ public class Validaciones {
 
     public static int validarIdIncidencia(){
         int cuenta = 0;
-        for (Pedidos pedido : GesData.pedidos) {
-            if (pedido.getId_pedido() == cuenta) {
+        for (Incidencia inciencia : GesData.incidencias) {
+            if (inciencia.getId() == cuenta) {
                 ++cuenta;
             }
         }

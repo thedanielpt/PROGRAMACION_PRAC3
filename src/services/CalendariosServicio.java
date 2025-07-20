@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CalendariosServicio {
+    private ArrayList<Calendario> listaCalendarios=new ArrayList<Calendario>();
 
     public static void leerCalendarios() throws IOException {
         FileInputStream fis = null;
@@ -24,12 +25,16 @@ public class CalendariosServicio {
             Calendario c;
             while (true){
                 c = (Calendario) ois.readObject();
-                GesData.calendarios.add(c);
+                if(c!=null)  GesData.calendarios.add(c);
             }
-        } catch (ClassNotFoundException e) {
+        }catch (EOFException e){
+            //System.out.println("FICHERO CARGADO");
+        }
+        catch (ClassNotFoundException e) {
             System.out.println("CLASSNOTFOUNDEXCEPTION");
         } catch (IOException e){
-            System.out.println("IOEXCEPTION");
+            System.out.println("IOEXCEPTION:"+e.getMessage());
+
         } finally {
             if (ois!= null){
                 ois.close();
@@ -257,8 +262,8 @@ public class CalendariosServicio {
     public static int calendarioDeHoy(){
         LocalDate fecha = LocalDate.now();
         DayOfWeek diaSemana = fecha.getDayOfWeek();
-        int numeroDeHoy = diaSemana.getValue() - 1;
-
+        int numeroDeHoy = diaSemana.getValue() -1;
+        System.out.println("NUM HOY: "+numeroDeHoy);
         return calendarioSemana[numeroDeHoy];
     }
 
@@ -268,14 +273,19 @@ public class CalendariosServicio {
      */
     public static Bocatas menuHoy(Alumno a){
         Scanner sc = new Scanner(System.in);
-        Bocatas bocataFrio = new Bocatas();
-        Bocatas bocataCaliente = new Bocatas();
-        Bocatas bocata = new Bocatas();
+        Bocatas bocataFrio = null;
+        Bocatas bocataCaliente = null;
         boolean next = true;
         String elec = "";
 
         System.out.println("Estos son los dos bocadillos de hoy");
         int idCalendarioHoy = calendarioDeHoy();
+
+
+        /*if(GesData.calendarios.get(idCalendarioHoy)!=null){
+
+        }*/
+
         for (Calendario calendario: GesData.calendarios) {
 
             if (calendario.getId() == idCalendarioHoy) {
@@ -302,8 +312,8 @@ public class CalendariosServicio {
             }
         }
         do {
-            System.out.println("Elige que bocata quieres con su nombre");
-            System.out.println("Si no lo quieres pedir pon 'No quiero'");
+            System.out.println("Elige que bocata quieres:");
+            System.out.println("Si no lo quieres pedir pon 'No'");
             elec = sc.nextLine();
             switch (elec) {
                 case "1":
@@ -320,7 +330,7 @@ public class CalendariosServicio {
                     } else {
                         return bocataCaliente;
                     }
-                case "No quiero":
+                case "No":
                     return null;
                 default:
                     next = true;
